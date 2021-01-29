@@ -43,14 +43,20 @@ set number
 "set relativenumber
 set cursorline
 set noexpandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set clipboard=unnamedplus
+set tabstop=4    
+set softtabstop=4    
+set shiftwidth=4    
+set noexpandtab 
+set fileformat=unix
+
 
 autocmd BufNewFile,BufRead *.vim setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
 " autocmd FileType c :set autowrite
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd		setf markdown
+au Filetype markdown set spell
 
 set autoindent
 set list
@@ -133,12 +139,6 @@ inoremap kj <Esc>
 nnoremap 0 r
 
 
-" Open the vimrc file anytime
-noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
-
-" Open Startify
-"noremap <LEADER>st :Startify<CR>
-
 
 " make Y to copy till the end of the line
 nnoremap Y y$
@@ -187,298 +187,6 @@ noremap <silent> H 0
 " L key: go to the end of the line
 noremap <silent> L $
 
-" Faster in-line navigation
-noremap W 5w
-noremap B 5b
-
-" Ctrl + U or E will move up/down the view port without moving the cursor
-" noremap <C-U> 5<C-y>
-" noremap <C-E> 5<C-e>
-
-
-" ===
-" === Insert Mode Cursor Movement
-" ===
-inoremap <M-a> <ESC>A
-inoremap <M-h> <Left>
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-l> <Right>
-
-
-
-" ===
-" === Command Mode Cursor Movement
-" ===
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-"cnoremap <M-b> <S-Left>
-"cnoremap <M-w> <S-Right>
-
-
-" ===
-" === Window management
-" ===
-" Use <space> + new arrow keys for moving the cursor around windows
-"noremap <LEADER>w <C-w>w
-noremap <LEADER>k <C-w>k
-noremap <LEADER>j <C-w>j
-noremap <LEADER>h <C-w>h
-noremap <LEADER>l <C-w>l
-
-" Disable the default s key
-noremap s <Nop>
-
-" Split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap sk :set nosplitbelow<CR>:split<CR>
-noremap sj :set splitbelow<CR>:split<CR>
-noremap sh :set nosplitright<CR>:vsplit<CR>
-noremap sl :set splitright<CR>:vsplit<CR>
-
-" Resize splits with arrow keys
-noremap <up> :res +5<CR>
-noremap <down> :res -5<CR>
-noremap <left> :vertical resize-5<CR>
-noremap <right> :vertical resize+5<CR>
-
-" Place the two screens up and down
-noremap sp <C-w>t<C-w>K
-" Place the two screens side by side
-noremap sv <C-w>t<C-w>H
-
-" Rotate screens
-noremap srp <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
-
-" Press <SPACE> + q to close the window below the current window
-noremap <LEADER>q <C-w>j:q<CR>
-
-
-" ===
-" === Tab management
-" ===
-" Create a new tab with tn
-noremap tn :tabnew<CR>
-" Move around tabs with th and tl
-noremap th :-tabnext<CR>
-noremap tl :+tabnext<CR>
-" Move the tabs with tmh and tml
-noremap tmh :-tabmove<CR>
-noremap tml :+tabmove<CR>
-
-" ===
-" === Markdown Settings
-" ===
-" Snippets
-source $HOME/.config/nvim/md-snippets.vim
-source $HOME/.config/nvim/vimwiki-snippets.vim
-" auto spell
-"autocmd BufRead,BufNewFile *.md setlocal spell
-
-
-" ===
-" === Other useful stuff
-" ===
-" Open a new instance of st with the cwd
-nnoremap \t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
-
-" Move the next character to the end of the line with ctrl+9
-"inoremap <C-u> <ESC>lx$p
-
-" Opening a terminal window
-noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
-
-" Press space twice to jump to the next '<++>' and edit it
-noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
-
-" Spelling Check with <space>sc
-noremap <LEADER>sc :set spell!<CR>
-
-" Press ` to change case (instead of ~)
-noremap ` ~
-
-
-" Enter paste mode
-set pastetoggle=<F2>
-
-
-" Auto change directory to current dir
-"autocmd BufEnter * silent! lcd %:p:h
-
-" Call figlet
-noremap tx :r !figlet 
-
-"noremap <LEADER>- :lN<CR>
-"noremap <LEADER>= :lne<CR>
-
-" find and replace
-"noremap \s :%s//g<left><left>
-
-" Compile function
-noremap r :call CompileRunGcc()<CR>
-function! CompileRunGcc()
-	execute "w"
-	if &filetype == 'c'
-		if !isdirectory("build")
-			execute "!mkdir build"
-		endif
-		execute "!gcc -o build/%< %"
-		set splitbelow
-		split
-		set nosplitbelow
-		resize -15
-		autocmd TermOpen term://* startinsert
-		:term time ./build/%<
-	elseif &filetype == 'cpp'
-		set splitbelow
-		exec "!g++ -std=c++11 % -Wall -o %<"
-		split
-		resize -15
-		:term ./%<
-	elseif &filetype == 'java'
-		exec "!javac %"
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		set splitbelow
-		:sp
-		:term python3 %
-	elseif &filetype == 'html'
-		silent! exec "!".g:mkdp_browser." % &"
-	elseif &filetype == 'markdown'
-		exec "MarkdownPreview"
-	elseif &filetype == 'tex'
-		silent! exec "VimtexStop"
-		silent! exec "VimtexCompile"
-	elseif &filetype == 'dart'
-		CocCommand flutter.run
-	elseif &filetype == 'go'
-		set splitbelow
-		split
-		set nosplitbelow
-		:term go run .
-	endif
-endfunction
-
-
-
-" Debug function
-noremap R :call DebugRunGDB()<CR>
-function! DebugRunGDB()
-	execute "w"
-	if &filetype == 'c'
-		if !isdirectory("build/debugs")
-			execute "!mkdir -p build/debugs"
-		endif
-		execute "!gcc -std=c11 -g -o build/debugs/%< %"
-		set splitbelow
-		split
-		set nosplitbelow
-		resize -15
-		autocmd TermOpen term://* startinsert
-		:term time ./build/debugs/%<
-	endif
-endfunction
-
-
-
-
-
-
-" ===
-" === Install Plugins with Vim-Plug
-" ===
-
-call plug#begin('~/.config/nvim/plugged')
-
-" Pretty Dress
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Plug 'ajmwagar/vim-deus'
-Plug 'mhartington/oceanic-next'
-" Plug 'theniceboy/nvim-deus'
-
-" UI Beautification
-Plug 'mhinz/vim-startify'
-"Plug 'ryanoasis/vim-devicons'
-Plug 'luochen1990/rainbow'
-Plug 'wincent/terminus'
-
-
-" Intellisense Engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Markdown
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
-" Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
-" Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
-" Plug 'dkarter/bullets.vim'
-
-"Plug 'vimwiki/vimwiki'
-
-" Editor Enhancement
-Plug 'preservim/nerdcommenter'
-Plug 'AndrewRadev/switch.vim'
-
-
-" Taglist
-" Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
-
-" Undo Tree
-Plug 'mbbill/undotree'
-
-" Bookmarks
-Plug 'kshenoy/vim-signature'
-
-" Go
-"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'godlygeek/tabular' " ga, or :Tabularize <regex> to align
-
-" Python
-"Plug 'sillybun/vim-repl'
-" Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
-" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
-
-Plug 'voldikss/vim-translator'
-
-" Snippets
-Plug 'SirVer/ultisnips'
-" Plug 'theniceboy/vim-snippets'
-Plug 'honza/vim-snippets'
-
-" Debugger
-" Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c'}
-
-" Code check
-" Plug 'dense-analysis/ale'
-
-
-"Plug 'SirVer/ultisnips'
-
-" File navigation
-Plug 'gcmt/wildfire.vim'
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle'}
-Plug 'kien/ctrlp.vim'
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-
-Plug 'tpope/vim-surround'  " type yskw' to wrap the word with '' or type cs'` to change 'word' to `word`
-" V -normal $cs'"
-
-Plug 'theniceboy/vim-calc'
-
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-
-call plug#end()
 
 
 
@@ -497,362 +205,205 @@ call plug#end()
 " ===
 set termguicolors " enable true colors support
 
-" colorscheme deus
-colorscheme OceanicNext
+call plug#begin('~/.config/nvim/plugged')
 
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-let g:airline_theme='oceanicnext'
-
-
-" ===
-" === FZF
-" ===
-" noremap <Leader>fa :Ag<CR>
-
-
-
-" ===
-" === Tabular
-" ===
-vmap ga :Tabularize /
-
-" ===
-" === Tagbar
-" ===
-" map <silent> T :TagbarOpenAutoClose<CR>
-
-" ===
-" === Undotree
-" ===
-nnoremap <leader>U :UndotreeToggle<CR>
-silent !mkdir -p $HOME/.config/nvim/tmp/undo
-if has('persistent_undo')
-	set undofile
-	set undodir=$HOME/.config/nvim/tmp/undo
-endif
-let g:undotree_DiffAutoOpen = 1
-let g:undotree_SetFocusWhenToggle = 1
-" e.g. using 'd' instead of 'days' to save some space.
-" let g:undotree_ShortIndicators = 1
-let g:undotree_WindowLayout = 2
-let g:undotree_DiffpanelHeight = 8
-
-" ===
-" === vim-signature
-" ===
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "dm-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "dm/",
-        \ 'PurgeMarkers'       :  "dm?",
-        \ 'GotoNextLineAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevLineAlpha'  :  "",
-        \ 'GotoNextSpotAlpha'  :  "m<LEADER>",
-        \ 'GotoPrevSpotAlpha'  :  "",
-        \ 'GotoNextLineByPos'  :  "",
-        \ 'GotoPrevLineByPos'  :  "",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "",
-        \ 'GotoPrevMarker'     :  "",
-        \ 'GotoNextMarkerAny'  :  "",
-        \ 'GotoPrevMarkerAny'  :  "",
-        \ 'ListLocalMarks'     :  "m/",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
-" mx           Toggle mark 'x' and display it in the leftmost column
-" dmx          Remove mark 'x' where x is a-zA-Z
-
-" m,           Place the next available mark
-" m.           If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
-" m-           Delete all marks from the current line
-" m<Space>     Delete all marks from the current buffer
-" ]`           Jump to next mark
-" [`           Jump to prev mark
-" ]'           Jump to start of next line containing a mark
-" ['           Jump to start of prev line containing a mark
-" `]           Jump by alphabetical order to next mark
-" `[           Jump by alphabetical order to prev mark
-" ']           Jump by alphabetical order to start of next line having a mark
-" '[           Jump by alphabetical order to start of prev line having a mark
-" m/           Open location list and display marks from current buffer
-
-" m[0-9]       Toggle the corresponding marker !@#$%^&*()
-" m<S-[0-9]>   Remove all markers of the same type
-" ]-           Jump to next line having a marker of the same type
-" [-           Jump to prev line having a marker of the same type
-" ]=           Jump to next line having a marker of any type
-" [=           Jump to prev line having a marker of any type
-" m?           Open location list and display markers from current buffer
-" m<BS>        Remove all markers
-
-
-
-" ===
-" === NERDTree
-" ===
-nmap tt :NERDTreeToggle<CR>
-" let NERDTreeMapOpenExpl = ""
-" let NERDTreeMapUpdir = ""
-" let NERDTreeMapUpdirKeepOpen = "l"
-" let NERDTreeMapOpenSplit = ""
-" let NERDTreeOpenVSplit = ""
-" let NERDTreeMapActivateNode = "i"
-" let NERDTreeMapOpenInTab = "o"
-" let NERDTreeMapPreview = ""
-" let NERDTreeMapCloseDir = "n"
-" let NERDTreeMapChangeRoot = "y"
-
-
-" ===
-" === vim-table-mode
-" ===
-noremap <LEADER>tm :TableModeToggle<CR>
-"let g:table_mode_disable_mappings = 1
-let g:table_mode_cell_text_object_i_map = 'k<Bar>'
-
-" ===
-" === vim-instant-markdown
-" ===
-let g:instant_markdown_slow = 0
-let g:instant_markdown_autostart = 0
-" let g:instant_markdown_open_to_the_world = 1
-" let g:instant_markdown_allow_unsafe_content = 1
-" let g:instant_markdown_allow_external_content = 0
-" let g:instant_markdown_mathjax = 1
-let g:instant_markdown_autoscroll = 1
-
-" ===
-" === Bullets.vim
-" ===
-" let g:bullets_set_mappings = 0
-let g:bullets_enabled_file_types = [
-			\ 'markdown',
-			\ 'text',
-			\ 'gitcommit',
-			\ 'scratch'
-			\]
-
-
-
-" ===
-" === vim-markdown-toc
-" ===
-"let g:vmt_auto_update_on_save = 0
-"let g:vmt_dont_insert_fence = 1
-let g:vmt_cycle_list_item_markers = 1
-let g:vmt_fence_text = 'TOC'
-let g:vmt_fence_closing_text = '/TOC'
-
-
-" ===
-" === Ultisnips
-" ===
-" let g:tex_flavor = "latex"
-" inoremap <c-n> <nop>
-" let g:UltiSnipsExpandTrigger="<c-e>"
-" let g:UltiSnipsJumpForwardTrigger="<c-e>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-n>"
-" let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', $HOME.'/.config/nvim/plugged/vim-snippets/UltiSnips/']
-" silent! au BufEnter,BufRead,BufNewFile * silent! unmap <c-r>
-" " Solve extreme insert-mode lag on macOS (by disabling autotrigger)
-" augroup ultisnips_no_auto_expansion
-"     au!
-"     au VimEnter * au! UltiSnips_AutoTrigger
-" augroup END
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.config/nvim/Ultisnips/', $HOME.'/.config/nvim/plugged/vim-snippets/UltiSnips/']
-
-" If you want :UltiSnipsEdit to split your window.
+Plug 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
+Plug 'fecet/vim-snippets'
 
 
 
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 
 
 
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+let g:mkdp_browser = 'vivaldi'
+let g:mkdp_auto_start = 1
+let g:mkdp_command_for_global = 1
+let g:mkdp_echo_preview_url = 1
+nmap <leader>v <Plug>MarkdownPreviewToggle
+
+Plug '907th/vim-auto-save'
+let g:auto_save = 1
+let g:auto_save_silent = 1 
+
+Plug 'itchyny/lightline.vim'
 
 
+Plug 'lervag/vimtex'
+set conceallevel=2
+let g:tex_conceal='abdmg'
+let g:tex_flavor = "latex"
+
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_math = 1
+
+Plug 'easymotion/vim-easymotion'
+nmap s <Plug>(easymotion-s2)
+nmap t <Plug>(easymotion-t2)
+
+Plug 'tpope/vim-surround'
+
+Plug 'Raimondi/delimitMate'
+
+Plug 'crusoexia/vim-monokai'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
+nmap <leader>e :CocCommand explorer<CR>
+
+set number
+set syntax=on
+set smartcase
+set hidden
 
 
+set nobackup
+set nowritebackup
+set noswapfile
+set cmdheight=1
 
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
 
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-
-
-
-
-
-
-" ===
-" === Vim-calc
-" ===
-nnoremap ,a :call Calc()<CR>
-
-
-" ===
-" === rainbow
-" ===
-"set to 0 if you want to enable it later via :RainbowToggle
-let g:rainbow_active = 1
-
-
-" ===
-" === nerdcommenter
-" ===
-" let g:NERDDefaultNesting = 0
-
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-" let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-" let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-" let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-" let g:NERDToggleCheckAllLines = 1
-
-
-" map <Leader>cn <Plug>NERDCommenterToEOL('n', 'To_EOL')<CR>
-
-
-" ===
-" === Coc
-" ===
-
-source ~/.config/nvim/coc.vim
-
-" ===
-" === Vimspector
-" ===
-" let g:vimspector_enable_mappings = 'HUMAN'
-" function! s:read_template_into_buffer(template)
-" 	" has to be a function to avoid the extra space fzf#run insers otherwise
-" 	execute '0r ~/.config/nvim/sample_vimspector_json/'.a:template
-" endfunction
-" command! -bang -nargs=* LoadVimSpectorJsonTemplate call fzf#run({
-" 			\   'source': 'ls -1 ~/.config/nvim/sample_vimspector_json',
-" 			\   'down': 20,
-" 			\   'sink': function('<sid>read_template_into_buffer')
-" 			\ })
-" " noremap <leader>vs :tabe .vimspector.json<CR>:LoadVimSpectorJsonTemplate<CR>
-" sign define vimspectorBP text=☛ texthl=Normal
-" sign define vimspectorBPDisabled text=☞ texthl=Normal
-" sign define vimspectorPC text=🔶 texthl=SpellBad
-
-" ===
-" === Vim-translator
-" ===
-
-" Echo translation in the cmdline
-nmap <silent> <Leader>t <Plug>Translate
-vmap <silent> <Leader>t <Plug>TranslateV
-" Display translation in a window
-nmap <silent> <Leader>w <Plug>TranslateW
-vmap <silent> <Leader>w <Plug>TranslateWV
-" Replace the text with translation
-nmap <silent> <Leader>r <Plug>TranslateR
-vmap <silent> <Leader>r <Plug>TranslateRV
-" Translate the text in clipboard
-nmap <silent> <Leader>x <Plug>TranslateX
-
-
-
-" ===
-" === Vim-go
-" ===
-
-"let g:go_def_mapping_enabled = 0
-"let g:go_template_autocreate = 0
-"let g:go_textobj_enabled = 0
-"let g:go_auto_type_info = 1
-"let g:go_def_mapping_enabled = 0
-"let g:go_highlight_array_whitespace_error = 1
-"let g:go_highlight_build_constraints = 1
-"let g:go_highlight_chan_whitespace_error = 1
-"let g:go_highlight_format_strings = 1
-"let g:go_highlight_function_parameters = 1
-"let g:go_highlight_methods = 1
-"let g:go_highlight_space_tab_error = 1
-"let g:go_highlight_string_spellcheck = 1
-"let g:go_highlight_structs = 1
-"let g:go_highlight_trailing_whitespace_error = 1
-"let g:go_highlight_variable_assignments = 0
-"let g:go_highlight_variable_declarations = 0
-"let g:go_doc_keywordprg_enabled = 0
-
-let g:go_fmt_command = "goimports"
-let g:go_textobj_include_function_doc = 1
-let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['vet', 'golint']
-let g:go_metalinter_deadline = "5s"
-
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
-
-" 禁用K进入GoDoc
-let g:go_doc_keywordprg_enabled = 0
-
-autocmd FileType go :set autowrite
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
-"map <C-n> :cnext<CR>
-"map <C-m> :cprevious<CR>
-"nnoremap <leader>c :cclose<CR>
-"autocmd FileType go nmap <leader>b  <Plug>(go-build)
-"autocmd FileType go nmap <leader>r  <Plug>(go-run)
-autocmd FileType go nmap R  <Plug>(go-run)
-"autocmd FileType go nmap <leader>t  <Plug>(go-test)
-" run :GoBuild or :GoTestCompile based on the go file
-
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
-autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
 
-autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+nnoremap <silent> <leader>g :<C-u>CocList<cr>
+
+call plug#end()
+
+
+colorscheme monokai
+hi clear Conceal
 
 
