@@ -11,7 +11,7 @@
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	"autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " ===
@@ -30,11 +30,9 @@ source ~/.config/nvim/_machine_specific.vim
 " ===
 " === System
 " ===
-"set clipboard=unnamedplus
-"let &t_ut=''
-"set autochdir
 
-
+set clipboard=unnamedplus
+set modifiable
 
 " ===
 " === Editor behavior
@@ -42,15 +40,13 @@ source ~/.config/nvim/_machine_specific.vim
 set number
 "set relativenumber
 set cursorline
-set noexpandtab
-set clipboard=unnamedplus
+" set noexpandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set noexpandtab
-set modifiable
+" set noexpandtab
+set expandtab
 set fileformat=unix
-
 
 autocmd BufNewFile,BufRead *.vim setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
@@ -61,7 +57,6 @@ au Filetype markdown set spell
 
 set autoindent
 set list
-set listchars=tab:\|\ ,trail:▫
 set scrolloff=4
 "set notimeout
 "set ttimeoutlen=0
@@ -119,9 +114,6 @@ let g:terminal_color_12 = '#CAA9FA'
 let g:terminal_color_13 = '#FF92D0'
 let g:terminal_color_14 = '#9AEDFE'
 
-
-
-
 " ===
 " === Basic Mappings
 " ===
@@ -130,16 +122,8 @@ let g:terminal_color_14 = '#9AEDFE'
 let mapleader=" "
 
 " Save & quit
-noremap S :w<CR>
-noremap Q :q<CR>
-noremap ,q :q!<CR>
+noremap Q :qa<CR>
 "noremap <C-q> :qa<CR>
-inoremap kj <Esc>
-
-" Replace the character under the cursor with {char}.
-nnoremap 0 r
-
-
 
 " make Y to copy till the end of the line
 nnoremap Y y$
@@ -180,14 +164,13 @@ noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
 "     v
 
 " K/J keys for 5 times k/j (faster navigation)
-noremap <silent> K 5k
-noremap <silent> J 5j
+noremap <silent> K 6k
+noremap <silent> J 6j
 
 " H key: go to the start of the line
 noremap <silent> H 0
 " L key: go to the end of the line
 noremap <silent> L $
-
 
 
 
@@ -208,6 +191,97 @@ set termguicolors " enable true colors support
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'mhinz/vim-startify'
+
+let g:start_image_head = [
+\ '             WWNXK0KXWW           WN0kxkkkOOOOOOkk0W      ', 
+\ '           WWX0xocccclloxOXW WNX0xl;,,;cloooolllc;:lxXW   ', 
+\ '         Nkdxd;....,::;;,,;coool:::loodxxxxxddolccoo:oX   ', 
+\ '        Xdc:cc;;`. .ldo:..  .`,,:oolloddoolcc:::cccllo0   ', 
+\ '       WXxllllc,.  .;:,..  .:::;,,`.,:c::ccccllcccclllOW  ', 
+\ '       NNxcxd;;....,:c:,...,xkdlclolooooolcc:;,,,,,`,,lX  ', 
+\ '      W0l.;dl::;,,;cll:;`,;codddxxxdol:;;;,,,`..`,,,;lOW  ', 
+\ '     NOc,;clooollloddoc::cccccllll:;,`,,,;:,`....`:loON   ', 
+\ '     X0kkkddxdlcooc:;,`....,::;,,,,,``,,;::;;;;:dxONNW    ', 
+\ '   WNKo`,cokKKKd,...  .....`;:ccloollddxdxdxK0xkWWW       ', 
+\ '   W0;. .dN    Nl... .cxOKKXNWW   WWW  WWNNNWWNN          ', 
+\ '    No.  .,dKW 0,   .lKNW                                 ', 
+\ '     Nd.    .ckKl. ...;lkX                                ', 
+\ '      Wx.   ...ll......  ;0                               ', 
+\ '       Wx..`````...  ..   cN                              ', 
+\ '        W0l,```. ..`...   ;KW                             ', 
+\ '          WXkl,. ..`;;;.. .,ok0KXW                        ', 
+\ '             WKkd:`..`,:;`.  .`,lkXWW                     ', 
+\ '                 N0d:..`,,,`... .`cxOOKW                  ', 
+\ '                   WXk:`...`,,``....`:o0W                 ', 
+\ '                      NOc......````...;kW                 ', 
+\ '                        Nk:...   ...`l0W                  ', 
+\ '                          W0xollldxO0N                    ']
+
+let g:start_image_dc=[
+\ '  ,--,   ,---.    ,---.    .--.  _______ .-. .-.,---.     .---.   .---.,     ',
+\ '.` .`    | .-.\   | .-`   / /\ \|__   __||  \| || .-`    ( .-._) ( .-._)     ',
+\ '|  |  __ | `-`/   | `-.  / /__\ \ )| |   |   | || `-.   (_) \   (_) \        ',
+\ '\  \ ( _)|   (    | .-`  |  __  |(_) |   | |\  || .-`   _  \ \  _  \ \       ',
+\ ' \  `-) )| |\ \   |  `--.| |  |)|  | |   | | |)||  `--.( `-`  )( `-`  )      ',
+\ ' )\____/ |_| \)\  /( __.`|_|  (_)  `-`   /(  (_)/( __.` `----`  `----`       ',
+\ '(__)         (__)(__)                   (__)   (__)                          ',
+\ '                                                                             ',
+\ '                 ____  _____    ____  _     ___  _   ____  ____  ____  _____ ',
+\ '                /  _ \/__ __\  /  _ \/ \  /|\  \//  /   _\/  _ \/ ___\/__ __\',
+\ '                | / \|  / \    | / \|| |\ || \  /   |  /  | / \||    \  / \  ',
+\ '                | |-||  | |    | |-||| | \|| / /    |  \_ | \_/|\___ |  | |  ',
+\ '                \_/ \|  \_/    \_/ \|\_/  \|/_/     \____/\____/\____/  \_/  ',
+\ '                                                                             ']
+
+let g:start_image=g:start_image_dc
+
+"let g:startify_custom_header = 'startify#pad(g:start_image + startify#fortune#quote())'
+
+let g:startify_custom_header = 'startify#pad(g:start_image)'
+
+" returns all modified files of the current git repo
+" `2>/dev/null` makes the command fail quietly, so that when we are not
+" in a git repo, the list will be empty
+function! s:gitModified()
+    let files = systemlist('git ls-files -m 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+" same as above, but show untracked files, honouring .gitignore
+function! s:gitUntracked()
+    let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+    return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_custom_indices = ['a', 'd', 'g', 'l', 'w', 'r', 'u', 'o', 'n', 'm', 'aa', 'af', 'ad', 'ag', 'aj', 'al', 'ak', 'da', 'df', 'dd', 'dg', 'dj', 'dl', 'dk', 'lf', 'ld', 'lg', 'lj', 'lh', 'll', 'lk', 'la', 'oa', 'of', 'od', 'og', 'oj', 'ol', 'ok']
+
+
+let g:startify_commands = [
+		\ ['Call doctor',':checkhealth'],
+		\ ['Vim Reference', 'h ref'],
+		\ {'h': ['Startify help','h startify']},
+		\ ]
+
+let g:startify_lists = [
+        \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+        \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+        \ { 'type': 'files',     'header': ['   Recently files']            },
+        \ { 'type': 'dir',       'header': ['   Recently '. getcwd()] },
+        \ { 'type': 'commands',  'header': ['   Commands']       },
+        \ ]
+
+Plug 'gibiansky/vim-latex-objects'
+Plug 'gcmt/wildfire.vim'
+" use '*' to mean 'all other filetypes'
+" in this example, html and xml share the same text objects
+xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
+xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
+let g:wildfire_objects = {
+    \ "*" : ["i'", 'i"', "i)", "i]", "i}","im","am"],
+    \ "html,xml" : ["at", "it"],
+\ }
+
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -216,36 +290,20 @@ let g:UltiSnipsEditSplit="vertical"
 Plug 'fecet/vim-snippets'
 
 
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-let g:coc_snippet_next = '<tab>'
-
-
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 let g:mkdp_browser = 'vivaldi'
 let g:mkdp_auto_start = 1
 let g:mkdp_command_for_global = 1
 let g:mkdp_echo_preview_url = 1
+let g:mkdp_open_to_the_world = 1
 nmap <leader>v <Plug>MarkdownPreviewToggle
+
 
 Plug '907th/vim-auto-save'
 let g:auto_save = 1
-let g:auto_save_silent = 1 
+let g:auto_save_silent = 1
 
 Plug 'itchyny/lightline.vim'
-
 
 Plug 'lervag/vimtex'
 set conceallevel=2
@@ -259,7 +317,7 @@ let g:vim_markdown_math = 1
 
 Plug 'easymotion/vim-easymotion'
 nmap s <Plug>(easymotion-s2)
-nmap t <Plug>(easymotion-t2)
+"nmap t <Plug>(easymotion-t2)
 
 Plug 'tpope/vim-surround'
 
@@ -322,8 +380,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

@@ -1,4 +1,7 @@
 {
+  "coc.source.ultisnips.enable": false,
+  "coc.source.omni.filetypes": ["foam"],
+  "coc.source.neco.shortcut": "VIM",
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"coc.preferences.snippetStatusText": "Ⓢ ",
 	"coc.preferences.messageLevel": "error",
@@ -18,67 +21,12 @@
 	//"coc.source.buffer.firstMatch": false,
 	//"coc.source.syntax.firstMatch": false,
 	// 在完成时不让Vim选择第一项
-	"suggest.noselect": true,
-	"suggest.enablePreselect": false,
-	"suggest.detailMaxLength": 100,
-	// 自动触发补全
-	"suggest.autoTrigger": "always",
-	"suggest.triggerAfterInsertEnter": true,
-	"suggest.timeout": 5000,
-	// 添加预览选项以完成选择，默认值：false。
-	"suggest.enablePreview": true,
-	"suggest.floatEnable": true,
-	"suggest.detailField": "preview",
-	"suggest.snippetIndicator": "",
-	"suggest.triggerCompletionWait": 100,
-	//"suggest.echodocSupport": true,
-	/*
-	"suggest.completionItemKindLabels": {
-		"class": "\uf0e8",
-		"color": "\ue22b",
-		"constant": "\uf8fe",
-		"default": "\uf29c",
-		"enum": "\uf435",
-		"enumMember": "\uf02b",
-		"event": "\ufacd",
-		"field": "\uf93d",
-		"file": "\uf723",
-		"folder": "\uf115",
-		"function": "\u0192",
-		"interface": "\uf417",
-		"keyword": "\uf1de",
-		"method": "\uf6a6",
-		"module": "\uf40d",
-		"operator": "\uf915",
-		"property": "\ue624",
-		"reference": "\ufa46",
-		"snippet": "\ue60b",
-		"struct": "\ufb44",
-		"text": "\ue612",
-		"typeParameter": "\uf728",
-		"unit": "\uf475",
-		"value": "\uf89f",
-		"variable": "\ue71b"
-	},
-	*/
-	//"diagnostic.signOffset": 1,
-	//"diagnostic.errorSign": "\uf467",
-	//"diagnostic.warningSign": "\uf071",
-	//"diagnostic.infoSign": "\uf129",
-	//"diagnostic.hintSign": "\uf864",
-	"diagnostic.errorSign": ">>",
-	"diagnostic.warningSign": "⚠",
-	"diagnostic.infoSign": ">>",
-	"diagnostic.hintSign": ">>",
-	// 禁用ale显示
-	"diagnostic.displayByAle": false,
-	// 关闭插入模式诊断
-	"diagnostic.refreshOnInsertMode": false,
-	// 仅在保存后刷新诊断信息，默认关闭
-	"diagnostic.refreshAfterSave": false,
-	"diagnostic.checkCurrentLine": true,
-	"diagnostic.virtualTextPrefix": " ❯❯❯ ",
-	"diagnostic.virtualText": true,
+	"diagnostic.displayByAle": true,
+  "suggest.enablePreview": true,
+  "suggest.minTriggerInputLength": 3,
+  "suggest.snippetIndicator": "[+] ",
+  "suggest.timeout": 1000,
+  "suggest.removeDuplicateItems": true,
 	"codeLens.enable": true,
 	// 突出显示组用于突出显示预览窗口中的范围。
 	"list.previewHighlightGroup": "Statement",
@@ -155,5 +103,85 @@
 			],
 			"ignoredRootPaths": []
 		}
-	}
+	},
+	"explorer.keyMappings.global": {
+    "i": false, // cancel default mapkey
+
+    "*": "toggleSelection",
+    "<tab>": "actionMenu",
+
+    "gk": ["wait", "expandablePrev"],
+    "gj": ["wait", "expandableNext"],
+    "h": ["wait", "collapse"],
+    "l": ["wait", "expandable?", "expand", "open"],
+    "J": ["wait", "toggleSelection", "normal:j"],
+    "K": ["wait", "toggleSelection", "normal:k"],
+    "gl": ["wait", "expand:recursive"],
+    "gh": ["wait", "collapse:recursive"],
+    "<2-LeftMouse>": [
+      "expandable?",
+      ["expanded?", "collapse", "expand"],
+      "open"
+    ],
+    "o": ["wait", "expanded?", "collapse", "expand"],
+    "<cr>": ["wait", "expandable?", "cd", "open"],
+    "e": "open",
+    "s": "open:split",
+    "E": "open:vsplit",
+    "t": "open:tab",
+    "u": "gotoParent",
+    "gs": ["wait", "reveal:select"],
+    "il": "preview:labeling",
+    "ic": "preview:content",
+    "Il": "previewOnHover:toggle:labeling",
+    "Ic": "previewOnHover:toggle:content",
+    "II": "previewOnHover:disable",
+
+    "yp": "copyFilepath",
+    "yn": "copyFilename",
+    "yy": "copyFile",
+    "dd": "cutFile",
+    "p": "pasteFile",
+    "df": "delete",
+    "dF": "deleteForever",
+
+    "a": "addFile",
+    "A": "addDirectory",
+    "r": "rename",
+
+    "zh": "toggleHidden",
+    "g.": "toggleHidden",
+    "R": "refresh",
+
+    "?": "help",
+    "q": "quit",
+    "<esc>": "esc",
+    "X": "systemExecute",
+    "gd": "listDrive",
+
+    "f": "search",
+    "F": "searchRecursive",
+
+    "gf": "gotoSource:file",
+    "gb": "gotoSource:buffer",
+
+    "[[": ["wait", "sourcePrev"],
+    "]]": ["wait", "sourceNext"],
+
+    "[i": ["wait", "indentPrev"],
+    "]i": ["wait", "indentNext"],
+
+    "[m": ["wait", "markPrev:modified"],
+    "]m": ["wait", "markNext:modified"],
+
+    "[d": ["wait", "markPrev:diagnosticError:diagnosticWarning"],
+    "]d": ["wait", "markNext:diagnosticError:diagnosticWarning"],
+    "[D": ["wait", "markPrev:diagnosticError"],
+    "]D": ["wait", "markNext:diagnosticError"],
+
+    "[c": ["wait", "markPrev:git"],
+    "]c": ["wait", "markNext:git"],
+    "<<": "gitStage",
+    ">>": "gitUnstage"
+  }
 }
