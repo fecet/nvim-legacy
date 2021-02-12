@@ -44,7 +44,6 @@ set cursorline
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-" set noexpandtab
 set expandtab
 set fileformat=unix
 
@@ -54,7 +53,6 @@ autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=2 softtabstop=2 s
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd		setf markdown
 au Filetype markdown set spell
-
 set autoindent
 set list
 set scrolloff=4
@@ -71,22 +69,18 @@ set foldenable
 "set noshowmode
 set showcmd
 set wildmenu
-set ignorecase
 set smartcase
-"set shortmess+=c
-"set inccommand=split
-"set completeopt=longest,noinsert,menuone,noselect,preview
 set lazyredraw "same as above
-"set visualbell
-
-"silent !mkdir -p ~/.config/nvim/tmp/backup
-""silent !mkdir -p ~/.config/nvim/tmp/sessions
-"set backupdir=~/.config/nvim/tmp/backup,.
-"set directory=~/.config/nvim/tmp/backup,.
-
 set colorcolumn=80
 set updatetime=100
 set virtualedit=block
+set syntax=on
+set hidden
+set nobackup
+set nowritebackup
+set noswapfile
+set cmdheight=1
+set dictionary+=/home/facet/.config/nvim/spell/en.utf-8.add
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -172,7 +166,7 @@ noremap <silent> H 0
 " L key: go to the end of the line
 noremap <silent> L $
 
-
+inoremap <silent> <C-w> <C-W>
 
 
 "  ____  _             _          ____             __ _
@@ -191,7 +185,12 @@ set termguicolors " enable true colors support
 
 call plug#begin('~/.config/nvim/plugged')
 
+"===============================================================
+" Startify
+
 Plug 'mhinz/vim-startify'
+
+set viminfo='100,n$HOME/.vim/files/info/viminfo
 
 let g:start_image_head = [
 \ '             WWNXK0KXWW           WN0kxkkkOOOOOOkk0W      ', 
@@ -271,6 +270,8 @@ let g:startify_lists = [
         \ { 'type': 'commands',  'header': ['   Commands']       },
         \ ]
 
+"===============================================================
+
 Plug 'gibiansky/vim-latex-objects'
 Plug 'gcmt/wildfire.vim'
 " use '*' to mean 'all other filetypes'
@@ -278,7 +279,7 @@ Plug 'gcmt/wildfire.vim'
 xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
 xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
 let g:wildfire_objects = {
-    \ "*" : ["i'", 'i"', "i)", "i]", "i}","im","am"],
+    \ "*" : ["iw","i'", 'i"', "i)", "i]", "i}","im","am"],
     \ "html,xml" : ["at", "it"],
 \ }
 
@@ -316,12 +317,21 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_math = 1
 
 Plug 'easymotion/vim-easymotion'
-nmap s <Plug>(easymotion-s2)
-"nmap t <Plug>(easymotion-t2)
+" <Leader>f{char} to move to {char}
+map  f <Plug>(easymotion-bd-f)
+nmap f <Plug>(easymotion-overwin-f)
 
-Plug 'tpope/vim-surround'
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
 
-Plug 'Raimondi/delimitMate'
+" Move to line
+map <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
 
 Plug 'crusoexia/vim-monokai'
 
@@ -330,16 +340,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
 nmap <leader>e :CocCommand explorer<CR>
 
-set number
-set syntax=on
-set smartcase
-set hidden
-
-
-set nobackup
-set nowritebackup
-set noswapfile
-set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -455,7 +455,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-nnoremap <silent> <leader>g :<C-u>CocList<cr>
+nnoremap <silent> <leader>k :<C-u>CocList<cr>
 
 call plug#end()
 

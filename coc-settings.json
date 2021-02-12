@@ -1,5 +1,6 @@
 {
-  "coc.source.ultisnips.enable": false,
+  "coc.source.ultisnips.enable": true,
+	"coc.source.dictionary.enable": true,
   "coc.source.omni.filetypes": ["foam"],
   "coc.source.neco.shortcut": "VIM",
 	"coc.preferences.extensionUpdateCheck": "daily",
