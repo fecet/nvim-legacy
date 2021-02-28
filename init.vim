@@ -53,6 +53,7 @@ autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=2 softtabstop=2 s
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd		setf markdown
 au Filetype markdown set spell
+au Filetype markdown let b:coc_additional_keywords = ["-"]
 set autoindent
 set list
 set scrolloff=4
@@ -133,7 +134,6 @@ nnoremap > >>
 noremap <LEADER><CR> :nohlsearch<CR>
 
 " Adjacent duplicate words
-noremap <LEADER>dw /\(\<\w\+\>\)\_s*\1
 
 " Space to Tab
 "nnoremap <LEADER>tt :%s/    /\t/g
@@ -260,6 +260,7 @@ let g:startify_commands = [
 		\ ['Call doctor',':checkhealth'],
 		\ ['Vim Reference', 'h ref'],
 		\ {'h': ['Startify help','h startify']},
+		\ {'p':['Plugin install','PlugInstall']},
 		\ ]
 
 let g:startify_lists = [
@@ -283,6 +284,8 @@ let g:wildfire_objects = {
     \ "html,xml" : ["at", "it"],
 \ }
 
+Plug 'tpope/vim-surround'
+
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -292,7 +295,21 @@ Plug 'fecet/vim-snippets'
 
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {},
+    \ 'flowchart_diagrams': {},
+    \ 'content_editable': v:false,
+    \ 'disable_filename': 0
+    \ }
 let g:mkdp_browser = 'vivaldi'
+let g:mkdp_filetypes = ['markdown','rmd']
 let g:mkdp_auto_start = 1
 let g:mkdp_command_for_global = 1
 let g:mkdp_echo_preview_url = 1
@@ -318,10 +335,14 @@ let g:vim_markdown_math = 1
 
 Plug 'easymotion/vim-easymotion'
 " <Leader>f{char} to move to {char}
-map  f <Plug>(easymotion-bd-f)
-nmap f <Plug>(easymotion-overwin-f)
+"map  f <Plug>(easymotion-bd-f)
+"nmap f <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+hi link EasyMotionTarget2First MatchParen
+hi link EasyMotionTarget2Second MatchParen
 nmap s <Plug>(easymotion-overwin-f2)
 
 " Move to line
@@ -338,7 +359,7 @@ Plug 'crusoexia/vim-monokai'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
-nmap <leader>e :CocCommand explorer<CR>
+nmap <leader>e :CocCommand explorer --quit-on-open<CR>
 
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
