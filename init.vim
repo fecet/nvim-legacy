@@ -52,6 +52,7 @@ autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=2 softtabstop=2 s
 " autocmd FileType c :set autowrite
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd		setf markdown
+"au Filetype *.rmd setf markdown
 au Filetype markdown set spell
 au Filetype markdown let b:coc_additional_keywords = ["-"]
 set autoindent
@@ -316,6 +317,15 @@ let g:mkdp_echo_preview_url = 1
 let g:mkdp_open_to_the_world = 1
 nmap <leader>v <Plug>MarkdownPreviewToggle
 
+Plug 'ZSaberLv0/ZFVimIM'
+Plug 'ZSaberLv0/ZFVimJob'
+Plug 'ZSaberLv0/ZFVimGitUtil' " 可选, 如果你希望定期自动清理词库 push 历史
+Plug 'fecet/ZFVimIM_pinyin_base' " 你的词库
+Plug 'ZSaberLv0/ZFVimIM_openapi' 
+
+let g:zf_git_user_email='xiezej@gmail.com'
+let g:zf_git_user_name='fecet'
+let g:zf_git_user_token='2520f5f8e841651f1b5295170d2461ac49b8c859'
 
 Plug '907th/vim-auto-save'
 let g:auto_save = 1
