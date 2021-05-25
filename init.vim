@@ -32,6 +32,18 @@ source ~/.config/nvim/_machine_specific.vim
 " ===
 
 set clipboard=unnamedplus
+let g:clipboard = {
+          \   'name': 'win32yank-wsl',
+          \   'copy': {
+          \      '+': 'win32yank.exe -i --crlf',
+          \      '*': 'win32yank.exe -i --crlf',
+          \    },
+          \   'paste': {
+          \      '+': 'win32yank.exe -o --lf',
+          \      '*': 'win32yank.exe -o --lf',
+          \   },
+          \   'cache_enabled': 0,
+          \ }
 set modifiable
 
 " ===
@@ -78,8 +90,6 @@ set updatetime=100
 set virtualedit=block
 set syntax=on
 set hidden
-set nobackup
-set nowritebackup
 set noswapfile
 set cmdheight=1
 set dictionary+=/home/facet/.config/nvim/spell/en.utf-8.add
@@ -285,7 +295,7 @@ let g:wildfire_objects = {
     \ "html,xml" : ["at", "it"],
 \ }
 
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 
 Plug 'SirVer/ultisnips'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -309,8 +319,8 @@ let g:mkdp_preview_options = {
     \ 'content_editable': v:false,
     \ 'disable_filename': 0
     \ }
-let g:mkdp_browser = 'vivaldi'
-let g:mkdp_filetypes = ['markdown','rmd']
+let g:mkdp_browser = 'msedge'
+"let g:mkdp_filetypes = ['markdown','rmd']
 let g:mkdp_auto_start = 1
 let g:mkdp_command_for_global = 1
 let g:mkdp_echo_preview_url = 1
@@ -368,16 +378,69 @@ Plug 'crusoexia/vim-monokai'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'weirongxu/coc-explorer', {'do': 'yarn install --frozen-lockfile'}
-nmap <leader>e :CocCommand explorer --quit-on-open<CR>
+let g:coc_global_extensions = [
+\ 'coc-dictionary',
+\ 'coc-explorer',
+\ 'coc-lists',
+\ 'coc-snippets',
+\ 'coc-word',
+\ 'coc-vimlsp']
+
+"
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'cocConfig': {
+\      'root-uri': '~/.config/coc',
+\   },
+\   'tab': {
+\     'position': 'tab',
+\     'quit-on-open': v:true,
+\   },
+\   'tab:$': {
+\     'position': 'tab:$',
+\     'quit-on-open': v:true,
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]',
+\     'quit-on-open': v:true,
+\   },
+\   'buffer': {
+\     'sources': [{'name': 'buffer', 'expand': v:true}],
+\     'quit-on-open': v:true,
+\   },
+\ }
 
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
+" Use preset argument to open it
+"nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
+nnoremap <space>e :CocCommand explorer --preset floating<CR>
+"nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
+"nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
 
 " Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -390,7 +453,7 @@ endif
 
 " Use <c-space> to trigger completion.
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <c-o> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
