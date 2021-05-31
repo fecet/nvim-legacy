@@ -304,6 +304,8 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
 Plug 'fecet/vim-snippets'
 
+Plug 'jupyter-vim/jupyter-vim'
+
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 let g:mkdp_preview_options = {
