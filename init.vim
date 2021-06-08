@@ -92,7 +92,7 @@ set syntax=on
 set hidden
 set noswapfile
 set cmdheight=1
-set dictionary+=/home/facet/.config/nvim/spell/en.utf-8.add
+set dictionary+='~/.config/nvim/spell/en.utf-8.add'
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
