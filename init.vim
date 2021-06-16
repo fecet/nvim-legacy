@@ -32,19 +32,19 @@ source ~/.config/nvim/_machine_specific.vim
 " ===
 
 set clipboard=unnamedplus
-let g:clipboard = {
-          \   'name': 'win32yank-wsl',
-          \   'copy': {
-          \      '+': 'win32yank.exe -i --crlf',
-          \      '*': 'win32yank.exe -i --crlf',
-          \    },
-          \   'paste': {
-          \      '+': 'win32yank.exe -o --lf',
-          \      '*': 'win32yank.exe -o --lf',
-          \   },
-          \   'cache_enabled': 0,
-          \ }
-set modifiable
+"let g:clipboard = {
+"          \   'name': 'win32yank-wsl',
+"          \   'copy': {
+"          \      '+': 'win32yank.exe -i --crlf',
+"          \      '*': 'win32yank.exe -i --crlf',
+"          \    },
+"          \   'paste': {
+"          \      '+': 'win32yank.exe -o --lf',
+"          \      '*': 'win32yank.exe -o --lf',
+"          \   },
+"          \   'cache_enabled': 0,
+"          \ }
+"set modifiable
 
 " ===
 " === Editor behavior
