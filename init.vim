@@ -125,19 +125,19 @@ let g:terminal_color_14 = '#9AEDFE'
 " ===
 
 " Set <LEADER> as <SPACE>
-let mapleader=" "
 
+let mapleader=" "
 " Save & quit
 "
 "noremap <C-q> :qa<CR>
 
-" make Y to copy till the end of the line
+" makE Y to copy till the end of the line
 nnoremap Y y$
 
 " Copy to system clipboard
 "vnoremap Y "+y
 
-" Indentation
+" IndeNtation
 nnoremap < <<
 nnoremap > >>
 
@@ -155,7 +155,7 @@ noremap <LEADER><CR> :nohlsearch<CR>
 
 " Open up lazygit
 "noremap \g :Git 
-"noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>
+"noremaP <C-G> :TABe<CR>:-tabmove<CR>:term lazygit<CR>
 
 
 " ===
@@ -177,7 +177,7 @@ noremap <silent> H 0
 " L key: go to the end of the line
 noremap <silent> L $
 
-inoremap <silent> <C-w> <C-W>
+" inoremap <silent> <C-w> <C-W>
 
 
 "  ____  _             _          ____             __ _
@@ -196,6 +196,7 @@ set termguicolors " enable true colors support
 
 
 if exists('g:vscode')
+		
     " VSCode extension
 		set relativenumber
 		call plug#begin('~/.config/nvim/plugged')
@@ -241,6 +242,7 @@ if exists('g:vscode')
 
 		call plug#end()
 else
+		
 		noremap Q :qa<CR>
 		
 		call plug#begin('~/.config/nvim/plugged')
