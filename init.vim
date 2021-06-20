@@ -243,7 +243,7 @@ if exists('g:vscode')
 		call plug#end()
 else
 		
-		noremap Q :qa<CR>
+		noremap Q :q<CR>
 		
 		call plug#begin('~/.config/nvim/plugged')
 
@@ -324,6 +324,9 @@ else
 
 		Plug 'machakann/vim-sandwich'
 
+		Plug 'kevinhwang91/rnvimr'
+		nnoremap <silent> <Leader>e :RnvimrToggle<CR>
+
 		Plug 'SirVer/ultisnips'
 		let g:UltiSnipsExpandTrigger="<tab>"
 		let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -346,7 +349,7 @@ else
 				\ 'content_editable': v:false,
 				\ 'disable_filename': 0
 				\ }
-		let g:mkdp_browser = 'msedge'
+		let g:mkdp_browser = 'google-chrome-stable'
 		"let g:mkdp_filetypes = ['markdown','rmd']
 		let g:mkdp_auto_start = 1
 		let g:mkdp_command_for_global = 1
@@ -463,7 +466,7 @@ else
 
 		" Use preset argument to open it
 		"nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
-		nnoremap <space>e :CocCommand explorer --preset floating<CR>
+		"nnoremap <space>e :CocCommand explorer --preset floating<CR>
 		"nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
 		"nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
 
