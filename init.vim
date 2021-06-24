@@ -94,6 +94,9 @@ set noswapfile
 set cmdheight=1
 set dictionary+='~/.config/nvim/spell/en.utf-8.add'
 
+set enc=utf8
+set fencs=utf8,gbk,gb2312,gb18030
+
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
