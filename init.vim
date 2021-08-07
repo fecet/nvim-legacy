@@ -93,6 +93,7 @@ set hidden
 set noswapfile
 set cmdheight=1
 set dictionary+='~/.config/nvim/spell/en.utf-8.add'
+set mouse=a
 
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
@@ -201,15 +202,14 @@ set termguicolors " enable true colors support
 if exists('g:vscode')
 		
     " VSCode extension
-		set relativenumber
 		call plug#begin('~/.config/nvim/plugged')
 		Plug 'gibiansky/vim-latex-objects'
 
 		Plug 'gcmt/wildfire.vim'
 		" This selects the next closest text object.
-		map <SPACE> <Plug>(wildfire-fuel)
+		map ' <Plug>(wildfire-fuel)
 		" This selects the previous closest text object.
-		vmap <C-SPACE> <Plug>(wildfire-water)
+		vmap " <Plug>(wildfire-water)
 		" use '*' to mean 'all other filetypes'
 		" in this example, html and xml share the same text objects
 		xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
