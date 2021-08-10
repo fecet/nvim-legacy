@@ -50,7 +50,7 @@ set clipboard=unnamedplus
 " === Editor behavior
 " ===
 set number
-"set relativenumber
+set relativenumber
 set cursorline
 " set noexpandtab
 set tabstop=4
@@ -374,6 +374,9 @@ else
 		let g:auto_save_silent = 1
 
 		Plug 'itchyny/lightline.vim'
+		let g:lightline = {
+		\ 'colorscheme': 'dracula',
+		\ }
 
 		Plug 'lervag/vimtex'
 		set conceallevel=2
@@ -407,6 +410,8 @@ else
 
 
 		Plug 'crusoexia/vim-monokai'
+		Plug 'wadackel/vim-dogrun'
+		Plug 'dracula/vim', { 'as': 'dracula' }
 
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -586,7 +591,7 @@ else
 		call plug#end()
 
 
-		colorscheme monokai
+		colorscheme dracula
 		hi clear Conceal
 
 endif
