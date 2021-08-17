@@ -94,7 +94,7 @@ set noswapfile
 set cmdheight=1
 set dictionary+='~/.config/nvim/spell/en.utf-8.add'
 set mouse=a
-
+set termguicolors " enable true colors support
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
 
@@ -196,7 +196,6 @@ noremap <silent> L $
 " ===
 " === Dress up my vim
 " ===
-set termguicolors " enable true colors support
 
 
 if exists('g:vscode')
@@ -221,11 +220,11 @@ if exists('g:vscode')
 
 		Plug 'machakann/vim-sandwich'
 
-		Plug 'SirVer/ultisnips'
-		let g:UltiSnipsExpandTrigger="<tab>"
-		let g:UltiSnipsJumpForwardTrigger="<tab>"
-		let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
-		let g:UltiSnipsEditSplit="vertical"
+"		Plug 'SirVer/ultisnips'
+"		let g:UltiSnipsExpandTrigger="<tab>"
+"		let g:UltiSnipsJumpForwardTrigger="<tab>"
+"		let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+"		let g:UltiSnipsEditSplit="vertical"
 		Plug 'fecet/vim-snippets'
 
 		Plug 'asvetliakov/vim-easymotion'
@@ -328,13 +327,95 @@ else
 
 		Plug 'kevinhwang91/rnvimr'
 		nnoremap <silent> <Leader>e :RnvimrToggle<CR>
+" Make Ranger replace Netrw and be the file explorer
+		let g:rnvimr_enable_ex = 1
 
+		" Make Ranger to be hidden after picking a file
+		let g:rnvimr_enable_picker = 1
+
+		" Disable a border for floating window
+		let g:rnvimr_draw_border = 0
+
+		" Hide the files included in gitignore
+		let g:rnvimr_hide_gitignore = 1
+
+		" Change the border's color
+		let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
+
+		" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+		let g:rnvimr_enable_bw = 1
+
+		" Add a shadow window, value is equal to 100 will disable shadow
+		let g:rnvimr_shadow_winblend = 70
+
+		" Draw border with both
+		let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+
+		" Link CursorLine into RnvimrNormal highlight in the Floating window
+		highlight link RnvimrNormal CursorLine
+
+		" Map Rnvimr action
+		let g:rnvimr_action = {
+								\ '<C-t>': 'NvimEdit tabedit',
+								\ '<C-x>': 'NvimEdit split',
+								\ '<C-v>': 'NvimEdit vsplit',
+								\ 'gw': 'JumpNvimCwd',
+								\ 'yw': 'EmitRangerCwd'
+								\ }
+
+		" Add views for Ranger to adapt the size of floating window
+		let g:rnvimr_ranger_views = [
+								\ {'minwidth': 90, 'ratio': []},
+								\ {'minwidth': 50, 'maxwidth': 89, 'ratio': [1,1]},
+								\ {'maxwidth': 49, 'ratio': [1]}
+								\ ]
+
+		" Customize the initial layout
+		let g:rnvimr_layout = {
+								\ 'relative': 'editor',
+								\ 'width': float2nr(round(0.7 * &columns)),
+								\ 'height': float2nr(round(0.7 * &lines)),
+								\ 'col': float2nr(round(0.15 * &columns)),
+								\ 'row': float2nr(round(0.15 * &lines)),
+								\ 'style': 'minimal'
+								\ }
+
+		" Customize multiple preset layouts
+		" '{}' represents the initial layout
+		let g:rnvimr_presets = [
+								\ {'width': 0.600, 'height': 0.600},
+								\ {},
+								\ {'width': 0.800, 'height': 0.800},
+								\ {'width': 0.950, 'height': 0.950},
+								\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0},
+								\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0.5},
+								\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0},
+								\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0.5},
+								\ {'width': 0.500, 'height': 1.000, 'col': 0, 'row': 0},
+								\ {'width': 0.500, 'height': 1.000, 'col': 0.5, 'row': 0},
+								\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0},
+								\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0.5}
+								\ ]
+				
+
+		"Plug 'SirVer/ultisnips', { 'for': ['rmd','markdown'] }
 		Plug 'SirVer/ultisnips'
 		let g:UltiSnipsExpandTrigger="<tab>"
 		let g:UltiSnipsJumpForwardTrigger="<tab>"
 		let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 		let g:UltiSnipsEditSplit="vertical"
 		Plug 'fecet/vim-snippets'
+		Plug 'jiangmiao/auto-pairs'
+
+		"Plug 'luochen1990/rainbow'
+		"let g:rainbow_active = 1
+
+		function! Ulti_Pairs()
+				call UltiSnips#ExpandSnippetOrJump()
+				if g:ulti_expand_or_jump_res == 0
+						call AutoPairsJump()
+				endif
+		endfunction
 
 
 		Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -359,11 +440,11 @@ else
 		let g:mkdp_open_to_the_world = 1
 		nmap <leader>v <Plug>MarkdownPreviewToggle
 
-		Plug 'ZSaberLv0/ZFVimIM'
-		Plug 'ZSaberLv0/ZFVimJob'
-		Plug 'ZSaberLv0/ZFVimGitUtil' " 可选, 如果你希望定期自动清理词库 push 历史
-		Plug 'fecet/ZFVimIM_pinyin_base' " 你的词库
-		Plug 'ZSaberLv0/ZFVimIM_openapi' 
+		"Plug 'ZSaberLv0/ZFVimIM'
+		"Plug 'ZSaberLv0/ZFVimJob'
+		"Plug 'ZSaberLv0/ZFVimGitUtil' " 可选, 如果你希望定期自动清理词库 push 历史
+		"Plug 'fecet/ZFVimIM_pinyin_base' " 你的词库
+		"Plug 'ZSaberLv0/ZFVimIM_openapi' 
 
 		let g:zf_git_user_email='xiezej@gmail.com'
 		let g:zf_git_user_name='fecet'
@@ -387,6 +468,18 @@ else
 		Plug 'plasticboy/vim-markdown'
 		let g:vim_markdown_folding_disabled = 1
 		let g:vim_markdown_math = 1
+
+		"Plug 'machakann/vim-highlightedyank'
+		Plug 'tmhedberg/SimpylFold'
+
+		"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+		Plug 'p00f/nvim-ts-rainbow'  
+
+		Plug 'preservim/nerdcommenter' 
+
+		nmap <C-_>   <Plug>NERDCommenterToggle
+		vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 
 		Plug 'asvetliakov/vim-easymotion'
 		" <Leader>f{char} to move to {char}
@@ -415,184 +508,46 @@ else
 
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-		let g:coc_global_extensions = [
-		\ 'coc-dictionary',
-		\ 'coc-explorer',
-		\ 'coc-lists',
-		\ 'coc-snippets',
-		\ 'coc-word',
-		\ 'coc-vimlsp']
-
-		"
-		let g:coc_explorer_global_presets = {
-		\   '.vim': {
-		\     'root-uri': '~/.vim',
-		\   },
-		\   'cocConfig': {
-		\      'root-uri': '~/.config/coc',
-		\   },
-		\   'tab': {
-		\     'position': 'tab',
-		\     'quit-on-open': v:true,
-		\   },
-		\   'tab:$': {
-		\     'position': 'tab:$',
-		\     'quit-on-open': v:true,
-		\   },
-		\   'floating': {
-		\     'position': 'floating',
-		\     'open-action-strategy': 'sourceWindow',
-		\   },
-		\   'floatingTop': {
-		\     'position': 'floating',
-		\     'floating-position': 'center-top',
-		\     'open-action-strategy': 'sourceWindow',
-		\   },
-		\   'floatingLeftside': {
-		\     'position': 'floating',
-		\     'floating-position': 'left-center',
-		\     'floating-width': 50,
-		\     'open-action-strategy': 'sourceWindow',
-		\   },
-		\   'floatingRightside': {
-		\     'position': 'floating',
-		\     'floating-position': 'right-center',
-		\     'floating-width': 50,
-		\     'open-action-strategy': 'sourceWindow',
-		\   },
-		\   'simplify': {
-		\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]',
-		\     'quit-on-open': v:true,
-		\   },
-		\   'buffer': {
-		\     'sources': [{'name': 'buffer', 'expand': v:true}],
-		\     'quit-on-open': v:true,
-		\   },
-		\ }
-
-
-		" Use preset argument to open it
-		"nnoremap <space>ed :CocCommand explorer --preset .vim<CR>
-		"nnoremap <space>e :CocCommand explorer --preset floating<CR>
-		"nnoremap <space>ec :CocCommand explorer --preset cocConfig<CR>
-		"nnoremap <space>eb :CocCommand explorer --preset buffer<CR>
-
-		" Don't pass messages to |ins-completion-menu|.
-
-		" Always show the signcolumn, otherwise it would shift the text each time
-		" diagnostics appear/become resolved.
-		if has("patch-8.1.1564")
-			" Recently vim can merge signcolumn and number column into one
-			set signcolumn=number
-		else
-			set signcolumn=yes
-		endif
-
-		" Use <c-space> to trigger completion.
-		if has('nvim')
-			inoremap <silent><expr> <c-o> coc#refresh()
-		else
-			inoremap <silent><expr> <c-@> coc#refresh()
-		endif
-
-		" Make <CR> auto-select the first completion item and notify coc.nvim to
-		" format on enter, <cr> could be remapped by other vim plugin
-		inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-																	\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-		" Use `[g` and `]g` to navigate diagnostics
-		" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-		nmap <silent> [g <Plug>(coc-diagnostic-prev)
-		nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-		" GoTo code navigation.
-		nmap <silent> gd <Plug>(coc-definition)
-		nmap <silent> gy <Plug>(coc-type-definition)
-		nmap <silent> gi <Plug>(coc-implementation)
-		nmap <silent> gr <Plug>(coc-references)
-
-
-		function! s:show_documentation()
-			if (index(['vim','help'], &filetype) >= 0)
-				execute 'h '.expand('<cword>')
-			elseif (coc#rpc#ready())
-				call CocActionAsync('doHover')
-			else
-				execute '!' . &keywordprg . " " . expand('<cword>')
-			endif
-		endfunction
-
-		" Symbol renaming.
-		nmap <leader>rn <Plug>(coc-rename)
-
-		" Formatting selected code.
-		xmap <leader>f  <Plug>(coc-format-selected)
-		nmap <leader>f  <Plug>(coc-format-selected)
-
-		augroup mygroup
-			autocmd!
-			" Setup formatexpr specified filetype(s).
-			autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-			" Update signature help on jump placeholder.
-			autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-		augroup end
-
-		" Applying codeAction to the selected region.
-		" Example: `<leader>aap` for current paragraph
-		xmap <leader>a  <Plug>(coc-codeaction-selected)
-		nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-		" Remap keys for applying codeAction to the current buffer.
-		nmap <leader>ac  <Plug>(coc-codeaction)
-		" Apply AutoFix to problem on the current line.
-		nmap <leader>qf  <Plug>(coc-fix-current)
-
-		" Map function and class text objects
-		" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-		xmap if <Plug>(coc-funcobj-i)
-		omap if <Plug>(coc-funcobj-i)
-		xmap af <Plug>(coc-funcobj-a)
-		omap af <Plug>(coc-funcobj-a)
-		xmap ic <Plug>(coc-classobj-i)
-		omap ic <Plug>(coc-classobj-i)
-		xmap ac <Plug>(coc-classobj-a)
-		omap ac <Plug>(coc-classobj-a)
-
-		" Remap <C-f> and <C-b> for scroll float windows/popups.
-		if has('nvim-0.4.0') || has('patch-8.2.0750')
-			nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-			nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-			inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-			inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-			vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-			vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-		endif
-
-		" Use CTRL-S for selections ranges.
-		" Requires 'textDocument/selectionRange' support of language server.
-		nmap <silent> <C-s> <Plug>(coc-range-select)
-		xmap <silent> <C-s> <Plug>(coc-range-select)
-
-		" Add `:Format` command to format current buffer.
-		command! -nargs=0 Format :call CocAction('format')
-
-		" Add `:Fold` command to fold current buffer.
-		command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-		" Add `:OR` command for organize imports of the current buffer.
-		command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-		" Add (Neo)Vim's native statusline support.
-		" NOTE: Please see `:h coc-status` for integrations with external plugins that
-		" provide custom statusline: lightline.vim, vim-airline.
-		set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-		nnoremap <silent> <leader>k :<C-u>CocList<cr>
 
 		call plug#end()
 
 
 		colorscheme dracula
 		hi clear Conceal
+		source ~/.config/nvim/coc.vim
+
+		"inoremap <Tab> <ESC>:call Ulti_Pairs()<CR>a
+
 
 endif
 
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	ignore_install = { "javascript" }, -- List of parsers to ignore installing
+	highlight = {
+		enable = true,              -- false will disable the whole extension
+		disable = { "c", "rust" },  -- list of language that will be disabled
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = false,
+	},
+}
+EOF
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+		colors = {"#8be9fd",
+							"#50fa7b",
+							"#ffb86c",
+							"#ff79c6",
+							"#bd93f9"}, -- table of hex strings
+  }
+}
+EOF

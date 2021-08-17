@@ -5,18 +5,17 @@
 "  \____\___/ \____|  \____\___/|_| |_|_| |_|\__, |
 "                                            |___/
 
-let g:coc_global_extensions = [
-	\ 'coc-translator',
-	\ 'coc-actions',
-	\ 'coc-vimlsp',
-	\ 'coc-python',
-	\ 'coc-clangd',
-	\ 'coc-json',
-	\ 'coc-snippets',
-	\ 'coc-bookmark',
-	\ 'coc-todolist'
-	\ ]
 
+let g:coc_global_extensions = [
+\ 'coc-dictionary',
+\ 'coc-explorer',
+\ 'coc-lists',
+\ 'coc-word',
+\ 'coc-flutter-tools',
+\ 'coc-yank',
+\ 'coc-actions',
+\ 'coc-pyright',
+\ 'coc-vimlsp']
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -49,15 +48,17 @@ set signcolumn=yes
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " Use <c-space> to trigger completion.
 " inoremap <silent><expr> <c-space> coc#refresh()
@@ -75,6 +76,12 @@ if exists('*complete_info')
 else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
+
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+															 \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -98,15 +105,21 @@ function! s:show_documentation()
   endif
 endfunction
 
+
 " Highlight the symbol and its references when holding the cursor.
 " 高亮当前光标位置的词
-" autocmd CursorHold * silent call CocActionAsync('highlight')
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+hi CocHighlightText ctermfg=231 guifg=#ffffff ctermbg=60 guibg=#ff79c6
+
+
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
 " 代码格式化
+"
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
@@ -118,10 +131,6 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-" xmap <leader>a  <Plug>(coc-codeaction-selected)
-" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of selected region
 function! s:cocActionsOpenFromSelected(type) abort
@@ -129,7 +138,6 @@ function! s:cocActionsOpenFromSelected(type) abort
 endfunction
 xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-
 
 
 
@@ -151,12 +159,10 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-" 这两句会造成ctrl-i失效
-" nmap <silent> <TAB> <Plug>(coc-range-select)
-" xmap <silent> <TAB> <Plug>(coc-range-select)
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -171,6 +177,17 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+	nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+	inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+	inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+	vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
 
 " Mappings using CoCList:
 " Show all diagnostics.
@@ -207,43 +224,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "nmap <Leader>r <Plug>(coc-translator-rv)
 
 
-" === coc-todolist ===
-" let g:coc_extension_root=$HOME/'.config/nvim/tmp/coc-todolist-data/'
-" let g:coc_data_home=$HOME/'.config/nvim/tmp'
-nnoremap <Leader>tl :CocList todolist<CR>
-nnoremap <Leader>tc :CocCommand todolist.create<CR>
-" nnoremap <Leader>tu :CocCommand todolist.upload: upload todolist to gist
-" :CocCommand todolist.download: download todolist from gist
-nnoremap <Leader>te :CocCommand todolist.export
-" :CocCommand todolist.closeNotice: close notifications
-" :CocCommand todolist.clear: clear all todos
-" :CocCommand todolist.browserOpenGist: open todolist gist in gist.github.com
+nnoremap <silent> <leader>k :<C-u>CocList<cr>
 
-
-" === coc-bookmark ===
-nnoremap <Leader>tk :CocList bookmark<CR>
-nnoremap <Leader>tb :CocCommand bookmark.toggle<CR>
-nnoremap <Leader>ta :CocCommand bookmark.annotate<CR>
-" :CocCommand bookmark.prev: jump to the prev bookmark
-" :CocCommand bookmark.next: jump to the next bookmark
-" :CocCommand bookmark.clearForCurrentFile clear bookmark for the current file",
-" :CocCommand bookmark.clearForAllFiles clear bookmark for all files",
-
-" nmap <Leader>bj <Plug>(coc-bookmark-next)
-" nmap <Leader>bk <Plug>(coc-bookmark-prev)
-
-" === coc-snippets ===
-" Use <C-l> for trigger snippet expand.
-" imap <C-l> <Plug>(coc-snippets-expand)
-" Use <C-j> for select text for visual placeholder of snippet.
-" vmap <C-j> <Plug>(coc-snippets-select)
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<c-j>'
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-" let g:coc_snippet_prev = '<c-k>'
-" Use <C-j> for both expand and jump (make expand higher priority.)
-" imap <C-j> <Plug>(coc-snippets-expand-jump)
-" let g:snips_author = 'Joe Chen'
-
-
-
+" changing coc highlight color cause light grey is invisible
+" BUT is overwritten by scheme so defining it in an autocmd after colorscheme
+" change
