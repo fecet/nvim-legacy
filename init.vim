@@ -77,7 +77,7 @@ set wrap
 "set textwidth=0
 set indentexpr=
 set foldmethod=indent
-set foldlevel=99
+set foldlevelstart=99
 set foldenable
 "set formatoptions-=tc
 "set noshowmode
@@ -182,6 +182,8 @@ noremap <silent> H 0
 noremap <silent> L $
 
 " inoremap <silent> <C-w> <C-W>
+nmap <C-H> :tabprevious<cr>
+nmap <C-L> :tabnext<cr>
 
 
 "  ____  _             _          ____             __ _
