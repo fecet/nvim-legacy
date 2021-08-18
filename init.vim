@@ -515,6 +515,9 @@ else
 		colorscheme dracula
 		hi clear Conceal
 		source ~/.config/nvim/coc.vim
+		hi CocHighlightText ctermfg=231 guifg=#bd93f9 ctermbg=60 guibg=#50fa7b
+		hi Visual ctermfg=231 guifg=#ff79c6 ctermbg=60 guibg=#8be9fd
+		hi HighlightedyankRegion cterm=bold gui=bold ctermbg=0 guibg=#ffb86c
 
 		"inoremap <Tab> <ESC>:call Ulti_Pairs()<CR>a
 

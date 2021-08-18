@@ -110,7 +110,6 @@ endfunction
 " 高亮当前光标位置的词
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-hi CocHighlightText ctermfg=231 guifg=#ffffff ctermbg=60 guibg=#ff79c6
 
 
 
