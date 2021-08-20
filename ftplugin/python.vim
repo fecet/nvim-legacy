@@ -11,6 +11,8 @@ nnoremap <Leader>r :IPythonCellRun<CR>
 
 " map <Leader>C to execute the current cell and jump to the next cell
 nnoremap <Leader><CR> :IPythonCellExecuteCellJump<CR>
+nnoremap <Leader>c :IPythonCellExecuteCellVerboseJump<CR>
+
 
 " map <Leader>l to clear IPython screen
 "nnoremap <Leader>c :IPythonCellClear<CR>

@@ -539,7 +539,7 @@ else
 		let g:slime_target = "x11"
 		let g:slime_python_ipython = 1
 		let g:slime_cell_delimiter = "# %%"
-        nmap <leader>c <Plug>SlimeSendCell
+        "nmap <leader>c <Plug>SlimeSendCell
 		Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 		" map <Leader>s to start IPython
 		"let g:ipython_cell_regex = 1
