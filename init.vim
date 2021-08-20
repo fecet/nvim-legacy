@@ -64,9 +64,16 @@ autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=2 softtabstop=2 s
 " autocmd FileType c :set autowrite
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd		setf markdown
+
+au BufWinLeave *.* silent mkview
+au BufWinEnter *.* silent! loadview
+au BufWinLeave .* silent mkview
+au BufWinEnter .* silent! loadview
+
 "au Filetype *.rmd setf markdown
 au Filetype markdown set spell
 au Filetype markdown let b:coc_additional_keywords = ["-"]
+
 set autoindent
 set list
 set scrolloff=4
@@ -230,10 +237,6 @@ if exists('g:vscode')
 		Plug 'fecet/vim-snippets'
 
 		Plug 'asvetliakov/vim-easymotion'
-		hi link EasyMotionTarget ErrorMsg
-		hi link EasyMotionShade  Comment
-		hi link EasyMotionTarget2First MatchParen
-		hi link EasyMotionTarget2Second MatchParen
 		nmap s <Plug>(easymotion-s2)
 		nmap t <Plug>(easymotion-t2)
 
@@ -296,7 +299,6 @@ else
 
 		let g:startify_custom_indices = ['a', 'd', 'g', 'l', 'w', 'r', 'u', 'o', 'n', 'm', 'aa', 'af', 'ad', 'ag', 'aj', 'al', 'ak', 'da', 'df', 'dd', 'dg', 'dj', 'dl', 'dk', 'lf', 'ld', 'lg', 'lj', 'lh', 'll', 'lk', 'la', 'oa', 'of', 'od', 'og', 'oj', 'ol', 'ok']
 
-
 		let g:startify_commands = [
 				\ ['Call doctor',':checkhealth'],
 				\ ['Vim Reference', 'h ref'],
@@ -316,6 +318,8 @@ else
 
 		Plug 'gibiansky/vim-latex-objects'
 		Plug 'gcmt/wildfire.vim'
+		map <CR> <Plug>(wildfire-fuel)
+		" This selects the previous closest text object.
 		" use '*' to mean 'all other filetypes'
 		" in this example, html and xml share the same text objects
 		xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
@@ -354,7 +358,6 @@ else
 		let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
 
 		" Link CursorLine into RnvimrNormal highlight in the Floating window
-		highlight link RnvimrNormal CursorLine
 
 		" Map Rnvimr action
 		let g:rnvimr_action = {
@@ -504,11 +507,26 @@ else
 		nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
+
 		Plug 'crusoexia/vim-monokai'
 		Plug 'wadackel/vim-dogrun'
 		Plug 'dracula/vim', { 'as': 'dracula' }
 
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+		Plug 'jpalardy/vim-slime', { 'for': 'python' }
+		let g:slime_target = "x11"
+		let g:slime_python_ipython = 1
+		let g:slime_cell_delimiter = "# %%"
+		Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+		" map <Leader>s to start IPython
+		"let g:ipython_cell_regex = 1
+		"let g:ipython_cell_tag = '# %%( [^[].*)?'
+		" Change automatically current directory to open file directory
+		"autocmd BufEnter * silent! lcd %:p:h
+
+		" map to start ipython in current file directory
+		"nnoremap <Leader>s :execute 'SlimeSend1 cd 'fnameescape(expand('%:p:h')):execute 'SlimeSend1 clear':SlimeSend1 ipython
 
 
 		call plug#end()
@@ -520,6 +538,13 @@ else
 		hi CocHighlightText ctermfg=231 guifg=#bd93f9 ctermbg=60 guibg=#50fa7b
 		hi Visual ctermfg=231 guifg=#ff79c6 ctermbg=60 guibg=#8be9fd
 		hi HighlightedyankRegion cterm=bold gui=bold ctermbg=0 guibg=#ffb86c
+		"highlight IPythonCell ctermbg=238 guifg=darkgrey guibg=#444d56
+		highlight IPythonCell ctermbg=238 guifg=#50fa7b guibg=#444d56
+		highlight link RnvimrNormal CursorLine
+		hi link EasyMotionTarget ErrorMsg
+		hi link EasyMotionShade  Comment
+		hi link EasyMotionTarget2First MatchParen
+		hi link EasyMotionTarget2Second MatchParen
 
 		"inoremap <Tab> <ESC>:call Ulti_Pairs()<CR>a
 
