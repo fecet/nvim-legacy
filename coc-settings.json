@@ -50,7 +50,8 @@
 		"variable": "\ue71b"
 	},
 	"codeLens.enable": true,
-	"diagnostic.enable": false,
+	"diagnostic.enable": true,
+	"diagnostic.enableSign": false,
 	"diagnostic.errorSign": "\uf467",
 	"diagnostic.warningSign": "\uf071",
 	"diagnostic.infoSign": "\uf129",

@@ -12,9 +12,9 @@ let g:coc_global_extensions = [
 \ 'coc-word',
 \ 'coc-flutter-tools',
 \ 'coc-yank',
+\ 'coc-json',
 \ 'coc-actions',
 \ 'coc-pyright',
-\ 'coc-jedi',
 \ 'coc-tabnine',
 \ 'coc-vimlsp']
 

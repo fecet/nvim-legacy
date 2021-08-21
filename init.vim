@@ -541,6 +541,10 @@ else
 		let g:slime_cell_delimiter = "# %%"
         "nmap <leader>c <Plug>SlimeSendCell
 		Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
+
+
+
+        Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 		" map <Leader>s to start IPython
 		"let g:ipython_cell_regex = 1
 		"let g:ipython_cell_tag = '# %%( [^[].*)?'
