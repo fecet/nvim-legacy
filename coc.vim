@@ -14,6 +14,7 @@ let g:coc_global_extensions = [
 \ 'coc-yank',
 \ 'coc-actions',
 \ 'coc-pyright',
+\ 'coc-jedi',
 \ 'coc-tabnine',
 \ 'coc-vimlsp']
 

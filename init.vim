@@ -302,7 +302,7 @@ else
 
 		"let g:startify_custom_header = 'startify#pad(g:start_image + startify#fortune#quote())'
 
-		let g:startify_custom_header = 'startify#pad(g:start_image)'
+		"let g:startify_custom_header = 'startify#pad(g:start_image)'
 
 		" returns all modified files of the current git repo
 		" `2>/dev/null` makes the command fail quietly, so that when we are not
