@@ -550,7 +550,7 @@ else
 		" map to start ipython in current file directory
 		"nnoremap <Leader>s :execute 'SlimeSend1 cd 'fnameescape(expand('%:p:h')):execute 'SlimeSend1 clear':SlimeSend1 ipython
 		
-		"Plug 'https://github.com/sillybun/autoformatpythonstatement', {'do': './install.sh','for':'python'}
+        "Plug 'https://github.com/sillybun/autoformatpythonstatement', {'do': './install.sh','for':'python'}
 
 
 		call plug#end()

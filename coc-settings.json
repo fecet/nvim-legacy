@@ -65,7 +65,7 @@
 		"$HOME/.config/nvim/Ultisnips/",
 		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
 	],
-	"python.analysis.useLibraryCodeForTypes": true,
+	"python.analysis.useLibraryCodeForTypes": false,
 	"coc.preferences.formatOnSaveFiletypes": [
 		"javascript",
 		"typescript",

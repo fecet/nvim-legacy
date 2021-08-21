@@ -8,13 +8,13 @@
 
 let g:coc_global_extensions = [
 \ 'coc-dictionary',
-\ 'coc-explorer',
 \ 'coc-lists',
 \ 'coc-word',
 \ 'coc-flutter-tools',
 \ 'coc-yank',
 \ 'coc-actions',
 \ 'coc-pyright',
+\ 'coc-tabine',
 \ 'coc-vimlsp']
 
 " TextEdit might fail if hidden is not set.
