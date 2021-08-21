@@ -14,7 +14,7 @@ let g:coc_global_extensions = [
 \ 'coc-yank',
 \ 'coc-actions',
 \ 'coc-pyright',
-\ 'coc-tabine',
+\ 'coc-tabnine',
 \ 'coc-vimlsp']
 
 " TextEdit might fail if hidden is not set.
