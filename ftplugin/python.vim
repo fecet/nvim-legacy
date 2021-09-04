@@ -40,3 +40,5 @@ nnoremap ]c :IPythonCellNextCell<CR>
 " map <Leader>q to exit debug mode or IPython
 nnoremap <Leader>q :SlimeSend1 exit<CR>
 
+
+inoremap <Right> <ESC>:call Ulti_Pairs()<CR>a

@@ -61,6 +61,8 @@ set fileformat=unix
 autocmd BufNewFile,BufRead *.vim setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=2 softtabstop=2 shiftwidth=2
 " autocmd FileType c :set autowrite
+"
+"au Filetype *.rmd setf markdown
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd		setf markdown
 
@@ -69,10 +71,13 @@ au BufWinEnter *.* silent! loadview
 au BufWinLeave .* silent mkview
 au BufWinEnter .* silent! loadview
 
-"au Filetype *.rmd setf markdown
+" Spell check only for writing
 au Filetype markdown set spell
 au Filetype markdown let b:coc_additional_keywords = ["-"]
+"au Filetype markdown let b:coc_suggest_disable=1
+"autocmd FileType markdown :call CocDisable()
 
+set title 
 set autoindent
 set list
 set scrolloff=4
@@ -91,7 +96,7 @@ set showcmd
 set wildmenu
 set smartcase
 set lazyredraw "same as above
-set colorcolumn=80
+"set colorcolumn=80
 set updatetime=100
 set virtualedit=block
 set syntax=on
@@ -173,7 +178,7 @@ nnoremap < <<
 nnoremap > >>
 
 " Search
-noremap <LEADER><CR> :nohlsearch<CR>
+"noremap <LEADER><CR> :nohlsearch<CR>
 
 " Adjacent duplicate words
 
@@ -204,13 +209,19 @@ noremap <silent> K 6k
 noremap <silent> J 6j
 
 " H key: go to the start of the line
-noremap <silent> H 0
+noremap <silent> H ^
 " L key: go to the end of the line
 noremap <silent> L $
 
 " inoremap <silent> <C-w> <C-W>
+imap <C-H> :tabprevious<cr>
+imap <C-L> :tabnext<cr>
+
 nmap <C-H> :tabprevious<cr>
 nmap <C-L> :tabnext<cr>
+
+map <leader>aq :qa<CR>
+map <leader>noh :noh<CR>
 
 
 
@@ -321,17 +332,21 @@ else
 		let g:startify_custom_indices = ['a', 'd', 'g', 'l', 'w', 'r', 'u', 'o', 'n', 'm', 'aa', 'af', 'ad', 'ag', 'aj', 'al', 'ak', 'da', 'df', 'dd', 'dg', 'dj', 'dl', 'dk', 'lf', 'ld', 'lg', 'lj', 'lh', 'll', 'lk', 'la', 'oa', 'of', 'od', 'og', 'oj', 'ol', 'ok']
 
 		let g:startify_commands = [
-				\ ['Call doctor',':checkhealth'],
+				\ ['Check Health',':checkhealth'],
 				\ ['Vim Reference', 'h ref'],
 				\ {'h': ['Startify help','h startify']},
 				\ {'p':['Plugin install','PlugInstall']},
 				\ ]
 
+        let g:startify_session_dir = '~/.vim/sessions'
+        "let g:startify_session_persistence = 0
+
 		let g:startify_lists = [
+ 						\ { 'type': 'sessions',  'header': ['   Sessions']       },
+						\ { 'type': 'dir',       'header': ['   Recently '. getcwd()] },
 						\ { 'type': function('s:gitModified'),  'header': ['   git modified']},
 						\ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
-						\ { 'type': 'files',     'header': ['   Recently files']            },
-						\ { 'type': 'dir',       'header': ['   Recently '. getcwd()] },
+                        \ { 'type': 'files',     'header': ['   Recently files']            },
 						\ { 'type': 'commands',  'header': ['   Commands']       },
 						\ ]
 
@@ -360,23 +375,23 @@ else
 		" Make Ranger to be hidden after picking a file
 		let g:rnvimr_enable_picker = 1
 
-		" Disable a border for floating window
-		let g:rnvimr_draw_border = 0
+		"0 for Disable a border for floating window
+		let g:rnvimr_draw_border = 1
 
 		" Hide the files included in gitignore
 		let g:rnvimr_hide_gitignore = 1
 
 		" Change the border's color
-		let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
+		"let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
 
 		" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
 		let g:rnvimr_enable_bw = 1
 
 		" Add a shadow window, value is equal to 100 will disable shadow
-		let g:rnvimr_shadow_winblend = 70
+		"let g:rnvimr_shadow_winblend = 70
 
 		" Draw border with both
-		let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+		"let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
 
 		" Link CursorLine into RnvimrNormal highlight in the Floating window
 
@@ -390,38 +405,38 @@ else
 								\ }
 
 		" Add views for Ranger to adapt the size of floating window
-		let g:rnvimr_ranger_views = [
-								\ {'minwidth': 90, 'ratio': []},
-								\ {'minwidth': 50, 'maxwidth': 89, 'ratio': [1,1]},
-								\ {'maxwidth': 49, 'ratio': [1]}
-								\ ]
+        let g:rnvimr_ranger_views = [
+                                \ {'minwidth': 90, 'ratio': []},
+                                \ {'minwidth': 50, 'maxwidth': 89, 'ratio': [1,1]},
+                                \ {'maxwidth': 49, 'ratio': [1]}
+                                \ ]
 
 		" Customize the initial layout
-		let g:rnvimr_layout = {
-								\ 'relative': 'editor',
-								\ 'width': float2nr(round(0.7 * &columns)),
-								\ 'height': float2nr(round(0.7 * &lines)),
-								\ 'col': float2nr(round(0.15 * &columns)),
-								\ 'row': float2nr(round(0.15 * &lines)),
-								\ 'style': 'minimal'
-								\ }
+		"let g:rnvimr_layout = {
+								"\ 'relative': 'editor',
+								"\ 'width': float2nr(round(0.7 * &columns)),
+								"\ 'height': float2nr(round(0.7 * &lines)),
+								"\ 'col': float2nr(round(0.15 * &columns)),
+								"\ 'row': float2nr(round(0.15 * &lines)),
+								"\ 'style': 'minimal'
+								"\ }
 
-		" Customize multiple preset layouts
-		" '{}' represents the initial layout
-		let g:rnvimr_presets = [
-								\ {'width': 0.600, 'height': 0.600},
-								\ {},
-								\ {'width': 0.800, 'height': 0.800},
-								\ {'width': 0.950, 'height': 0.950},
-								\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0},
-								\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0.5},
-								\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0},
-								\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0.5},
-								\ {'width': 0.500, 'height': 1.000, 'col': 0, 'row': 0},
-								\ {'width': 0.500, 'height': 1.000, 'col': 0.5, 'row': 0},
-								\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0},
-								\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0.5}
-								\ ]
+		"" Customize multiple preset layouts
+		"" '{}' represents the initial layout
+		"let g:rnvimr_presets = [
+								"\ {'width': 0.600, 'height': 0.600},
+								"\ {},
+								"\ {'width': 0.800, 'height': 0.800},
+								"\ {'width': 0.950, 'height': 0.950},
+								"\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0},
+								"\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0.5},
+								"\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0},
+								"\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0.5},
+								"\ {'width': 0.500, 'height': 1.000, 'col': 0, 'row': 0},
+								"\ {'width': 0.500, 'height': 1.000, 'col': 0.5, 'row': 0},
+								"\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0},
+								"\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0.5}
+								"\ ]
 				
 
 		"Plug 'SirVer/ultisnips', { 'for': ['rmd','markdown'] }
@@ -433,8 +448,6 @@ else
 		Plug 'fecet/vim-snippets'
 		Plug 'jiangmiao/auto-pairs'
 
-		"Plug 'luochen1990/rainbow'
-		"let g:rainbow_active = 1
 
 		function! Ulti_Pairs()
 				call UltiSnips#ExpandSnippetOrJump()
@@ -444,7 +457,7 @@ else
 		endfunction
 
 
-		Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+		Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug','rmd']}
 		let g:mkdp_preview_options = {
 				\ 'mkit': {},
 				\ 'katex': {},
@@ -458,12 +471,14 @@ else
 				\ 'content_editable': v:false,
 				\ 'disable_filename': 0
 				\ }
-		let g:mkdp_browser = 'firefox'
+		let g:mkdp_browser = 'microsoft-edge-beta'
 		"let g:mkdp_filetypes = ['markdown','rmd']
 		let g:mkdp_auto_start = 1
 		let g:mkdp_command_for_global = 1
 		let g:mkdp_echo_preview_url = 1
 		let g:mkdp_open_to_the_world = 1
+        let g:mkdp_port = '8296'
+        let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 		nmap <leader>v <Plug>MarkdownPreviewToggle
 
 		"Plug 'ZSaberLv0/ZFVimIM'
@@ -472,9 +487,9 @@ else
 		"Plug 'fecet/ZFVimIM_pinyin_base' " 你的词库
 		"Plug 'ZSaberLv0/ZFVimIM_openapi' 
 
-		let g:zf_git_user_email='xiezej@gmail.com'
-		let g:zf_git_user_name='fecet'
-		let g:zf_git_user_token='2520f5f8e841651f1b5295170d2461ac49b8c859'
+		"let g:zf_git_user_email='xiezej@gmail.com'
+		"let g:zf_git_user_name='fecet'
+		"let g:zf_git_user_token='2520f5f8e841651f1b5295170d2461ac49b8c859'
 
 		Plug '907th/vim-auto-save'
 		let g:auto_save = 1
@@ -498,6 +513,9 @@ else
 		"Plug 'machakann/vim-highlightedyank'
 		Plug 'tmhedberg/SimpylFold'
 
+        let g:SimpylFold_docstring_preview = 1
+        let g:SimpylFold_docstring_preview = 1
+
 		"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 		Plug 'p00f/nvim-ts-rainbow'  
@@ -507,27 +525,25 @@ else
 		nmap <C-_>   <Plug>NERDCommenterToggle
 		vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 
-		Plug 'asvetliakov/vim-easymotion'
-		" <Leader>f{char} to move to {char}
-		"map  f <Plug>(easymotion-bd-f)
-		"nmap f <Plug>(easymotion-overwin-f)
+        Plug 'asvetliakov/vim-easymotion'
+        "" <Leader>f{char} to move to {char}
+        ""map  f <Plug>(easymotion-bd-f)
+        ""nmap f <Plug>(easymotion-overwin-f)
 
-		" s{char}{char} to move to {char}{char}
-		hi link EasyMotionTarget ErrorMsg
-		hi link EasyMotionShade  Comment
-		hi link EasyMotionTarget2First MatchParen
-		hi link EasyMotionTarget2Second MatchParen
-		nmap s <Plug>(easymotion-overwin-f2)
+        "" s{char}{char} to move to {char}{char}
+        hi link EasyMotionTarget ErrorMsg
+        hi link EasyMotionShade  Comment
+        hi link EasyMotionTarget2First MatchParen
+        hi link EasyMotionTarget2Second MatchParen
+        "nmap s <Plug>(easymotion-overwin-f2)
 
-		" Move to line
-		map <Leader>l <Plug>(easymotion-bd-jk)
-		nmap <Leader>l <Plug>(easymotion-overwin-line)
+        "" Move to line
+        map <Leader>l <Plug>(easymotion-bd-jk)
+        nmap <Leader>l <Plug>(easymotion-overwin-line)
 
-		" Move to word
-		map  <Leader>w <Plug>(easymotion-bd-w)
-		nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-
+        "" Move to word
+        map  <Leader>w <Plug>(easymotion-bd-w)
+        nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 		Plug 'crusoexia/vim-monokai'
 		Plug 'wadackel/vim-dogrun'
@@ -542,8 +558,6 @@ else
         "nmap <leader>c <Plug>SlimeSendCell
 		Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 
-
-
         Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 		" map <Leader>s to start IPython
 		"let g:ipython_cell_regex = 1
@@ -554,7 +568,6 @@ else
 		" map to start ipython in current file directory
 		"nnoremap <Leader>s :execute 'SlimeSend1 cd 'fnameescape(expand('%:p:h')):execute 'SlimeSend1 clear':SlimeSend1 ipython
 		
-        "Plug 'https://github.com/sillybun/autoformatpythonstatement', {'do': './install.sh','for':'python'}
 
 
 		call plug#end()
@@ -574,7 +587,7 @@ else
 		hi link EasyMotionTarget2First MatchParen
 		hi link EasyMotionTarget2Second MatchParen
 
-		"inoremap <Tab> <ESC>:call Ulti_Pairs()<CR>a
+        "inoremap <Tab> <ESC>:call Ulti_Pairs()<CR>a
 
 
 endif
