@@ -12,8 +12,9 @@ let g:coc_global_extensions = [
 \ 'coc-flutter-tools',
 \ 'coc-yank',
 \ 'coc-json',
+\ 'coc-jedi',
 \ 'coc-actions',
-\ 'coc-pyright',
+"\ 'coc-pyright',
 \ 'coc-tabnine',
 \ 'coc-vimlsp']
 
