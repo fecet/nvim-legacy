@@ -282,6 +282,7 @@ if exists('g:vscode')
 else
 		
 		noremap Q :q<CR>
+
 		
 		call plug#begin('~/.config/nvim/plugged')
 
@@ -290,7 +291,7 @@ else
 
 		Plug 'mhinz/vim-startify'
 
-		set viminfo='100,n$HOME/.vim/files/info/viminfo
+		"set viminfo=$HOME/.vim/files/info/viminfo
 
 
 		let g:start_image_dc=[
@@ -519,6 +520,11 @@ else
 		"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 		Plug 'p00f/nvim-ts-rainbow'  
+        Plug 'Yggdroot/indentLine'
+        "let g:indentLine_color_gui = 0
+        "let g:indentLine_setColors = 0
+        "let g:indentLine_defaultGroup = 'SpecialKey'
+        let g:indentLine_color_gui = '#6272a4'
 
 		Plug 'preservim/nerdcommenter' 
 
