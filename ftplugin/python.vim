@@ -1,4 +1,4 @@
-nnoremap <Leader>s :SlimeSend1 export LANG=C && ipython --matplotlib<CR>
+nnoremap <Leader>sx :SlimeSend1 export LANG=C && ipython --matplotlib<CR>
 
 " map <Leader>r to run script
 nnoremap <Leader>r :IPythonCellRun<CR>
@@ -14,7 +14,7 @@ nnoremap <Leader><CR> :IPythonCellExecuteCellJump<CR>
 nnoremap <Leader>c :IPythonCellExecuteCellVerboseJump<CR>
 
 
-" map <Leader>l to clear IPython screen
+"" map <Leader>l to clear IPython screen
 "nnoremap <Leader>c :IPythonCellClear<CR>
 
 " map <Leader>x to close all Matplotlib figure windows
@@ -42,3 +42,27 @@ nnoremap <Leader>q :SlimeSend1 exit<CR>
 
 
 inoremap <Right> <ESC>:call Ulti_Pairs()<CR>a
+
+
+function! IPythonOpen()
+    " open a new terminal in vertical split and run IPython
+		"
+		let g:slime_target = 'neovim'
+		let g:slime_dont_ask_default = 1
+    vnew|call termopen('ipython --matplotlib')
+    file ipython " name the new buffer
+
+    " set slime target to new terminal
+    if !exists('g:slime_default_config')
+        let g:slime_default_config = {}
+    end
+    let g:slime_default_config['jobid'] = b:terminal_job_id
+
+    wincmd p " switch to the previous buffer
+endfunction
+
+
+nnoremap <Leader>sn :call IPythonOpen()<CR>
+
+nmap <Leader>ck :IPythonCellInsertAbove<CR>a
+nmap <Leader>cj :IPythonCellInsertBelow<CR>a

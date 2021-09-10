@@ -557,7 +557,7 @@ else
 
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-		Plug 'jpalardy/vim-slime', { 'for': 'python' }
+		Plug 'jpalardy/vim-slime'
 		let g:slime_target = "x11"
 		let g:slime_python_ipython = 1
 		let g:slime_cell_delimiter = "# %%"
