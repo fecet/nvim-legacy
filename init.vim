@@ -64,13 +64,8 @@ autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=2 softtabstop=2 s
 "
 "au Filetype *.rmd setf markdown
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
-au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd		setf markdown
-
-au BufWinLeave *.* silent mkview
-au BufWinEnter *.* silent! loadview
-au BufWinLeave .* silent mkview
-au BufWinEnter .* silent! loadview
-
+au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd	setf markdown
+au BufEnter *.rmd,*.Rmd,*.Smd,*.smd,*.md highlight clear conceal
 " Spell check only for writing
 au Filetype markdown set spell
 au Filetype markdown let b:coc_additional_keywords = ["-"]
@@ -105,6 +100,7 @@ set noswapfile
 set cmdheight=1
 set dictionary+='~/.config/nvim/spell/en.utf-8.add'
 set mouse=a
+set guifont=Fira_Code:h24
 set termguicolors " enable true colors support
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
@@ -345,10 +341,10 @@ else
 		let g:startify_lists = [
  						\ { 'type': 'sessions',  'header': ['   Sessions']       },
 						\ { 'type': 'dir',       'header': ['   Recently '. getcwd()] },
-						\ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-						\ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
                         \ { 'type': 'files',     'header': ['   Recently files']            },
 						\ { 'type': 'commands',  'header': ['   Commands']       },
+						\ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+						\ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
 						\ ]
 
 		"===============================================================
@@ -459,7 +455,7 @@ else
 
 
 		Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug','rmd']}
-		let g:mkdp_preview_options = {
+				let g:mkdp_preview_options = {
 				\ 'mkit': {},
 				\ 'katex': {},
 				\ 'uml': {},
@@ -472,15 +468,15 @@ else
 				\ 'content_editable': v:false,
 				\ 'disable_filename': 0
 				\ }
-		let g:mkdp_browser = 'microsoft-edge-beta'
-		"let g:mkdp_filetypes = ['markdown','rmd']
-		let g:mkdp_auto_start = 1
-		let g:mkdp_command_for_global = 1
-		let g:mkdp_echo_preview_url = 1
-		let g:mkdp_open_to_the_world = 1
+				let g:mkdp_browser = 'microsoft-edge-beta'
+				"let g:mkdp_filetypes = ['markdown','rmd']
+				"let g:mkdp_auto_start = 1
+				let g:mkdp_command_for_global = 1
+				let g:mkdp_echo_preview_url = 1
+				let g:mkdp_open_to_the_world = 1
         let g:mkdp_port = '8296'
         let g:mkdp_page_title = 'MarkdownPreview「${name}」'
-		nmap <leader>v <Plug>MarkdownPreviewToggle
+				nmap <leader>pv <Plug>MarkdownPreviewToggle
 
 		"Plug 'ZSaberLv0/ZFVimIM'
 		"Plug 'ZSaberLv0/ZFVimJob'
@@ -520,18 +516,19 @@ else
 		"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 		Plug 'p00f/nvim-ts-rainbow'  
-        "Plug 'Yggdroot/indentLine'
+		Plug 'Yggdroot/indentLine'
         "let g:indentLine_color_gui = 0
         "let g:indentLine_setColors = 0
         "let g:indentLine_defaultGroup = 'SpecialKey'
-        "let g:indentLine_color_gui = '#6272a4'
+				let g:indentLine_color_gui = '#6272a4'
+				let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 		Plug 'preservim/nerdcommenter' 
 
-		nmap <C-_>   <Plug>NERDCommenterToggle
-		vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
+				nmap <C-_>   <Plug>NERDCommenterToggle
+				vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 
-        Plug 'asvetliakov/vim-easymotion'
+		Plug 'asvetliakov/vim-easymotion'
         "" <Leader>f{char} to move to {char}
         ""map  f <Plug>(easymotion-bd-f)
         ""nmap f <Plug>(easymotion-overwin-f)
@@ -564,6 +561,8 @@ else
         "nmap <leader>c <Plug>SlimeSendCell
 		Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 
+		Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
         "Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 		" map <Leader>s to start IPython
 		"let g:ipython_cell_regex = 1
@@ -580,8 +579,8 @@ else
 
 
 		colorscheme dracula
-		hi clear Conceal
 		source ~/.config/nvim/coc.vim
+		lua require('inits')
 		hi CocHighlightText ctermfg=231 guifg=#bd93f9 ctermbg=60 guibg=#50fa7b
 		hi Visual ctermfg=231 guifg=#ff79c6 ctermbg=60 guibg=#8be9fd
 		hi HighlightedyankRegion cterm=bold gui=bold ctermbg=0 guibg=#ffb86c
@@ -593,40 +592,6 @@ else
 		hi link EasyMotionTarget2First MatchParen
 		hi link EasyMotionTarget2Second MatchParen
 
-        "inoremap <Tab> <ESC>:call Ulti_Pairs()<CR>a
-
 
 endif
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-	ignore_install = { "javascript" }, -- List of parsers to ignore installing
-	highlight = {
-		enable = true,              -- false will disable the whole extension
-		disable = { "c", "rust" },  -- list of language that will be disabled
-		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-		-- Using this option may slow down your editor, and you may see some duplicate highlights.
-		-- Instead of true it can also be a list of languages
-		additional_vim_regex_highlighting = false,
-	},
-}
-EOF
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  rainbow = {
-    enable = true,
-    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
-		colors = {"#8be9fd",
-							"#50fa7b",
-							"#ffb86c",
-							"#ff79c6",
-							"#bd93f9"}, -- table of hex strings
-  }
-}
-EOF
-        
 
