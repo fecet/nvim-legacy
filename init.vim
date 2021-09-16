@@ -29,6 +29,7 @@ source ~/.config/nvim/_machine_specific.vim
 " ===
 " === System
 " ===
+lua require('tmp')
 
 set clipboard=unnamedplus
 "let g:clipboard = {
@@ -93,6 +94,8 @@ set smartcase
 set lazyredraw "same as above
 "set colorcolumn=80
 set updatetime=100
+set shortmess+=c
+set signcolumn=yes
 set virtualedit=block
 set syntax=on
 set hidden
@@ -100,7 +103,8 @@ set noswapfile
 set cmdheight=1
 set dictionary+='~/.config/nvim/spell/en.utf-8.add'
 set mouse=a
-set guifont=Fira_Code:h24
+"set guifont=Sarasa_Mono_SC_Nerd:h24
+set guifont=monospace:h24"
 set termguicolors " enable true colors support
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
@@ -158,66 +162,6 @@ tnoremap <C-N> <C-\><C-N>
 
 " Set <LEADER> as <SPACE>
 
-let mapleader=" "
-" Save & quit
-"
-"noremap <C-q> :qa<CR>
-
-" makE Y to copy till the end of the line
-nnoremap Y y$
-
-" Copy to system clipboard
-"vnoremap Y "+y
-
-" IndeNtation
-nnoremap < <<
-nnoremap > >>
-
-" Search
-"noremap <LEADER><CR> :nohlsearch<CR>
-
-" Adjacent duplicate words
-
-" Space to Tab
-"nnoremap <LEADER>tt :%s/    /\t/g
-"vnoremap <LEADER>tt :s/    /\t/g
-
-" Folding
-"noremap <silent> <LEADER>o za
-
-" Open up lazygit
-"noremap \g :Git 
-"noremaP <C-G> :TABe<CR>:-tabmove<CR>:term lazygit<CR>
-
-
-" ===
-" === Cursor Movement
-" ===
-" Cursor movement (the default arrow keys are used for resizing windows)
-"     ^
-"     k
-" < h   l >
-"     j
-"     v
-
-" K/J keys for 5 times k/j (faster navigation)
-noremap <silent> K 6k
-noremap <silent> J 6j
-
-" H key: go to the start of the line
-noremap <silent> H ^
-" L key: go to the end of the line
-noremap <silent> L $
-
-" inoremap <silent> <C-w> <C-W>
-imap <C-H> :tabprevious<cr>
-imap <C-L> :tabnext<cr>
-
-nmap <C-H> :tabprevious<cr>
-nmap <C-L> :tabnext<cr>
-
-map <leader>aq :qa<CR>
-map <leader>noh :noh<CR>
 
 
 
@@ -277,173 +221,106 @@ if exists('g:vscode')
 		call plug#end()
 else
 		
-		noremap Q :q<CR>
-
 		
 		call plug#begin('~/.config/nvim/plugged')
-
-		"===============================================================
-		" Startify
-
-		Plug 'mhinz/vim-startify'
-
-		"set viminfo=$HOME/.vim/files/info/viminfo
-
-
-		let g:start_image_dc=[
-		\ '  ,--,   ,---.    ,---.    .--.  _______ .-. .-.,---.     .---.   .---.,     ',
-		\ '.` .`    | .-.\   | .-`   / /\ \|__   __||  \| || .-`    ( .-._) ( .-._)     ',
-		\ '|  |  __ | `-`/   | `-.  / /__\ \ )| |   |   | || `-.   (_) \   (_) \        ',
-		\ '\  \ ( _)|   (    | .-`  |  __  |(_) |   | |\  || .-`   _  \ \  _  \ \       ',
-		\ ' \  `-) )| |\ \   |  `--.| |  |)|  | |   | | |)||  `--.( `-`  )( `-`  )      ',
-		\ ' )\____/ |_| \)\  /( __.`|_|  (_)  `-`   /(  (_)/( __.` `----`  `----`       ',
-		\ '(__)         (__)(__)                   (__)   (__)                          ',
-		\ '                                                                             ',
-		\ '                 ____  _____    ____  _     ___  _   ____  ____  ____  _____ ',
-		\ '                /  _ \/__ __\  /  _ \/ \  /|\  \//  /   _\/  _ \/ ___\/__ __\',
-		\ '                | / \|  / \    | / \|| |\ || \  /   |  /  | / \||    \  / \  ',
-		\ '                | |-||  | |    | |-||| | \|| / /    |  \_ | \_/|\___ |  | |  ',
-		\ '                \_/ \|  \_/    \_/ \|\_/  \|/_/     \____/\____/\____/  \_/  ',
-		\ '                                                                             ']
-
-		let g:start_image=g:start_image_dc
-
-		"let g:startify_custom_header = 'startify#pad(g:start_image + startify#fortune#quote())'
-
-		"let g:startify_custom_header = 'startify#pad(g:start_image)'
-
-		" returns all modified files of the current git repo
-		" `2>/dev/null` makes the command fail quietly, so that when we are not
-		" in a git repo, the list will be empty
-		function! s:gitModified()
-				let files = systemlist('git ls-files -m 2>/dev/null')
-				return map(files, "{'line': v:val, 'path': v:val}")
-		endfunction
-
-		" same as above, but show untracked files, honouring .gitignore
-		function! s:gitUntracked()
-				let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
-				return map(files, "{'line': v:val, 'path': v:val}")
-		endfunction
-
-		let g:startify_custom_indices = ['a', 'd', 'g', 'l', 'w', 'r', 'u', 'o', 'n', 'm', 'aa', 'af', 'ad', 'ag', 'aj', 'al', 'ak', 'da', 'df', 'dd', 'dg', 'dj', 'dl', 'dk', 'lf', 'ld', 'lg', 'lj', 'lh', 'll', 'lk', 'la', 'oa', 'of', 'od', 'og', 'oj', 'ol', 'ok']
-
-		let g:startify_commands = [
-				\ ['Check Health',':checkhealth'],
-				\ ['Vim Reference', 'h ref'],
-				\ {'h': ['Startify help','h startify']},
-				\ {'p':['Plugin install','PlugInstall']},
-				\ ]
-
-        let g:startify_session_dir = '~/.vim/sessions'
-        "let g:startify_session_persistence = 0
-
-		let g:startify_lists = [
- 						\ { 'type': 'sessions',  'header': ['   Sessions']       },
-						\ { 'type': 'dir',       'header': ['   Recently '. getcwd()] },
-                        \ { 'type': 'files',     'header': ['   Recently files']            },
-						\ { 'type': 'commands',  'header': ['   Commands']       },
-						\ { 'type': function('s:gitModified'),  'header': ['   git modified']},
-						\ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
-						\ ]
 
 		"===============================================================
 
 		Plug 'gibiansky/vim-latex-objects'
 		Plug 'gcmt/wildfire.vim'
-		map <CR> <Plug>(wildfire-fuel)
-		" This selects the previous closest text object.
-		" use '*' to mean 'all other filetypes'
-		" in this example, html and xml share the same text objects
-		xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
-		xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
-		let g:wildfire_objects = {
-				\ "*" : ["iw","i'", 'i"', "i)", "i]", "i}","im","am"],
-				\ "html,xml" : ["at", "it"],
-		\ }
+			map <CR> <Plug>(wildfire-fuel)
+			" This selects the previous closest text object.
+			" use '*' to mean 'all other filetypes'
+			" in this example, html and xml share the same text objects
+			xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
+			xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
+			let g:wildfire_objects = {
+					\ "*" : ["iw","i'", 'i"', "i)", "i]", "i}","im","am"],
+					\ "html,xml" : ["at", "it"],
+			\ }
 
 		Plug 'machakann/vim-sandwich'
 
 		Plug 'kevinhwang91/rnvimr'
-		nnoremap <silent> <Leader>e :RnvimrToggle<CR>
-" Make Ranger replace Netrw and be the file explorer
-		let g:rnvimr_enable_ex = 1
 
-		" Make Ranger to be hidden after picking a file
-		let g:rnvimr_enable_picker = 1
+	" Make Ranger replace Netrw and be the file explorer
+			let g:rnvimr_enable_ex = 1
 
-		"0 for Disable a border for floating window
-		let g:rnvimr_draw_border = 1
+			" Make Ranger to be hidden after picking a file
+			let g:rnvimr_enable_picker = 1
 
-		" Hide the files included in gitignore
-		let g:rnvimr_hide_gitignore = 1
+			"0 for Disable a border for floating window
+			let g:rnvimr_draw_border = 1
 
-		" Change the border's color
-		"let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
+			" Hide the files included in gitignore
+			let g:rnvimr_hide_gitignore = 1
 
-		" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
-		let g:rnvimr_enable_bw = 1
+			" Change the border's color
+			"let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
 
-		" Add a shadow window, value is equal to 100 will disable shadow
-		"let g:rnvimr_shadow_winblend = 70
+			" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+			let g:rnvimr_enable_bw = 1
 
-		" Draw border with both
-		"let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+			" Add a shadow window, value is equal to 100 will disable shadow
+			"let g:rnvimr_shadow_winblend = 70
 
-		" Link CursorLine into RnvimrNormal highlight in the Floating window
+			" Draw border with both
+			"let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
 
-		" Map Rnvimr action
-		let g:rnvimr_action = {
-								\ '<C-t>': 'NvimEdit tabedit',
-								\ '<C-x>': 'NvimEdit split',
-								\ '<C-v>': 'NvimEdit vsplit',
-								\ 'gw': 'JumpNvimCwd',
-								\ 'yw': 'EmitRangerCwd'
-								\ }
+			" Link CursorLine into RnvimrNormal highlight in the Floating window
 
-		" Add views for Ranger to adapt the size of floating window
-        let g:rnvimr_ranger_views = [
-                                \ {'minwidth': 90, 'ratio': []},
-                                \ {'minwidth': 50, 'maxwidth': 89, 'ratio': [1,1]},
-                                \ {'maxwidth': 49, 'ratio': [1]}
-                                \ ]
+			" Map Rnvimr action
+			let g:rnvimr_action = {
+									\ '<C-t>': 'NvimEdit tabedit',
+									\ '<C-x>': 'NvimEdit split',
+									\ '<C-v>': 'NvimEdit vsplit',
+									\ 'gw': 'JumpNvimCwd',
+									\ 'yw': 'EmitRangerCwd'
+									\ }
 
-		" Customize the initial layout
-		"let g:rnvimr_layout = {
-								"\ 'relative': 'editor',
-								"\ 'width': float2nr(round(0.7 * &columns)),
-								"\ 'height': float2nr(round(0.7 * &lines)),
-								"\ 'col': float2nr(round(0.15 * &columns)),
-								"\ 'row': float2nr(round(0.15 * &lines)),
-								"\ 'style': 'minimal'
-								"\ }
+			" Add views for Ranger to adapt the size of floating window
+			let g:rnvimr_ranger_views = [
+																	\ {'minwidth': 90, 'ratio': []},
+																	\ {'minwidth': 50, 'maxwidth': 89, 'ratio': [1,1]},
+																	\ {'maxwidth': 49, 'ratio': [1]}
+																	\ ]
 
-		"" Customize multiple preset layouts
-		"" '{}' represents the initial layout
-		"let g:rnvimr_presets = [
-								"\ {'width': 0.600, 'height': 0.600},
-								"\ {},
-								"\ {'width': 0.800, 'height': 0.800},
-								"\ {'width': 0.950, 'height': 0.950},
-								"\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0},
-								"\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0.5},
-								"\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0},
-								"\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0.5},
-								"\ {'width': 0.500, 'height': 1.000, 'col': 0, 'row': 0},
-								"\ {'width': 0.500, 'height': 1.000, 'col': 0.5, 'row': 0},
-								"\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0},
-								"\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0.5}
-								"\ ]
+			" Customize the initial layout
+			"let g:rnvimr_layout = {
+									"\ 'relative': 'editor',
+									"\ 'width': float2nr(round(0.7 * &columns)),
+									"\ 'height': float2nr(round(0.7 * &lines)),
+									"\ 'col': float2nr(round(0.15 * &columns)),
+									"\ 'row': float2nr(round(0.15 * &lines)),
+									"\ 'style': 'minimal'
+									"\ }
+
+			"" Customize multiple preset layouts
+			"" '{}' represents the initial layout
+			"let g:rnvimr_presets = [
+									"\ {'width': 0.600, 'height': 0.600},
+									"\ {},
+									"\ {'width': 0.800, 'height': 0.800},
+									"\ {'width': 0.950, 'height': 0.950},
+									"\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0},
+									"\ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0.5},
+									"\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0},
+									"\ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0.5},
+									"\ {'width': 0.500, 'height': 1.000, 'col': 0, 'row': 0},
+									"\ {'width': 0.500, 'height': 1.000, 'col': 0.5, 'row': 0},
+									"\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0},
+									"\ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0.5}
+									"\ ]
 				
 
 		"Plug 'SirVer/ultisnips', { 'for': ['rmd','markdown'] }
 		Plug 'SirVer/ultisnips'
-		let g:UltiSnipsExpandTrigger="<tab>"
-		let g:UltiSnipsJumpForwardTrigger="<tab>"
-		let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
-		let g:UltiSnipsEditSplit="vertical"
+			let g:UltiSnipsExpandTrigger="<tab>"
+			let g:UltiSnipsJumpForwardTrigger="<tab>"
+			let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+			let g:UltiSnipsEditSplit="vertical"
 		Plug 'fecet/vim-snippets'
-		Plug 'jiangmiao/auto-pairs'
+		"Plug 'jiangmiao/auto-pairs'
 
 
 		function! Ulti_Pairs()
@@ -492,20 +369,22 @@ else
 		let g:auto_save = 1
 		let g:auto_save_silent = 1
 
-		Plug 'itchyny/lightline.vim'
-		let g:lightline = {
-		\ 'colorscheme': 'dracula',
-		\ }
+		"Plug 'itchyny/lightline.vim'
+			"let g:lightline = {
+			"\ 'colorscheme': 'dracula',
+			"\ }
+		Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+		" If you want to display icons, then use one of these plugins:
+		Plug 'kyazdani42/nvim-web-devicons' " lua
 
 		Plug 'lervag/vimtex'
-		set conceallevel=2
-		let g:tex_conceal='abdmg'
-		let g:tex_flavor = "latex"
-
 		Plug 'godlygeek/tabular'
 		Plug 'plasticboy/vim-markdown'
-		let g:vim_markdown_folding_disabled = 1
-		let g:vim_markdown_math = 1
+			set conceallevel=2
+			let g:tex_conceal='abdmg'
+			let g:tex_flavor = "latex"
+			let g:vim_markdown_folding_disabled = 1
+			let g:vim_markdown_math = 1
 
 		"Plug 'machakann/vim-highlightedyank'
 		Plug 'tmhedberg/SimpylFold'
@@ -514,14 +393,14 @@ else
         let g:SimpylFold_docstring_preview = 1
 
 		"Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-		Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-		Plug 'p00f/nvim-ts-rainbow'  
-		Plug 'Yggdroot/indentLine'
-        "let g:indentLine_color_gui = 0
-        "let g:indentLine_setColors = 0
-        "let g:indentLine_defaultGroup = 'SpecialKey'
-				let g:indentLine_color_gui = '#6272a4'
-				let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+		"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+		"Plug 'p00f/nvim-ts-rainbow'  
+		"Plug 'Yggdroot/indentLine'
+        ""let g:indentLine_color_gui = 0
+        ""let g:indentLine_setColors = 0
+        ""let g:indentLine_defaultGroup = 'SpecialKey'
+				"let g:indentLine_color_gui = '#6272a4'
+				"let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 		Plug 'preservim/nerdcommenter' 
 
@@ -534,10 +413,6 @@ else
         ""nmap f <Plug>(easymotion-overwin-f)
 
         "" s{char}{char} to move to {char}{char}
-        hi link EasyMotionTarget ErrorMsg
-        hi link EasyMotionShade  Comment
-        hi link EasyMotionTarget2First MatchParen
-        hi link EasyMotionTarget2Second MatchParen
         "nmap s <Plug>(easymotion-overwin-f2)
 
         "" Move to line
@@ -552,46 +427,54 @@ else
 		Plug 'wadackel/vim-dogrun'
 		Plug 'dracula/vim', { 'as': 'dracula' }
 
-		Plug 'neoclide/coc.nvim', {'branch': 'release'}
+		"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-		Plug 'jpalardy/vim-slime'
-		let g:slime_target = "x11"
-		let g:slime_python_ipython = 1
-		let g:slime_cell_delimiter = "# %%"
-        "nmap <leader>c <Plug>SlimeSendCell
+		Plug 'adavidwilson/vim-slime'
+			let g:slime_target = "x11"
+			"let g:slime_python_ipython = 1
+			let g:slime_python_qtconsole = 1
+			let g:slime_cell_delimiter = "# %%"
+      nmap <leader>sc <Plug>SlimeSendCell
 		Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 
+		Plug 'bfredl/nvim-ipy'
+
 		Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
-        "Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
-		" map <Leader>s to start IPython
-		"let g:ipython_cell_regex = 1
-		"let g:ipython_cell_tag = '# %%( [^[].*)?'
-		" Change automatically current directory to open file directory
-		"autocmd BufEnter * silent! lcd %:p:h
-
-		" map to start ipython in current file directory
-		"nnoremap <Leader>s :execute 'SlimeSend1 cd 'fnameescape(expand('%:p:h')):execute 'SlimeSend1 clear':SlimeSend1 ipython
-		
-
+			
+			let g:firenvim_config = { 
+					\ 'globalSettings': {
+							\ 'alt': 'all',
+					\  },
+					\ 'localSettings': {
+							\ '.*': {
+									\ 'cmdline': 'neovim',
+									\ 'content': 'text',
+									\ 'priority': 0,
+									\ 'selector': 'textarea',
+									\ 'takeover': 'never',
+							\ },
+					\ }
+			\ }
 
 		call plug#end()
 
-
-		colorscheme dracula
-		source ~/.config/nvim/coc.vim
-		lua require('inits')
-		hi CocHighlightText ctermfg=231 guifg=#bd93f9 ctermbg=60 guibg=#50fa7b
-		hi Visual ctermfg=231 guifg=#ff79c6 ctermbg=60 guibg=#8be9fd
-		hi HighlightedyankRegion cterm=bold gui=bold ctermbg=0 guibg=#ffb86c
-		"highlight IPythonCell ctermbg=238 guifg=darkgrey guibg=#444d56
-		highlight IPythonCell ctermbg=238 guifg=#50fa7b guibg=#444d56
-		highlight link RnvimrNormal CursorLine
-		hi link EasyMotionTarget ErrorMsg
-		hi link EasyMotionShade  Comment
-		hi link EasyMotionTarget2First MatchParen
-		hi link EasyMotionTarget2Second MatchParen
+		"source ~/.config/nvim/coc.vim
+		"lua require('plugins.treesitter')
 
 
 endif
+
+
+colorscheme dracula
+hi CocHighlightText ctermfg=231 guifg=#bd93f9 ctermbg=60 guibg=#50fa7b
+hi Visual ctermfg=231 guifg=#ff79c6 ctermbg=60 guibg=#8be9fd
+hi HighlightedyankRegion cterm=bold gui=bold ctermbg=0 guibg=#ffb86c
+"highlight IPythonCell ctermbg=238 guifg=darkgrey guibg=#444d56
+highlight IPythonCell ctermbg=238 guifg=#50fa7b guibg=#444d56
+highlight link RnvimrNormal CursorLine
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+hi link EasyMotionTarget2First MatchParen
+hi link EasyMotionTarget2Second MatchParen
+
 

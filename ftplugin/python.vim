@@ -1,7 +1,5 @@
 nnoremap <Leader>sx :SlimeSend1 export LANG=C && ipython --matplotlib<CR>
-
 " map <Leader>r to run script
-nnoremap <Leader>r :IPythonCellRun<CR>
 
 " map <Leader>R to run script and time the execution
 "nnoremap <Leader>R :IPythonCellRunTime<CR>
@@ -10,8 +8,7 @@ nnoremap <Leader>r :IPythonCellRun<CR>
 "nnoremap <Leader><CR> :IPythonCellExecuteCell<CR>
 
 " map <Leader>C to execute the current cell and jump to the next cell
-nnoremap <Leader><CR> :IPythonCellExecuteCellJump<CR>
-nnoremap <Leader>c :IPythonCellExecuteCellVerboseJump<CR>
+nnoremap <Leader><CR> :IPythonCellExecuteCellVerboseJump<CR>
 
 
 "" map <Leader>l to clear IPython screen
@@ -40,8 +37,7 @@ nnoremap ]c :IPythonCellNextCell<CR>
 " map <Leader>q to exit debug mode or IPython
 nnoremap <Leader>q :SlimeSend1 exit<CR>
 
-
-inoremap <Right> <ESC>:call Ulti_Pairs()<CR>a
+"inoremap <Right> <ESC>:call Ulti_Pairs()<CR>a
 
 
 function! IPythonOpen()
@@ -57,6 +53,8 @@ function! IPythonOpen()
         let g:slime_default_config = {}
     end
     let g:slime_default_config['jobid'] = b:terminal_job_id
+		nnoremap <Leader><CR> :IPythonCellExecuteCellJump<CR>
+		nnoremap <Leader>r :IPythonCellRun<CR>
 
     wincmd p " switch to the previous buffer
 endfunction
