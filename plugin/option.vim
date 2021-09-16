@@ -39,8 +39,8 @@ set noswapfile
 set cmdheight=1
 set dictionary+='~/.config/nvim/spell/en.utf-8.add'
 set mouse=a
-"set guifont=Sarasa_Mono_SC_Nerd:h24
-set guifont=monospace:h24"
+set guifont=InconsolataGo\ Nerd\ Font:h12
+" set guifont=monospace:h6
 set termguicolors " enable true colors support
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030

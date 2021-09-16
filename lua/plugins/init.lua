@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
   use {'nvim-lua/plenary.nvim'}
   use {'nvim-lua/popup.nvim'}
   --autosave
-  use "Pocco81/AutoSave.nvim"
+  use {"Pocco81/AutoSave.nvim", config= require('plugins.autosave')}
   ---- theme and color
   use {'dracula/vim', as='dracula'}
   --use {'tjdevries/colorbuddy.vim'}

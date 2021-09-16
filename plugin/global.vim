@@ -107,3 +107,9 @@ let g:slime_cell_delimiter = "# %%"
 
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_docstring_preview = 1
+
+
+"" Config for neovide
+
+
+let g:neovide_cursor_vfx_mode='railgun'
