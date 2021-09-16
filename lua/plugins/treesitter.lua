@@ -15,7 +15,7 @@ return function()
     autopairs = {
       enable = true
     },
-    matchip = {enable = true},
+    --matchip = {enable = true},
     rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
@@ -27,39 +27,39 @@ return function()
             "#ff79c6",
             "#bd93f9"}, -- table of hex strings
     },
-    refactor = {
-      highlight_definitions = { enable = true },
-      highlight_current_scope = { enable = true },
-      smart_rename = {
-        enable = true,
-        keymaps = {
-          smart_rename = "grr",
-        },
-      },
-      navigation = {
-        enable = true,
-        keymaps = {
-          goto_definition = "gnd",
-          list_definitions = "gnD",
-          list_definitions_toc = "gO",
-          goto_next_usage = "<a-*>",
-          goto_previous_usage = "<a-#>",
-        },
-      },
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        -- Automatically jump forward to textobj, similar to targets.vim
-        lookahead = true,
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
-        },
-      },
-    },
+    --refactor = {
+      --highlight_definitions = { enable = true },
+      --highlight_current_scope = { enable = true },
+      --smart_rename = {
+        --enable = true,
+        --keymaps = {
+          --smart_rename = "grr",
+        --},
+      --},
+      --navigation = {
+        --enable = true,
+        --keymaps = {
+          --goto_definition = "gnd",
+          --list_definitions = "gnD",
+          --list_definitions_toc = "gO",
+          --goto_next_usage = "<a-*>",
+          --goto_previous_usage = "<a-#>",
+        --},
+      --},
+    --},
+    --textobjects = {
+      --select = {
+        --enable = true,
+        ---- Automatically jump forward to textobj, similar to targets.vim
+        --lookahead = true,
+        --keymaps = {
+          ---- You can use the capture groups defined in textobjects.scm
+          --["af"] = "@function.outer",
+          --["if"] = "@function.inner",
+          --["ac"] = "@class.outer",
+          --["ic"] = "@class.inner",
+        --},
+      --},
+    --},
   })
 end

@@ -1,5 +1,6 @@
 -- my nvim config write in lua
-vim.g.mapleader = " "
+local g = vim.g
+g.mapleader = " "
 vim.opt.termguicolors = true
 local execute = vim.api.nvim_command
 local fn = vim.fn
@@ -10,3 +11,4 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd 'packadd packer.nvim'
 end
 require('plugins')
+require('settings')

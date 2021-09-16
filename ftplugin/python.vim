@@ -66,8 +66,8 @@ nmap <Leader>ck :IPythonCellInsertAbove<CR>a
 nmap <Leader>cj :IPythonCellInsertBelow<CR>a
 
 
-augroup remember_folds
-		autocmd!
-		autocmd BufWinLeave ?* mkview | filetype detect
-		autocmd BufWinEnter ?* silent loadview | filetype detect
-augroup END
+"augroup remember_folds
+		"autocmd!
+		"autocmd BufWinLeave ?* mkview | filetype detect
+		"autocmd BufWinEnter ?* silent loadview | filetype detect
+"augroup END
