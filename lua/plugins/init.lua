@@ -1,21 +1,37 @@
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup(function(use)
+return require('packer').startup({ 
+  function(use)
   -- base plugin
   use {'wbthomason/packer.nvim'}
   use {'nvim-lua/plenary.nvim'}
   use {'nvim-lua/popup.nvim'}
   --autosave
   use {"Pocco81/AutoSave.nvim", config= require('plugins.autosave')}
+
+  use {
+      'rmagatti/auto-session',
+      config= require('plugins.session')
+  }
+
+  use {
+      'rmagatti/session-lens',
+      config= require('plugins.sess-len')
+  }
   ---- theme and color
   use {'dracula/vim', as='dracula'}
   --use {'tjdevries/colorbuddy.vim'}
   --use {'Th3Whit3Wolf/onebuddy'}
   use {'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end}
-  ---- buffer | statusline | icon | treeview | startup buffer
+  --Startup
   use {'glepnir/dashboard-nvim'}
+  --use {'henriquehbr/nvim-startup.lua', config=function() require('nvim-startup').setup() end}
+  use {'tweekmonster/startuptime.vim'}
+
+  ---- File Explorer
   use {'kevinhwang91/rnvimr'}
   ---- use {'kyazdani42/nvim-tree.lua'}
+  ---- buffer | statusline | icon | treeview | startup buffer
   use {'kyazdani42/nvim-web-devicons'}
   use {'akinsho/nvim-bufferline.lua', config = require('plugins.bufferline')}
   use {'glepnir/galaxyline.nvim', branch = 'main', config = function() require('plugins.eviline') end}
@@ -73,12 +89,22 @@ return require('packer').startup(function(use)
   ---- motion
   use {'phaazon/hop.nvim', as = 'hop', config = function() require('hop').setup() end}
   use {'rhysd/clever-f.vim'}
-  use {'psliwka/vim-smoothie'}
+  -- use {'psliwka/vim-smoothie'}
+  use {
+      'karb94/neoscroll.nvim', 
+       config=require('plugins.neoscroll')
+  }
+  --[[ use {
+      'Xuyuanp/scrollbar.nvim'
+  } ]]
+
   ---- rest client
   --use {'NTBBloodbath/rest.nvim', config = function() require('rest-nvim').setup() end}
   ---- project manager
   --use {'ahmedkhalf/project.nvim', config = require('plugins.project')}
   ---- markdown preview
+  --
+  use 'ekickx/clipboard-image.nvim'
   use {'lervag/vimtex'}
   use {'godlygeek/tabular'}
   use {'plasticboy/vim-markdown'}
@@ -99,17 +125,46 @@ return require('packer').startup(function(use)
   --use {'kristijanhusak/vim-dadbod-completion'}
   --use {'hrsh7th/nvim-cmp', config = require('plugins.cmp')}
   ---- use neovim in browser
-  -- use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
+  use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
+  ---- discord
+  use {
+      'andweeb/presence.nvim', 
+       config=require('plugins.presence')
+    }
+  ---- apm
+  -- use {"ThePrimeagen/vim-apm"}
   ---- nvim debug tool
   --use {'mfussenegger/nvim-dap'}
   --use {'rcarriga/nvim-dap-ui', config = function() require("dapui").setup() end}
   --use {'theHamsta/nvim-dap-virtual-text'}
   ---- which kefy
   --use {'glepnir/indent-guides.nvim'}
-  use {'glepnir/indent-guides.nvim', config=require('plugins.indent')}
+  use {
+      'glepnir/indent-guides.nvim', 
+       config=require('plugins.indent')
+   }
   -- run cell
   use {'adavidwilson/vim-slime'}
-  use {'hanschen/vim-ipython-cell'}
+  use {
+        'hanschen/vim-ipython-cell',
+        ft={'python'},
+        cmd={
+            'IPythonCellExecuteCellVerboseJump',
+            'IPythonCellPrevCell',
+            'IPythonCellNextCell',
+            'IPythonOpen',
+            'IPythonCellInsertAbove',
+            'IPythonCellInsertBelow'
+        }
+    }
 
 
-end)
+end,
+config = {
+  profile = {
+    enable = true,
+    threshold = 1 -- the amount in ms that a plugins load time must be over for it to be included in the profile
+  }
+}
+}
+)

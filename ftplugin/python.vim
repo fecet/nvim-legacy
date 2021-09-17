@@ -5,7 +5,7 @@ nnoremap <Leader>sx :SlimeSend1 export LANG=C && ipython --matplotlib<CR>
 "nnoremap <Leader>R :IPythonCellRunTime<CR>
 
 " map <Leader>c to execute the current cell
-"nnoremap <Leader><CR> :IPythonCellExecuteCell<CR>
+" nnoremap <Leader><CR> :IPythonCellExecuteCell<CR>
 
 " map <Leader>C to execute the current cell and jump to the next cell
 nnoremap <Leader><CR> :IPythonCellExecuteCellVerboseJump<CR>

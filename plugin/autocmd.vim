@@ -9,3 +9,9 @@ au Filetype markdown let b:coc_additional_keywords = ["-"]
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+augroup ScrollbarInit
+  autocmd!
+  autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
+  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
+  autocmd WinLeave,BufLeave,BufWinLeave,FocusLost            * silent! lua require('scrollbar').clear()
+augroup end

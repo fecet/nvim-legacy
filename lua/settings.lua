@@ -10,13 +10,18 @@ g.dashboard_custom_section = {
     c = {description = {"  Find Word                 leader f g"}, command = "Telescope live_grep"},
     d = {description = {"  New File                  leader e n"}, command = "DashboardNewFile"},
     e = {description = {"  Bookmarks                 leader m  "}, command = "Telescope marks"},
-    f = {description = {"  Sessions                  leader l  "}, command = "CocList sessions"},
+    f = {description = {"  Sessions                  leader s l"}, command = "Telescope session-lens search_session"},
     g = {description = {"  Update Plugins            leader u  "}, command = "PackerUpdate"},
     h = {description = {"  Settings                  leader e v"}, command = "edit $MYVIMRC"},
     i = {description = {"  Exit                      leader q  "}, command = "exit"}
 }
 
-g.dashboard_custom_footer = {'None are more hopelessly enslaved than those who falsely believe they are free'}
+vim.cmd("let packages = len(globpath('~/.local/share/nvim/site/pack/packer/start', '*', 0, 1))")
+
+vim.api.nvim_exec([[
+    let g:dashboard_custom_footer = ['neovim loaded '..packages..' packages']
+]], false)
+-- g.dashboard_custom_footer = {'None are more hopelessly enslaved than those who falsely believe they are free'}
 vim.cmd [[
 augroup dashboard_au
      autocmd! * <buffer>
@@ -51,3 +56,27 @@ augroup END
     ' ⣿⣿⣿⣶⣶⣮⣥⣒⠲⢮⣝⡿⣿⣿⡆⣿⡿⠃⠄⠄⠄⠄⠄⠄⠄⣠⣴⣿⣿⣿ ',
     '',
     } ]]
+local disabled_built_ins = {
+    "netrw",
+    "netrwPlugin",
+    "netrwSettings",
+    "netrwFileHandlers",
+    "gzip",
+    "zip",
+    "zipPlugin",
+    "tar",
+    "tarPlugin",
+    "getscript",
+    "getscriptPlugin",
+    "vimball",
+    "vimballPlugin",
+    "2html_plugin",
+    "logipat",
+    "rrhelper",
+    "spellfile_plugin",
+    "matchit"
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+    g["loaded_" .. plugin] = 1
+end

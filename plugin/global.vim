@@ -1,3 +1,4 @@
+source ~/.config/nvim/_machine_specific.vim
 let g:smoothie_no_default_mappings=v:true
 
 " in this example, html and xml share the same text objects
@@ -78,7 +79,6 @@ let g:mkdp_port = '8296'
 let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 
 
-set conceallevel=2
 let g:tex_conceal='abdmg'
 let g:tex_flavor = "latex"
 let g:vim_markdown_folding_disabled = 1
@@ -104,12 +104,7 @@ let g:slime_target = "x11"
 let g:slime_python_qtconsole = 1
 let g:slime_cell_delimiter = "# %%"
 
-
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_docstring_preview = 1
-
-
 "" Config for neovide
-
-
 let g:neovide_cursor_vfx_mode='railgun'

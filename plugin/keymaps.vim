@@ -46,8 +46,10 @@ nnoremap > >>
 "     v
 
 " K/J keys for 5 times k/j (faster navigation)
-silent! map <unique> K <Plug>(SmoothieUpwards)
-silent! map <unique> J <Plug>(SmoothieDownwards)
+" silent! map <unique> K <Plug>(SmoothieUpwards)
+" silent! map <unique> J <Plug>(SmoothieDownwards)
+map K <C-u>
+map J <C-d>
 
 " H key: go to the start of the line
 noremap <silent> H ^
@@ -55,14 +57,15 @@ noremap <silent> H ^
 noremap <silent> L $
 
 " inoremap <silent> <C-w> <C-W>
-imap <C-H> :tabprevious<cr>
-imap <C-L> :tabnext<cr>
+" nnoremap <C-H> :tabprevious<cr>
+" nnoremap <C-L> :tabnext<cr>
 
-nmap <C-H> :tabprevious<cr>
-nmap <C-L> :tabnext<cr>
+nnoremap <C-H> :BufferLineCyclePrev<CR>
+nnoremap <C-L> :BufferLineCycleNext<CR>
 
 map <leader>aq :qa<CR>
 map <leader>noh :noh<CR>
+nnoremap <silent> <leader>gg :LazyGit<CR>
 
 "nmap <Leader>sl :<C-u>SessionLoad<CR>
 "nmap <Leader>ss :<C-u>SessionSave<CR>
@@ -78,6 +81,8 @@ map <leader>noh :noh<CR>
 nnoremap <silent> <Leader>e :RnvimrToggle<CR>
 
 nnoremap <silent> <leader>k :<C-u>CocList<cr>
+nnoremap <silent> <leader>sl :Telescope session-lens search_session<cr>
+" nnoremap <silent> <leader>k :<C-u>Telescope<cr>
 
 
 nnoremap <silent> <leader>w <cmd>lua require'hop'.hint_words()<cr>
@@ -100,5 +105,7 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
-
 nmap <leader>pv <Plug>MarkdownPreviewToggle
+
+
+

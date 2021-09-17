@@ -44,3 +44,6 @@ set guifont=InconsolataGo\ Nerd\ Font:h12
 set termguicolors " enable true colors support
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
+
+set conceallevel=2
+set sessionoptions+=options,resize,winpos,terminal

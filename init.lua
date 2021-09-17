@@ -1,4 +1,9 @@
 -- my nvim config write in lua
+-- __  ____   __  _   ___     _____ __  __ ____   ____
+--|  \/  \ \ / / | \ | \ \   / /_ _|  \/  |  _ \ / ___|
+--| |\/| |\ V /  |  \| |\ \ / / | || |\/| | |_) | |
+--| |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
+--|_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 local g = vim.g
 g.mapleader = " "
 vim.opt.termguicolors = true
@@ -12,4 +17,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 require('plugins')
 require('settings')
+
+
 
