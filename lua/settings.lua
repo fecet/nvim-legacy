@@ -1,8 +1,8 @@
 local g = vim.g
 g.autoload_last_session = false
-g.session_dir = '/home/rok/.vim/session/'
+--[[ g.session_dir = vim.fn.stdpath('data').."/sessions/"
 --require('telescope').load_extension('session_manager')
-g.dashboard_session_directory = '/home/rok/.vim/sessions'
+g.dashboard_session_directory = vim.fn.stdpath('data').."/sessions/" ]]
 g.dashboard_default_executive ='telescope'
 g.dashboard_custom_section = {
     a = {description = {"  Find File                 leader f f"}, command = "Telescope find_files"},
@@ -18,6 +18,7 @@ g.dashboard_custom_section = {
 
 vim.cmd("let packages = len(globpath('~/.local/share/nvim/site/pack/packer/start', '*', 0, 1))")
 
+vim.g.dashboard_footer_icon = '🐬 '
 vim.api.nvim_exec([[
     let g:dashboard_custom_footer = ['neovim loaded '..packages..' packages']
 ]], false)

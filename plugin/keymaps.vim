@@ -60,8 +60,9 @@ noremap <silent> L $
 " nnoremap <C-H> :tabprevious<cr>
 " nnoremap <C-L> :tabnext<cr>
 
-nnoremap <C-H> :BufferLineCyclePrev<CR>
-nnoremap <C-L> :BufferLineCycleNext<CR>
+noremap <C-H> :BufferLineCyclePrev<CR>
+noremap <C-L> :BufferLineCycleNext<CR>
+noremap <leader>bc :BufferLinePickClose<CR>
 
 map <leader>aq :qa<CR>
 map <leader>noh :noh<CR>

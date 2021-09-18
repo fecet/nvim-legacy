@@ -11,6 +11,7 @@ set clipboard=unnamedplus
 
 set title 
 set autoindent
+set autochdir
 set list
 set scrolloff=4
 "set notimeout
