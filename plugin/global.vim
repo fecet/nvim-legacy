@@ -115,3 +115,10 @@ let g:SimpylFold_docstring_preview = 1
 let g:neovide_cursor_vfx_mode='railgun'
 
 
+let g:neovide_cursor_vfx_opacity=200.0
+let g:neovide_cursor_vfx_particle_lifetime=3.2
+let g:neovide_cursor_vfx_particle_density=10.0
+let g:neovide_cursor_vfx_particle_speed=10.0
+let g:neovide_cursor_vfx_particle_phase=1.5
+let g:neovide_cursor_vfx_particle_curl=1.0
+
