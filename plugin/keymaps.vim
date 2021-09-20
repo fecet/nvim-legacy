@@ -63,6 +63,7 @@ noremap <silent> L $
 noremap <C-H> :BufferLineCyclePrev<CR>
 noremap <C-L> :BufferLineCycleNext<CR>
 noremap <leader>bc :BufferLinePickClose<CR>
+noremap <silent> gb :BufferLinePick<CR>
 
 map <leader>aq :qa<CR>
 map <leader>noh :noh<CR>
@@ -101,7 +102,7 @@ xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
 
 nmap <leader>sc <Plug>SlimeSendCell
 
-let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsExpandTrigger="<C-f>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
@@ -109,4 +110,10 @@ let g:UltiSnipsEditSplit="vertical"
 nmap <leader>pv <Plug>MarkdownPreviewToggle
 
 
+nnoremap <F5> :lua require("nabla").action()<CR>
+
+nnoremap <leader>ff :Telescope find_files<cr>
+nnoremap <leader>fh :Telescope oldfiles<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>en <cmd>DashboardNewFile<cr>
 

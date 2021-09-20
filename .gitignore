@@ -3,3 +3,5 @@ _machine_specific.vim
 .netrwhist
 plugged/
 tmp/
+
+time

@@ -19,6 +19,8 @@ return require('packer').startup({
       config= require('plugins.sess-len')
   }
   ---- theme and color
+  --
+  use 'folke/tokyonight.nvim'
   use {'dracula/vim', as='dracula'}
   --use {'tjdevries/colorbuddy.vim'}
   --use {'Th3Whit3Wolf/onebuddy'}
@@ -58,14 +60,21 @@ return require('packer').startup({
   --use {'tpope/vim-dadbod'}
   --use {'kristijanhusak/vim-dadbod-ui'}
   ---- incsearch
-  --use {'kevinhwang91/nvim-hlslens'}
+  use {'kevinhwang91/nvim-hlslens'}
   ---- terminal
   --use {'akinsho/nvim-toggleterm.lua', config = require('plugins.toggleterm')}
   ---- editing
   --use {'tpope/vim-surround'}
   use {'gibiansky/vim-latex-objects'}
   use {'gcmt/wildfire.vim'}
-  use {'machakann/vim-sandwich'}
+  -- use {'machakann/vim-sandwich'}
+  --
+  use {
+  "blackCauldron7/surround.nvim",
+  config = function()
+    require"surround".setup {mappings_style = "sandwich"}
+  end
+  }
   use {'SirVer/ultisnips'}
   use {'fecet/vim-snippets'}
   use {'windwp/nvim-autopairs', config = require('plugins.autopairs')}
@@ -103,7 +112,12 @@ return require('packer').startup({
   ---- project manager
   --use {'ahmedkhalf/project.nvim', config = require('plugins.project')}
   ---- markdown preview
-  --
+  use {'iamcco/markdown-preview.nvim',
+       ft = {'markdown','rmd',},
+       run = 'cd app && yarn install'
+  }
+  -- use {'jbyuki/nabla.nvim'}
+
   use 'ekickx/clipboard-image.nvim'
   use {'lervag/vimtex'}
   use {'godlygeek/tabular'}
@@ -129,7 +143,7 @@ return require('packer').startup({
   ---- discord
   use {
       'andweeb/presence.nvim', 
-       config=require('plugins.presence')
+      config=require('plugins.presence')
     }
   ---- apm
   -- use {"ThePrimeagen/vim-apm"}
@@ -137,8 +151,9 @@ return require('packer').startup({
   --use {'mfussenegger/nvim-dap'}
   --use {'rcarriga/nvim-dap-ui', config = function() require("dapui").setup() end}
   --use {'theHamsta/nvim-dap-virtual-text'}
-  ---- which kefy
-  --use {'glepnir/indent-guides.nvim'}
+  ---- which kef
+  --use {'folke/which-key.nvim', config = require('plugins.which-key')}
+  -- indent
   use {
       'glepnir/indent-guides.nvim', 
        config=require('plugins.indent')
@@ -157,6 +172,9 @@ return require('packer').startup({
             'IPythonCellInsertBelow'
         }
     }
+
+-- sudo
+  use {'lambdalisue/suda.vim'}
 
 
 end,

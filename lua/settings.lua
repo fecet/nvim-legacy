@@ -13,7 +13,7 @@ g.dashboard_custom_section = {
     f = {description = {"  Sessions                  leader s l"}, command = "Telescope session-lens search_session"},
     g = {description = {"  Update Plugins            leader u  "}, command = "PackerUpdate"},
     h = {description = {"  Settings                  leader e v"}, command = "edit $MYVIMRC"},
-    i = {description = {"  Exit                      leader q  "}, command = "exit"}
+    i = {description = {"  Exit                             Q  "}, command = "exit"}
 }
 
 vim.cmd("let packages = len(globpath('~/.local/share/nvim/site/pack/packer/start', '*', 0, 1))")

@@ -11,4 +11,3 @@ hi link EasyMotionTarget2First MatchParen
 hi link EasyMotionTarget2Second MatchParen
 hi link GitSignsCurrentLineBlame Comment
 
-

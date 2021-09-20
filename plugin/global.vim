@@ -1,3 +1,8 @@
+let has_machine_specific_file = 1
+if empty(glob('~/.config/nvim/_machine_specific.vim'))
+	let has_machine_specific_file = 0
+	silent! exec "!cp ~/.config/nvim/Diff_machine_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+endif
 source ~/.config/nvim/_machine_specific.vim
 let g:smoothie_no_default_mappings=v:true
 
@@ -108,3 +113,5 @@ let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_docstring_preview = 1
 "" Config for neovide
 let g:neovide_cursor_vfx_mode='railgun'
+
+
