@@ -6,7 +6,7 @@
         "foam"
     ],
     "coc.source.neco.shortcut": "VIM",
-    "tabnine.shortcut": "TaN",
+    "tabnine.shortcut": "TN",
     "tabnine.triggers": "[]",
     "coc.preferences.semanticTokensHighlights": false,
     "coc.preferences.enableFloatHighlight": true,
