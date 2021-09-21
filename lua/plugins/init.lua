@@ -75,8 +75,13 @@ return require('packer').startup({
     require"surround".setup {mappings_style = "sandwich"}
   end
   }
-  use {'SirVer/ultisnips'}
-  use {'fecet/vim-snippets'}
+  use({
+    "SirVer/ultisnips",
+    requires = "fecet/vim-snippets",
+    --[[ config = function()
+      vim.g.UltiSnipsRemoveSelectModeMappings = 0
+    end, ]]
+  })
   use {'windwp/nvim-autopairs', config = require('plugins.autopairs')}
   --use {'itchyny/vim-cursorword'}
   --use {'windwp/nvim-ts-autotag'}
@@ -111,21 +116,24 @@ return require('packer').startup({
   --use {'NTBBloodbath/rest.nvim', config = function() require('rest-nvim').setup() end}
   ---- project manager
   --use {'ahmedkhalf/project.nvim', config = require('plugins.project')}
-  ---- markdown preview
+  ----------------
+  --  markdown  --
+  ----------------
   use {'iamcco/markdown-preview.nvim',
        ft = {'markdown','rmd',},
        run = 'cd app && yarn install'
   }
   -- use {'jbyuki/nabla.nvim'}
-
-  use 'ekickx/clipboard-image.nvim'
+  use {'ekickx/clipboard-image.nvim'}
   use {'lervag/vimtex'}
   use {'godlygeek/tabular'}
   use {'plasticboy/vim-markdown'}
   --use {'npxbr/glow.nvim', run = ':GlowInstall'}
-  ---- lsp auto completion & snip
+  ----------------------------------
+  --  lsp auto completion & snip  --
+  ----------------------------------
+  --use {'neoclide/coc.nvim', branch = 'release'}
   --use {'rafamadriz/friendly-snippets'}
-  -- use {'neoclide/coc.nvim', branch = 'release'}
   --use {'hrsh7th/vim-vsnip'}
   --use {'hrsh7th/vim-vsnip-integ'}
   --use {'hrsh7th/cmp-vsnip'}
@@ -138,6 +146,26 @@ return require('packer').startup({
   --use {'tzachar/cmp-tabnine', run='./install.sh'}
   --use {'kristijanhusak/vim-dadbod-completion'}
   --use {'hrsh7th/nvim-cmp', config = require('plugins.cmp')}
+  use {
+     "neovim/nvim-lspconfig",
+     event = "BufReadPre",
+     config = require('plugins.lsp')
+   }
+  --
+  use {
+      "hrsh7th/nvim-cmp",
+      event = "InsertEnter",
+      requires = {
+      {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
+      {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
+      {"hrsh7th/cmp-path", after = "nvim-cmp"},
+      {"f3fora/cmp-spell", after = "nvim-cmp"},
+      {"quangnguyen30192/cmp-nvim-tags", after = "nvim-cmp"},
+      {"quangnguyen30192/cmp-nvim-ultisnips", after = "nvim-cmp"},
+        -- "quangnguyen30192/cmp-nvim-ultisnips",
+       },
+      config=require('plugins.cmp') 
+   }
   ---- use neovim in browser
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
   ---- discord

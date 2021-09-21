@@ -102,10 +102,10 @@ xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
 
 nmap <leader>sc <Plug>SlimeSendCell
 
-let g:UltiSnipsExpandTrigger="<C-f>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
-let g:UltiSnipsEditSplit="vertical"
+"let g:UltiSnipsExpandTrigger="<C-f>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+"let g:UltiSnipsEditSplit="vertical"
 
 nmap <leader>pv <Plug>MarkdownPreviewToggle
 
