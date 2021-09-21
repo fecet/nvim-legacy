@@ -125,7 +125,7 @@ return require('packer').startup({
   --use {'npxbr/glow.nvim', run = ':GlowInstall'}
   ---- lsp auto completion & snip
   --use {'rafamadriz/friendly-snippets'}
-  use {'neoclide/coc.nvim', branch = 'release'}
+  -- use {'neoclide/coc.nvim', branch = 'release'}
   --use {'hrsh7th/vim-vsnip'}
   --use {'hrsh7th/vim-vsnip-integ'}
   --use {'hrsh7th/cmp-vsnip'}
