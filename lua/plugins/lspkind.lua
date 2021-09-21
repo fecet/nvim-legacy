@@ -14,27 +14,27 @@ return function()
     --
     -- default: {}
     symbol_map = {
-      Text = '',
+      Text = ' ',
       Method = 'ƒ',
       Function = '',
       Constructor = '',
-      Variable = '',
+      Variable = ' ',
       Class = '',
-      Interface = 'ﰮ',
-      Module = '',
-      Property = '',
+      Interface = 'ﰮ ',
+      Module = ' ',
+      Property = ' ',
       DB = '',
-      Unit = '',
-      Value = '',
+      Unit = ' ',
+      Value = ' ',
       Enum = '了',
-      Keyword = '',
-      Snippet = '﬌',
-      Color = '',
-      File = '',
-      Folder = '',
-      EnumMember = '',
-      Constant = '',
-      Struct = ''
+      Keyword = ' ',
+      Snippet = '﬌ ',
+      Color = ' ',
+      File = ' ',
+      Folder = ' ',
+      EnumMember = ' ',
+      Constant = ' ',
+      Struct = ' '
     }
   })
 end
