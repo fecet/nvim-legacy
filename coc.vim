@@ -233,3 +233,4 @@ endif
 " changing coc highlight color cause light grey is invisible
 " BUT is overwritten by scheme so defining it in an autocmd after colorscheme
 " change
+"

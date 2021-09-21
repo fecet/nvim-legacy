@@ -1,4 +1,4 @@
-au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd	setf markdown
+au BufNewFile,BufRead *.Rmd,*.rmd,*.Smd,*.smd	set filetype=markdown
 au BufEnter *.rmd,*.Rmd,*.Smd,*.smd,*.md highlight clear conceal
 " Spell check only for writing
 au Filetype markdown set spell

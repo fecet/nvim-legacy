@@ -75,8 +75,13 @@ return require('packer').startup({
     require"surround".setup {mappings_style = "sandwich"}
   end
   }
-  use {'SirVer/ultisnips'}
-  use {'fecet/vim-snippets'}
+  use({
+    "SirVer/ultisnips",
+    requires = "fecet/vim-snippets",
+    config = function()
+      vim.g.UltiSnipsRemoveSelectModeMappings = 0
+    end,
+  })
   use {'windwp/nvim-autopairs', config = require('plugins.autopairs')}
   --use {'itchyny/vim-cursorword'}
   --use {'windwp/nvim-ts-autotag'}
