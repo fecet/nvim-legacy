@@ -254,7 +254,6 @@ _G.packer_plugins = {
     path = "/home/rok/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
   },
   ultisnips = {
-    config = { "\27LJ\1\2C\0\0\2\0\3\0\0054\0\0\0007\0\1\0'\1\0\0:\1\2\0G\0\1\0&UltiSnipsRemoveSelectModeMappings\6g\bvim\0" },
     loaded = true,
     path = "/home/rok/.local/share/nvim/site/pack/packer/start/ultisnips"
   },
@@ -315,18 +314,14 @@ time([[Config for indent-guides.nvim]], false)
 time([[Config for session-lens]], true)
 try_loadstring("\27LJ\1\2‹\1\0\0\3\0\b\0\v4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\0013\2\6\0:\2\a\1>\0\2\1G\0\1\0\15theme_conf\1\0\1\vborder\1\17path_display\1\0\1\14previewer\2\1\2\0\0\fshorten\nsetup\17session-lens\frequire\0", "config", "session-lens")
 time([[Config for session-lens]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\1\2M\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\1\rcheck_ts\2\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: presence.nvim
-time([[Config for presence.nvim]], true)
-try_loadstring("\27LJ\1\2½\3\0\0\4\0\5\0\n4\0\0\0%\1\1\0>\0\2\2\16\1\0\0007\0\2\0003\2\3\0002\3\0\0:\3\4\2>\0\3\1G\0\1\0\14blacklist\1\0\14\23enable_line_number\2\15main_image\vneovim\16auto_update\2\17editing_text\15Editing %s\20git_commit_text\23Committing changes\14client_id\023793271441293967371\21line_number_text\22Line %s out of %s\fbuttons\2\24plugin_manager_text\21Managing plugins\17reading_text\15Reading %s\22neovim_image_text\25The Only True Editor\21debounce_timeout\3\n\23file_explorer_text\16Browsing %s\19workspace_text\18Working on %s\nsetup\rpresence\frequire\0", "config", "presence.nvim")
-time([[Config for presence.nvim]], false)
 -- Config for: auto-session
 time([[Config for auto-session]], true)
 try_loadstring("\27LJ\1\2†\2\0\0\4\0\n\0\0154\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0004\2\4\0007\2\5\0027\2\6\2%\3\a\0>\2\2\2%\3\b\0$\2\3\2:\2\t\1>\0\2\1G\0\1\0\26auto_session_root_dir\15/sessions/\tdata\fstdpath\afn\bvim\1\0\5%auto_session_enable_last_session\1\14log_level\tinfo\25auto_restore_enabled\1\22auto_save_enabled\2\25auto_session_enabled\2\nsetup\17auto-session\frequire\0", "config", "auto-session")
 time([[Config for auto-session]], false)
+-- Config for: presence.nvim
+time([[Config for presence.nvim]], true)
+try_loadstring("\27LJ\1\2½\3\0\0\4\0\5\0\n4\0\0\0%\1\1\0>\0\2\2\16\1\0\0007\0\2\0003\2\3\0002\3\0\0:\3\4\2>\0\3\1G\0\1\0\14blacklist\1\0\14\23enable_line_number\2\15main_image\vneovim\16auto_update\2\17editing_text\15Editing %s\20git_commit_text\23Committing changes\14client_id\023793271441293967371\21line_number_text\22Line %s out of %s\fbuttons\2\24plugin_manager_text\21Managing plugins\17reading_text\15Reading %s\22neovim_image_text\25The Only True Editor\21debounce_timeout\3\n\23file_explorer_text\16Browsing %s\19workspace_text\18Working on %s\nsetup\rpresence\frequire\0", "config", "presence.nvim")
+time([[Config for presence.nvim]], false)
 -- Config for: neoscroll.nvim
 time([[Config for neoscroll.nvim]], true)
 try_loadstring("\27LJ\1\2Õ\1\0\0\3\0\6\0\t4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\4\0003\2\3\0:\2\5\1>\0\2\1G\0\1\0\rmappings\1\0\5\24use_local_scrolloff\1\22respect_scrolloff\1\16hide_cursor\2\25cursor_scrolls_alone\2\rstop_eof\2\1\n\0\0\n<C-u>\n<C-d>\n<C-b>\n<C-f>\n<C-y>\n<C-e>\azt\azz\azb\nsetup\14neoscroll\frequire\0", "config", "neoscroll.nvim")
@@ -347,10 +342,10 @@ time([[Config for galaxyline.nvim]], false)
 time([[Config for nvim-bufferline.lua]], true)
 try_loadstring("\27LJ\1\2}\0\4\14\0\a\0\21%\4\0\0004\5\1\0\16\6\2\0>\5\2\4D\b\r€\a\b\2\0T\n\2€%\n\3\0T\v\5€\a\b\4\0T\n\2€%\n\5\0T\v\1€%\n\6\0\16\v\4\0\16\f\n\0\16\r\t\0$\4\r\vB\b\3\3N\bñH\4\2\0\bïª\bï±\fwarning\bï—\nerror\npairs\6 ¾\1\1\0\4\0\b\0\v4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\6\0003\2\3\0001\3\4\0:\3\5\2:\2\a\1>\0\2\1G\0\1\0\foptions\1\0\0\26diagnostics_indicator\0\1\0\4\20show_close_icon\1\22show_buffer_icons\2\16diagnostics\bcoc\28show_buffer_close_icons\1\nsetup\15bufferline\frequire\0", "config", "nvim-bufferline.lua")
 time([[Config for nvim-bufferline.lua]], false)
--- Config for: ultisnips
-time([[Config for ultisnips]], true)
-try_loadstring("\27LJ\1\2C\0\0\2\0\3\0\0054\0\0\0007\0\1\0'\1\0\0:\1\2\0G\0\1\0&UltiSnipsRemoveSelectModeMappings\6g\bvim\0", "config", "ultisnips")
-time([[Config for ultisnips]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\1\2M\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0003\1\3\0>\0\2\1G\0\1\0\1\0\1\rcheck_ts\2\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
 -- Config for: hop
 time([[Config for hop]], true)
 try_loadstring("\27LJ\1\0021\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\bhop\frequire\0", "config", "hop")

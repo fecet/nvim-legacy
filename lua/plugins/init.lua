@@ -78,9 +78,6 @@ return require('packer').startup({
   use({
     "SirVer/ultisnips",
     requires = "fecet/vim-snippets",
-    config = function()
-      vim.g.UltiSnipsRemoveSelectModeMappings = 0
-    end,
   })
   use {'windwp/nvim-autopairs', config = require('plugins.autopairs')}
   --use {'itchyny/vim-cursorword'}

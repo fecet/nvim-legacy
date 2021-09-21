@@ -58,6 +58,7 @@ function! s:check_back_space() abort
 endfunction
 
 inoremap <silent><expr> <TAB>
+      \ UltiSnips#CanExpandSnippet() ? "<C-R>=UltiSnips#ExpandSnippet()<CR>":
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
