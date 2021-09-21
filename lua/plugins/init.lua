@@ -148,13 +148,33 @@ return require('packer').startup({
   --use {'hrsh7th/nvim-cmp', config = require('plugins.cmp')}
   use {
      "neovim/nvim-lspconfig",
-     event = "BufReadPre",
+     -- event = "BufReadPre",
      config = require('plugins.lsp')
    }
+
+  use {'kabouzeid/nvim-lspinstall', 
+      config = require('plugins.lspinstall'),
+      after="cmp-nvim-lsp"
+  }
+
+  use {'onsails/lspkind-nvim', config = require('plugins.lspkind')}
+
+  use {"tzachar/cmp-tabnine", 
+        run="./install.sh",
+        -- after='nvim-cmp',
+        -- event = "InsertEnter",
+        config=require('cmp_tabnine.config'):setup({
+          max_lines = 1000;
+          max_num_results = 20;
+          sort = true;
+          priority = 5000;
+          show_prediction_strength = true;
+          })
+      }
   --
   use {
       "hrsh7th/nvim-cmp",
-      event = "InsertEnter",
+      -- event = "InsertEnter",
       requires = {
       {"hrsh7th/cmp-nvim-lsp", after = "nvim-cmp"},
       {"hrsh7th/cmp-buffer", after = "nvim-cmp"},
@@ -166,11 +186,13 @@ return require('packer').startup({
        },
       config=require('plugins.cmp') 
    }
+
   ---- use neovim in browser
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
   ---- discord
   use {
       'andweeb/presence.nvim', 
+      event = "BufReadPre",
       config=require('plugins.presence')
     }
   ---- apm

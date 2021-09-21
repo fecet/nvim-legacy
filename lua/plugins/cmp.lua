@@ -4,6 +4,16 @@ return function()
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
 
+  --[[ local tabnine = require('cmp_tabnine.config')
+
+  tabnine:setup({
+      max_lines = 1000;
+      max_num_results = 20;
+      sort = true;
+      priority = 5000;
+      show_prediction_strength = true;
+  }) ]]
+
   local check_back_space = function()
     local col = vim.fn.col(".") - 1
     return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
@@ -16,9 +26,10 @@ return function()
       end,
     },
     sources = {
-      { name = "ultisnips" },
-      -- more sources
+      {name = "ultisnips" },
       {name = "nvim_lsp"}, 
+      -- more sources
+      {name = 'cmp_tabnine' },
       {name = "path"}, 
       {name = "buffer"}, 
       -- {name = "vsnip"}, 
