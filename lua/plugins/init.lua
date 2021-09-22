@@ -15,9 +15,10 @@ return require('packer').startup({
   }
 
   use {
-      'rmagatti/session-lens',
-      config= require('plugins.sess-len'),
-      after='telescope.nvim'
+  'rmagatti/session-lens',
+  requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+  config=require('plugins.sess-len'),
+  after='telescope.nvim'
   }
   ---- theme and color
   --
@@ -25,7 +26,23 @@ return require('packer').startup({
   use {'dracula/vim', as='dracula'}
   --use {'tjdevries/colorbuddy.vim'}
   --use {'Th3Whit3Wolf/onebuddy'}
-  use {'norcalli/nvim-colorizer.lua', config = function() require('colorizer').setup() end}
+  use {'norcalli/nvim-colorizer.lua', 
+  config = function() require('colorizer').setup() end,
+  ft = {
+      "html",
+      "css",
+      "sass",
+      "scss",
+      "vim",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "vue",
+      "lua",
+      "cpp"
+    }
+  }
   --Startup
   use {'glepnir/dashboard-nvim'}
   --use {'henriquehbr/nvim-startup.lua', config=function() require('nvim-startup').setup() end}
@@ -35,22 +52,33 @@ return require('packer').startup({
   }
 
   ---- File Explorer
-  use {'kevinhwang91/rnvimr'}
+  use {'kevinhwang91/rnvimr',
+     cmd="RnvimrToggle"
+  }
   ---- use {'kyazdani42/nvim-tree.lua'}
   ---- buffer | statusline | icon | treeview | startup buffer
   use {'kyazdani42/nvim-web-devicons'}
   use {'akinsho/nvim-bufferline.lua', config = require('plugins.bufferline')}
   use {'glepnir/galaxyline.nvim', branch = 'main', config = function() require('plugins.eviline') end}
   ---- treesitter and treesitter base plug
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate', config = require('plugins.treesitter')}
-  use {'p00f/nvim-ts-rainbow'}
+  use {'nvim-treesitter/nvim-treesitter', 
+        -- run = ':TSUpdate', 
+        config = require('plugins.treesitter'),
+        -- event='BufRead',
+        requires={
+            {'p00f/nvim-ts-rainbow',after='nvim-treesitter'},
+            {'nvim-treesitter/nvim-treesitter-textobjects',after='nvim-treesitter'},
+            {'nvim-treesitter/nvim-treesitter-refactor',after='nvim-treesitter'}
+        },
+    }
+  --[[ use {'p00f/nvim-ts-rainbow'}
   use {'nvim-treesitter/nvim-treesitter-textobjects'}
-  use {'nvim-treesitter/nvim-treesitter-refactor'}
+  use {'nvim-treesitter/nvim-treesitter-refactor'} ]]
   --use {'lewis6991/spellsitter.nvim', config = require('plugins.spellsitter')}
   ---- git
   use {'lewis6991/gitsigns.nvim', 
-  event = {"BufRead", "BufNewFile"},
-  config = require('plugins.gitsigns')
+      -- event = {"BufRead", "BufNewFile"},
+      config = require('plugins.gitsigns')
   }
   use {'kdheepak/lazygit.nvim'}
   --use {'sindrets/diffview.nvim', config = require('plugins.diffview')}
@@ -77,16 +105,42 @@ return require('packer').startup({
   -- use {'machakann/vim-sandwich'}
   --
   use {
-  "blackCauldron7/surround.nvim",
-  config = function()
-    require"surround".setup {mappings_style = "sandwich"}
-  end
+      "blackCauldron7/surround.nvim",
+      config = function()
+        require"surround".setup {mappings_style = "sandwich"}
+      end
   }
   use({
     "SirVer/ultisnips",
     requires = "fecet/vim-snippets",
   })
   use {'windwp/nvim-autopairs', config = require('plugins.autopairs')}
+  -- Lua
+  use {
+  'abecodes/tabout.nvim',
+  config = function()
+    require('tabout').setup {
+    tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+    backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+    act_as_tab = true, -- shift content if tab out is not possible
+    act_as_shift_tab = true, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+    enable_backwards = true, -- well ...
+    completion = true, -- if the tabkey is used in a completion pum
+    tabouts = {
+      {open = "'", close = "'"},
+      {open = '"', close = '"'},
+      {open = '`', close = '`'},
+      {open = '(', close = ')'},
+      {open = '[', close = ']'},
+      {open = '{', close = '}'}
+    },
+    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+    exclude = {} -- tabout will ignore these filetypes
+  }
+  end,
+  after = {'nvim-treesitter'}, -- or require if not used so far
+	-- after = {'completion-nvim'} -- if a completion plugin is using tabs load it before
+  }
   --use {'itchyny/vim-cursorword'}
   --use {'windwp/nvim-ts-autotag'}
   --use {'andymass/vim-matchup'}
@@ -99,24 +153,20 @@ return require('packer').startup({
       'sudormrfbin/cheatsheet.nvim',
       cmd={"Cheatsheet","CheatsheetEdit"}
   }
-  use {'nvim-telescope/telescope-hop.nvim',
-    after='telescope.nvim'
-  }
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' ,
-    after='telescope.nvim'
-  }
-  use {'nvim-telescope/telescope-fzf-writer.nvim',
-    after='telescope.nvim'
-  }
   --use {'Shatur/neovim-session-manager'}
-  use {'fannheyward/telescope-coc.nvim',
-    after='telescope.nvim'
-  }
   --use {'nvim-telescope/telescope-dap.nvim'}
   use {'nvim-telescope/telescope.nvim', 
-    config = require('plugins.telescope'),
-    cmd = "Telescope"
- }
+    cmd = "Telescope",
+    requires = {
+    {'nvim-lua/popup.nvim', opt = true},
+    {'nvim-lua/plenary.nvim',opt = true},
+    -- {'nvim-telescope/telescope-fzy-native.nvim',},
+    {'fannheyward/telescope-coc.nvim',},
+    -- {'nvim-telescope/telescope-hop.nvim',},
+    -- {'nvim-telescope/telescope-fzf-writer.nvim',opt=true},
+    },
+    config = require('plugins.telescope')
+    }
 
   ---- motion
   use {'phaazon/hop.nvim', as = 'hop', config = function() require('hop').setup() end}

@@ -17,20 +17,20 @@ gl.short_line_list = {
 -- VistaPlugin = extension.vista_nearest
 
 local colors = {
-    bg = '#282c34',
+    bg = '#282a36',
     line_bg = '#353644',
-    fg = '#8FBCBB',
-    fg_green = '#65a380',
+    fg = '#f8f8f2',
+    fg_green = '#008080',
 
-    yellow = '#fabd2f',
-    cyan = '#008080',
+    yellow = '#f1fa8c',
+    cyan = '#8be9fd',
     darkblue = '#081633',
-    green = '#afd700',
-    orange = '#FF8800',
-    purple = '#5d4d7a',
+    green = '#50fa7b',
+    orange = '#ffb86c',
+    purple = '#bd93f9',
     magenta = '#c678dd',
     blue = '#51afef';
-    red = '#ec5f67'
+    red = '#ff5555'
 }
 
 local function lsp_status(status)
@@ -57,7 +57,8 @@ function get_diagnostic_info()
   if vim.fn.exists('*coc#rpc#start_server') == 1 then
     return get_coc_lsp()
     end
-  return ''
+  -- return ''
+  return get_coc_lsp()
 end
 
 local function get_current_func()

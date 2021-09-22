@@ -1,16 +1,9 @@
 return function()
   require('nvim-treesitter.configs').setup({
-    autotag = {
-      enable = true,
-      filetypes = {
-        'html', 'javascript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'xml'
-      },
-    },
     ensure_installed = 'all', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {
       enable = true, -- false will disable the whole extension
-      disable = {} -- list of language that will be disabled
     },
     autopairs = {
       enable = true
@@ -19,7 +12,7 @@ return function()
     rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+    max_file_lines = nil, -- Do not enable for files with more than 1000 lines, int
 	colors = {
             "#8be9fd",
             "#50fa7b",
