@@ -16,11 +16,12 @@ return require('packer').startup({
 
   use {
       'rmagatti/session-lens',
-      config= require('plugins.sess-len')
+      config= require('plugins.sess-len'),
+      after='telescope.nvim'
   }
   ---- theme and color
   --
-  use 'folke/tokyonight.nvim'
+  -- use 'folke/tokyonight.nvim'
   use {'dracula/vim', as='dracula'}
   --use {'tjdevries/colorbuddy.vim'}
   --use {'Th3Whit3Wolf/onebuddy'}
@@ -28,7 +29,10 @@ return require('packer').startup({
   --Startup
   use {'glepnir/dashboard-nvim'}
   --use {'henriquehbr/nvim-startup.lua', config=function() require('nvim-startup').setup() end}
-  use {'tweekmonster/startuptime.vim'}
+  use {
+      'tweekmonster/startuptime.vim',
+      cmd="StartupTime"
+  }
 
   ---- File Explorer
   use {'kevinhwang91/rnvimr'}
@@ -44,7 +48,10 @@ return require('packer').startup({
   use {'nvim-treesitter/nvim-treesitter-refactor'}
   --use {'lewis6991/spellsitter.nvim', config = require('plugins.spellsitter')}
   ---- git
-  use {'lewis6991/gitsigns.nvim', config = require('plugins.gitsigns')}
+  use {'lewis6991/gitsigns.nvim', 
+  event = {"BufRead", "BufNewFile"},
+  config = require('plugins.gitsigns')
+  }
   use {'kdheepak/lazygit.nvim'}
   --use {'sindrets/diffview.nvim', config = require('plugins.diffview')}
   ---- translator
@@ -88,14 +95,28 @@ return require('packer').startup({
   ---- powerful replace tool
   --use {'windwp/nvim-spectre'}
   ---- fuzzy finder
-  use {'sudormrfbin/cheatsheet.nvim'}
-  use {'nvim-telescope/telescope-hop.nvim'}
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use {'nvim-telescope/telescope-fzf-writer.nvim'}
+  use {
+      'sudormrfbin/cheatsheet.nvim',
+      cmd={"Cheatsheet","CheatsheetEdit"}
+  }
+  use {'nvim-telescope/telescope-hop.nvim',
+    after='telescope.nvim'
+  }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' ,
+    after='telescope.nvim'
+  }
+  use {'nvim-telescope/telescope-fzf-writer.nvim',
+    after='telescope.nvim'
+  }
   --use {'Shatur/neovim-session-manager'}
-  use {'fannheyward/telescope-coc.nvim'}
+  use {'fannheyward/telescope-coc.nvim',
+    after='telescope.nvim'
+  }
   --use {'nvim-telescope/telescope-dap.nvim'}
-  use {'nvim-telescope/telescope.nvim', config = require('plugins.telescope')}
+  use {'nvim-telescope/telescope.nvim', 
+    config = require('plugins.telescope'),
+    cmd = "Telescope"
+ }
 
   ---- motion
   use {'phaazon/hop.nvim', as = 'hop', config = function() require('hop').setup() end}
@@ -121,9 +142,15 @@ return require('packer').startup({
   -- use {'jbyuki/nabla.nvim'}
 
   use 'ekickx/clipboard-image.nvim'
-  use {'lervag/vimtex'}
-  use {'godlygeek/tabular'}
-  use {'plasticboy/vim-markdown'}
+  use {'lervag/vimtex',
+        ft={'markdown','rmd','tex'},
+  }
+  use {'godlygeek/tabular',
+        ft={'markdown','rmd','tex'},
+  }
+  use {'plasticboy/vim-markdown',
+        ft={'markdown','rmd','tex'},
+  }
   --use {'npxbr/glow.nvim', run = ':GlowInstall'}
   ---- lsp auto completion & snip
   --use {'rafamadriz/friendly-snippets'}
@@ -145,7 +172,8 @@ return require('packer').startup({
   ---- discord
   use {
       'andweeb/presence.nvim', 
-      config=require('plugins.presence')
+      config=require('plugins.presence'),
+      event="BufReadPost"
     }
   ---- apm
   -- use {"ThePrimeagen/vim-apm"}
@@ -158,10 +186,13 @@ return require('packer').startup({
   -- indent
   use {
       'glepnir/indent-guides.nvim', 
-       config=require('plugins.indent')
+       config=require('plugins.indent'),
+       event="BufReadPost"
    }
   -- run cell
-  use {'adavidwilson/vim-slime'}
+  use {'adavidwilson/vim-slime',
+        ft={'python','sh','r'}
+    }
   use {
         'hanschen/vim-ipython-cell',
         ft={'python'},
@@ -176,7 +207,9 @@ return require('packer').startup({
     }
 
 -- sudo
-  use {'lambdalisue/suda.vim'}
+  use {'lambdalisue/suda.vim',
+  cmd={'SudaRead','SudaWrite'}
+  }
 
 
 end,
