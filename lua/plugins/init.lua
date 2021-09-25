@@ -3,11 +3,16 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup({ 
   function(use)
   -- base plugin
-  use {'wbthomason/packer.nvim'}
-  use {'nvim-lua/plenary.nvim'}
-  use {'nvim-lua/popup.nvim'}
+  use {'wbthomason/packer.nvim',
+        event="VimEnter"
+  }
+  -- use {'nvim-lua/plenary.nvim'}
+  -- use {'nvim-lua/popup.nvim'}
   --autosave
-  use {"Pocco81/AutoSave.nvim", config= require('plugins.autosave')}
+  use {"Pocco81/AutoSave.nvim", 
+        config= require('plugins.autosave'),
+        event='BufRead',
+    }
 
   use {
       'rmagatti/auto-session',
@@ -15,15 +20,19 @@ return require('packer').startup({
   }
 
   use {
-  'rmagatti/session-lens',
-  requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
-  config=require('plugins.sess-len'),
-  after='telescope.nvim'
+      'rmagatti/session-lens',
+      requires = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+      config=require('plugins.sess-len'),
+      after='telescope.nvim'
   }
   ---- theme and color
   --
   -- use 'folke/tokyonight.nvim'
-  use {'dracula/vim', as='dracula'}
+  use {'dracula/vim', 
+        as='dracula',
+        -- after='packer.nvim',
+        config = [[vim.cmd('colorscheme dracula')]]
+    }
   --use {'tjdevries/colorbuddy.vim'}
   --use {'Th3Whit3Wolf/onebuddy'}
   use {'norcalli/nvim-colorizer.lua', 
@@ -47,14 +56,13 @@ return require('packer').startup({
   use {'glepnir/dashboard-nvim'}
   --use {'henriquehbr/nvim-startup.lua', config=function() require('nvim-startup').setup() end}
   use {
-      'tweekmonster/startuptime.vim',
-      cmd="StartupTime"
+      'dstein64/vim-startuptime',
+      cmd="StartupTime",
+      opt=true
   }
 
   ---- File Explorer
-  use {'kevinhwang91/rnvimr',
-     cmd="RnvimrToggle"
-  }
+  use {'kevinhwang91/rnvimr'}
   ---- use {'kyazdani42/nvim-tree.lua'}
   ---- buffer | statusline | icon | treeview | startup buffer
   use {'kyazdani42/nvim-web-devicons'}
@@ -63,24 +71,27 @@ return require('packer').startup({
   ---- treesitter and treesitter base plug
   use {'nvim-treesitter/nvim-treesitter', 
         -- run = ':TSUpdate', 
-        config = require('plugins.treesitter'),
         -- event='BufRead',
-        requires={
+        config = require('plugins.treesitter'),
+        --[[ requires={
             {'p00f/nvim-ts-rainbow',after='nvim-treesitter'},
-            {'nvim-treesitter/nvim-treesitter-textobjects',after='nvim-treesitter'},
-            {'nvim-treesitter/nvim-treesitter-refactor',after='nvim-treesitter'}
-        },
+            -- {'nvim-treesitter/nvim-treesitter-textobjects',after='nvim-treesitter'},
+            -- {'nvim-treesitter/nvim-treesitter-refactor',after='nvim-treesitter'}
+        }, ]]
     }
-  --[[ use {'p00f/nvim-ts-rainbow'}
-  use {'nvim-treesitter/nvim-treesitter-textobjects'}
-  use {'nvim-treesitter/nvim-treesitter-refactor'} ]]
+  use {'p00f/nvim-ts-rainbow',
+        after="nvim-treesitter",
+  }
   --use {'lewis6991/spellsitter.nvim', config = require('plugins.spellsitter')}
   ---- git
   use {'lewis6991/gitsigns.nvim', 
       -- event = {"BufRead", "BufNewFile"},
+      requires = {
+      "nvim-lua/plenary.nvim",opt = true
+    },
       config = require('plugins.gitsigns')
   }
-  use {'kdheepak/lazygit.nvim'}
+  use {'kdheepak/lazygit.nvim',cmd="LazyGit"}
   --use {'sindrets/diffview.nvim', config = require('plugins.diffview')}
   ---- translator
   --use {'voldikss/vim-translator'}
@@ -169,7 +180,17 @@ return require('packer').startup({
     }
 
   ---- motion
-  use {'phaazon/hop.nvim', as = 'hop', config = function() require('hop').setup() end}
+  use {'phaazon/hop.nvim', 
+        as = 'hop', 
+        config = function() require('hop').setup() end,
+        cmd = {
+                 "HopWord",
+                 "HopLine",
+                 "HopChar1",
+                 "HopChar2",
+                 "HopPattern",
+              },
+        }
   use {'rhysd/clever-f.vim'}
   -- use {'psliwka/vim-smoothie'}
   use {
@@ -191,7 +212,9 @@ return require('packer').startup({
   }
   -- use {'jbyuki/nabla.nvim'}
 
-  use 'ekickx/clipboard-image.nvim'
+  use {'ekickx/clipboard-image.nvim',
+        ft={'markdown','rmd'},
+  }
   use {'lervag/vimtex',
         ft={'markdown','rmd','tex'},
   }
@@ -237,7 +260,7 @@ return require('packer').startup({
   use {
       'glepnir/indent-guides.nvim', 
        config=require('plugins.indent'),
-       event="BufReadPost"
+       event={ "BufReadPost","BufNewFile" }
    }
   -- run cell
   use {'adavidwilson/vim-slime',
@@ -258,14 +281,14 @@ return require('packer').startup({
 
 -- sudo
   use {'lambdalisue/suda.vim',
-  cmd={'SudaRead','SudaWrite'}
+       cmd={'SudaRead','SudaWrite'}
   }
 
 
 end,
 config = {
   profile = {
-    enable = true,
+    enable = false,
     threshold = 1 -- the amount in ms that a plugins load time must be over for it to be included in the profile
   }
 }

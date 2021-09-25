@@ -87,11 +87,10 @@ nnoremap <silent> <leader>sl :Telescope session-lens search_session<cr>
 " nnoremap <silent> <leader>k :<C-u>Telescope<cr>
 
 
-nnoremap <silent> <leader>w <cmd>lua require'hop'.hint_words()<cr>
-nnoremap <silent> <leader><leader>p <cmd>lua require'hop'.hint_patterns()<cr>
-nnoremap <silent> <leader>l <cmd>lua require'hop'.hint_lines()<cr>
-nnoremap <silent> <leader><leader>s <cmd>lua require'hop'.hint_char1()<cr>
-
+nnoremap <silent> <leader>w :HopWord<CR>
+nnoremap <silent> <leader><leader>p :HopPattern<CR>
+nnoremap <silent> <leader>l :HopLine<CR>
+nnoremap <silent> <leader><leader>s :HopChar1<CR>
 
 map <CR> <Plug>(wildfire-fuel)
 " This selects the previous closest text object.
@@ -102,7 +101,7 @@ xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
 
 nmap <leader>sc <Plug>SlimeSendCell
 
-let g:UltiSnipsExpandTrigger="<nop>"
+let g:UltiSnipsExpandTrigger="<C-f>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"

@@ -4,6 +4,7 @@ return function()
     ignore_install = {}, -- List of parsers to ignore installing
     highlight = {
       enable = true, -- false will disable the whole extension
+      use_languagetree = true,
     },
     autopairs = {
       enable = true

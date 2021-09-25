@@ -11,7 +11,8 @@ g.dashboard_custom_section = {
     d = {description = {"  New File                  leader e n"}, command = "DashboardNewFile"},
     e = {description = {"  Bookmarks                 leader m  "}, command = "Telescope marks"},
     f = {description = {"  Sessions                  leader s l"}, command = "Telescope session-lens search_session"},
-    g = {description = {"  Update Plugins            leader u  "}, command = "PackerUpdate"},
+    -- g = {description = {"  Update Plugins            leader u  "}, command = "PackerUpdate"},
+    g = {description = {"  StartupTime               leader u  "}, command = "StartupTime"},
     h = {description = {"  Settings                  leader e v"}, command = "edit $MYVIMRC"},
     i = {description = {"  Exit                             Q  "}, command = "exit"}
 }
@@ -57,27 +58,3 @@ augroup END
     ' ⣿⣿⣿⣶⣶⣮⣥⣒⠲⢮⣝⡿⣿⣿⡆⣿⡿⠃⠄⠄⠄⠄⠄⠄⠄⣠⣴⣿⣿⣿ ',
     '',
     } ]]
-local disabled_built_ins = {
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "spellfile_plugin",
-    "matchit"
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-    g["loaded_" .. plugin] = 1
-end

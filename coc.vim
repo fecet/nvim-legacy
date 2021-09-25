@@ -19,7 +19,7 @@ let g:coc_global_extensions = [
 \ 'coc-pyright',
 \ 'coc-tabnine',
 \ 'coc-sh',
-\ 'coc-markdownlint',
+"\ 'coc-markdownlint',
 \ 'coc-vimlsp']
 
 " TextEdit might fail if hidden is not set.
@@ -66,7 +66,6 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 let g:coc_snippet_next = '<tab>'
-
 
 
 " Use <c-space> to trigger completion.
