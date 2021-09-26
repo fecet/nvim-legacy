@@ -9,7 +9,7 @@
 	"tabnine.triggers": "[]",
 	"coc.preferences.semanticTokensHighlights": false,
 	"coc.preferences.enableFloatHighlight": true,
-	"coc.preferences.snippetStatusText": "Ⓢ ",
+	"coc.preferences.snippetStatusText": "Snipping...",
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"coc.preferences.messageLevel": "error",
 	"suggest.detailMaxLength": 60,

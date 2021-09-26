@@ -257,7 +257,7 @@ if exists('g:vscode')
 
 		Plug 'machakann/vim-sandwich'
 
-"		Plug 'SirVer/ultisnips'
+		Plug 'SirVer/ultisnips'
 "		let g:UltiSnipsExpandTrigger="<tab>"
 "		let g:UltiSnipsJumpForwardTrigger="<tab>"
 "		let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
@@ -438,7 +438,7 @@ else
 
 		"Plug 'SirVer/ultisnips', { 'for': ['rmd','markdown'] }
 		Plug 'SirVer/ultisnips'
-		let g:UltiSnipsExpandTrigger="<tab>"
+		let g:UltiSnipsExpandTrigger="<C-f>"
 		let g:UltiSnipsJumpForwardTrigger="<tab>"
 		let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 		let g:UltiSnipsEditSplit="vertical"
@@ -493,9 +493,6 @@ else
 		let g:auto_save_silent = 1
 
 		Plug 'itchyny/lightline.vim'
-		let g:lightline = {
-		\ 'colorscheme': 'dracula',
-		\ }
 
 		Plug 'lervag/vimtex'
 		set conceallevel=2
@@ -551,6 +548,8 @@ else
 		Plug 'crusoexia/vim-monokai'
 		Plug 'wadackel/vim-dogrun'
 		Plug 'dracula/vim', { 'as': 'dracula' }
+
+		Plug 'dstein64/vim-startuptime'
 
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
