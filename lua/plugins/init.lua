@@ -71,7 +71,7 @@ return require('packer').startup({
   ---- treesitter and treesitter base plug
   use {'nvim-treesitter/nvim-treesitter', 
         -- run = ':TSUpdate', 
-        -- event='BufRead',
+        -- event={"VimEnter"},
         config = require('plugins.treesitter'),
         --[[ requires={
             {'p00f/nvim-ts-rainbow',after='nvim-treesitter'},
@@ -288,7 +288,7 @@ return require('packer').startup({
 end,
 config = {
   profile = {
-    enable = false,
+    enable = true,
     threshold = 1 -- the amount in ms that a plugins load time must be over for it to be included in the profile
   }
 }
