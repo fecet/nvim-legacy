@@ -18,7 +18,7 @@ au Filetype markdown let b:coc_additional_keywords = ["-"]
 " augroup end
 "
 augroup highlight 
-    au BufReadPost * hi Visual ctermfg=231 guifg=#ff79c6 ctermbg=60 guibg=#8be9fd
+    au BufReadPost * hi Visual guibg=#8be9fd
     au BufReadPost * hi CocHighlightText ctermfg=231 guifg=#bd93f9 ctermbg=60 guibg=#50fa7b
     au BufReadPost * hi HighlightedyankRegion cterm=bold gui=bold ctermbg=0 guibg=#ffb86c
     au BufReadPost * hi IPythonCell ctermbg=238 guifg=#50fa7b guibg=#444d56

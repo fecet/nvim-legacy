@@ -28,29 +28,34 @@ return require('packer').startup({
   ---- theme and color
   --
   -- use 'folke/tokyonight.nvim'
-  use {'dracula/vim', 
-        as='dracula',
+  use {'Mofiqul/dracula.nvim', 
+        after = "packer.nvim",
+        -- as='dracula',
         -- after='packer.nvim',
-        config = [[vim.cmd('colorscheme dracula')]]
+        config = function ()
+          vim.cmd('colorscheme dracula')
+          vim.cmd('hi Visual guibg=#8be9fd')
+        end
+
     }
   --use {'tjdevries/colorbuddy.vim'}
   --use {'Th3Whit3Wolf/onebuddy'}
   use {'norcalli/nvim-colorizer.lua', 
-  config = function() require('colorizer').setup() end,
-  ft = {
-      "html",
-      "css",
-      "sass",
-      "scss",
-      "vim",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "vue",
-      "lua",
-      "cpp"
-    }
+      config = function() require('colorizer').setup() end,
+      ft = {
+          "html",
+          "css",
+          "sass",
+          "scss",
+          "vim",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "lua",
+          "cpp"
+        }
   }
   --Startup
   use {'glepnir/dashboard-nvim'}
@@ -65,13 +70,22 @@ return require('packer').startup({
   use {'kevinhwang91/rnvimr'}
   ---- use {'kyazdani42/nvim-tree.lua'}
   ---- buffer | statusline | icon | treeview | startup buffer
-  use {'kyazdani42/nvim-web-devicons'}
-  use {'akinsho/nvim-bufferline.lua', config = require('plugins.bufferline')}
-  use {'glepnir/galaxyline.nvim', branch = 'main', config = function() require('plugins.eviline') end}
+  use {
+      'kyazdani42/nvim-web-devicons',
+      after = "dracula.nvim",
+  }
+  use {'akinsho/nvim-bufferline.lua', 
+      after = "nvim-web-devicons",
+      config = require('plugins.bufferline')
+  }
+  use {'glepnir/galaxyline.nvim', branch = 'main', 
+      after = "nvim-web-devicons",
+      config = function() require('plugins.eviline') end
+  }
   ---- treesitter and treesitter base plug
   use {'nvim-treesitter/nvim-treesitter', 
         -- run = ':TSUpdate', 
-        -- event={"VimEnter"},
+        event={"BufRead"},
         config = require('plugins.treesitter'),
         --[[ requires={
             {'p00f/nvim-ts-rainbow',after='nvim-treesitter'},
@@ -227,7 +241,9 @@ return require('packer').startup({
   --use {'npxbr/glow.nvim', run = ':GlowInstall'}
   ---- lsp auto completion & snip
   --use {'rafamadriz/friendly-snippets'}
-  use {'neoclide/coc.nvim', branch = 'release'}
+  use {'neoclide/coc.nvim', 
+        branch = 'release',
+    }
   --use {'hrsh7th/vim-vsnip'}
   --use {'hrsh7th/vim-vsnip-integ'}
   --use {'hrsh7th/cmp-vsnip'}
