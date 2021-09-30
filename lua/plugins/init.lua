@@ -87,7 +87,7 @@ return require('packer').startup({
   ---- treesitter and treesitter base plug
   use {'nvim-treesitter/nvim-treesitter', 
         -- run = ':TSUpdate', 
-        -- event={"BufRead"},
+        event={"BufRead"},
         config = require('plugins.treesitter'),
         --[[ requires={
             {'p00f/nvim-ts-rainbow',after='nvim-treesitter'},
@@ -148,7 +148,7 @@ return require('packer').startup({
   }
   use {'windwp/nvim-autopairs', 
     config = require('plugins.autopairs'),
-    -- event={"InsertEnter"},
+    event={"InsertEnter"},
   }
   -- Lua
   use {
