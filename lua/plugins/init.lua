@@ -268,9 +268,9 @@ return require('packer').startup({
 
   })
   --use {'rafamadriz/friendly-snippets'}
-  --[[ use {'neoclide/coc.nvim', 
+  use {'neoclide/coc.nvim', 
         branch = 'release',
-    } ]]
+    }
   --use {'hrsh7th/vim-vsnip'}
   --use {'hrsh7th/vim-vsnip-integ'}
   --use {'hrsh7th/cmp-vsnip'}
