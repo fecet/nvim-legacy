@@ -6,6 +6,9 @@ return function()
       enable = true, -- false will disable the whole extension
       use_languagetree = true,
     },
+    indent={
+        enable=true
+    },
     autopairs = {
       enable = true
     },

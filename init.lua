@@ -46,4 +46,5 @@ require('plugins')
 require('settings')
 
 
+-- vim.cmd('hi clear conceal')
 

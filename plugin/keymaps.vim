@@ -1,8 +1,8 @@
 "let mapleader=" "
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
+" nnoremap j gj
+" nnoremap gj j
+" nnoremap k gk
+" nnoremap gk k
 nmap <C-_> gcc
 " Save & quit
 "
@@ -62,11 +62,12 @@ noremap <silent> L $
 
 noremap <C-H> :BufferLineCyclePrev<CR>
 noremap <C-L> :BufferLineCycleNext<CR>
-noremap <leader>bc :BufferLinePickClose<CR>
-noremap <silent> gb :BufferLinePick<CR>
+noremap <silent> <leader>bc :BufferLinePickClose<CR>
+noremap <silent> <leader>gb :BufferLinePick<CR>
 
 map <leader>aq :qa<CR>
 map <leader>noh :noh<CR>
+map <leader>toc :TOC<CR>
 nnoremap <silent> <leader>gg :LazyGit<CR>
 
 "nmap <Leader>sl :<C-u>SessionLoad<CR>
@@ -87,17 +88,19 @@ nnoremap <silent> <leader>sl :Telescope session-lens search_session<cr>
 " nnoremap <silent> <leader>k :<C-u>Telescope<cr>
 
 
-nnoremap <silent> <leader>w :HopWord<CR>
+noremap <silent> <leader>w <cmd>HopWord<CR>
 nnoremap <silent> <leader><leader>p :HopPattern<CR>
-nnoremap <silent> <leader>l :HopLine<CR>
+noremap <silent> <leader>l <cmd>HopLine<CR>
 nnoremap <silent> <leader><leader>s :HopChar1<CR>
 
 map <CR> <Plug>(wildfire-fuel)
+map <leader>fo <Plug>(wildfire-quick-select)
+" map <CR> <Plug>(wildfire-quick-select)
 " This selects the previous closest text object.
 " use '*' to mean 'all other filetypes'
 " in this example, html and xml share the same text objects
-xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
-xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
+" xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
+" xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
 
 nmap <leader>sc <Plug>SlimeSendCell
 
@@ -107,9 +110,6 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
 nmap <leader>pv <Plug>MarkdownPreviewToggle
-
-
-nnoremap <F5> :lua require("nabla").action()<CR>
 
 nnoremap <leader>ff :Telescope find_files<cr>
 nnoremap <leader>fh :Telescope oldfiles<cr>

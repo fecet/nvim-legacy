@@ -9,7 +9,7 @@ let g:coc_global_extensions = [
 \ 'coc-dictionary',
 \ 'coc-lists',
 \ 'coc-word',
-\ 'coc-flutter-tools',
+"\ 'coc-flutter-tools',
 \ 'coc-yank',
 \ 'coc-json',
 \ 'coc-lua',
@@ -18,7 +18,7 @@ let g:coc_global_extensions = [
 "\ 'coc-python',
 \ 'coc-pyright',
 \ 'coc-tabnine',
-\ 'coc-sh',
+"\ 'coc-sh',
 "\ 'coc-markdownlint',
 \ 'coc-vimlsp']
 
@@ -75,6 +75,7 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.

@@ -67,7 +67,9 @@ return require('packer').startup({
   }
 
   ---- File Explorer
-  use {'kevinhwang91/rnvimr'}
+  use {'kevinhwang91/rnvimr',
+       cmd="RnvimrToggle"
+  }
   ---- use {'kyazdani42/nvim-tree.lua'}
   ---- buffer | statusline | icon | treeview | startup buffer
   use {
@@ -85,7 +87,7 @@ return require('packer').startup({
   ---- treesitter and treesitter base plug
   use {'nvim-treesitter/nvim-treesitter', 
         -- run = ':TSUpdate', 
-        event={"BufRead"},
+        -- event={"BufRead"},
         config = require('plugins.treesitter'),
         --[[ requires={
             {'p00f/nvim-ts-rainbow',after='nvim-treesitter'},
@@ -112,7 +114,9 @@ return require('packer').startup({
   ---- toggle tansparent
   --use {'xiyaowong/nvim-transparent'}
   -- comment
-  use {'b3nj5m1n/kommentary'}
+  use {'b3nj5m1n/kommentary',
+        event={"BufRead"},
+  }
   --use {'folke/todo-comments.nvim', config = function() require('todo-comments').setup() end}
   ---- highlight different word at same time
   --use {'lfv89/vim-interestingwords'}
@@ -120,29 +124,36 @@ return require('packer').startup({
   --use {'tpope/vim-dadbod'}
   --use {'kristijanhusak/vim-dadbod-ui'}
   ---- incsearch
-  use {'kevinhwang91/nvim-hlslens'}
+  use {'kevinhwang91/nvim-hlslens',
+        event={"BufRead"},
+  }
   ---- terminal
   --use {'akinsho/nvim-toggleterm.lua', config = require('plugins.toggleterm')}
   ---- editing
   --use {'tpope/vim-surround'}
   use {'gibiansky/vim-latex-objects'}
-  use {'gcmt/wildfire.vim'}
+  use {'gcmt/wildfire.vim',
+        event={"BufRead"},
+  }
   -- use {'machakann/vim-sandwich'}
   --
   use {
       "blackCauldron7/surround.nvim",
+      event={"BufRead"},
       config = function()
-        require"surround".setup {mappings_style = "sandwich"}
+        require"surround".setup {
+            mappings_style = "sandwich"
+        }
       end
   }
-  use({
-    "SirVer/ultisnips",
-    requires = "fecet/vim-snippets",
-  })
-  use {'windwp/nvim-autopairs', config = require('plugins.autopairs')}
+  use {'windwp/nvim-autopairs', 
+    config = require('plugins.autopairs'),
+    -- event={"InsertEnter"},
+  }
   -- Lua
   use {
   'abecodes/tabout.nvim',
+  -- event={"InsertEnter"},
   config = function()
     require('tabout').setup {
     tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
@@ -209,7 +220,8 @@ return require('packer').startup({
   -- use {'psliwka/vim-smoothie'}
   use {
       'karb94/neoscroll.nvim', 
-       config=require('plugins.neoscroll')
+       config=require('plugins.neoscroll'),
+       event={"BufRead"},
   }
   --[[ use {
       'Xuyuanp/scrollbar.nvim'
@@ -232,18 +244,33 @@ return require('packer').startup({
   use {'lervag/vimtex',
         ft={'markdown','rmd','tex'},
   }
-  use {'godlygeek/tabular',
+  use {'vim-pandoc/vim-pandoc-syntax',
+        ft={'markdown','rmd','tex'},
+  }
+  use {'vim-pandoc/vim-pandoc',
+        ft={'markdown','rmd','tex'},
+  }
+  use {'vim-pandoc/vim-rmarkdown',
+        ft={'rmd'},
+  }
+  --[[ use {'godlygeek/tabular',
         ft={'markdown','rmd','tex'},
   }
   use {'plasticboy/vim-markdown',
         ft={'markdown','rmd','tex'},
-  }
+  } ]]
   --use {'npxbr/glow.nvim', run = ':GlowInstall'}
   ---- lsp auto completion & snip
+  use({
+    "SirVer/ultisnips",
+    requires = "fecet/vim-snippets",
+    event={"InsertEnter"},
+
+  })
   --use {'rafamadriz/friendly-snippets'}
-  use {'neoclide/coc.nvim', 
+  --[[ use {'neoclide/coc.nvim', 
         branch = 'release',
-    }
+    } ]]
   --use {'hrsh7th/vim-vsnip'}
   --use {'hrsh7th/vim-vsnip-integ'}
   --use {'hrsh7th/cmp-vsnip'}
