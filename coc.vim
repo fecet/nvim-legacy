@@ -19,6 +19,7 @@ let g:coc_global_extensions = [
 \ 'coc-pyright',
 \ 'coc-tabnine',
 \ 'coc-snippets',
+\ 'coc-calc',
 "\ 'coc-sh',
 "\ 'coc-markdownlint',
 \ 'coc-vimlsp']

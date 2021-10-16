@@ -9,7 +9,7 @@ g.dashboard_custom_section = {
     b = {description = {"  Recents                   leader f h"}, command = "Telescope oldfiles"},
     c = {description = {"  Find Word                 leader f g"}, command = "Telescope live_grep"},
     d = {description = {"  New File                  leader e n"}, command = "DashboardNewFile"},
-    e = {description = {"  Bookmarks                 leader m  "}, command = "Telescope marks"},
+    -- e = {description = {"  Bookmarks                 leader m  "}, command = "Telescope marks"},
     f = {description = {"  Sessions                  leader s l"}, command = "Telescope session-lens search_session"},
     -- g = {description = {"  Update Plugins            leader u  "}, command = "PackerUpdate"},
     g = {description = {"  StartupTime               leader u  "}, command = "StartupTime"},
@@ -39,6 +39,7 @@ augroup END
 --g.dashboard_preview_file = '~/.config/nvim/logo.cat'
 --g.dashboard_preview_file_height = 12
 --g.dashboard_preview_file_width = 80
+--
 --[[ g.dashboard_custom_header={
     '',
     '    ⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄ ',
@@ -49,3 +50,21 @@ augroup END
     '  ⣼⣖⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⢇⣿⣿⡷⠶⠶⢿⣿⣿⠇⢀⣤ ',
     ' ⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗ ',
     } ]]
+
+g.dashboard_custom_header = {
+   "                                   ",
+   "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
+   "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
+   "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
+   "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
+   "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
+   "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
+   "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
+   " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
+   " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
+   "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
+   "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
+   "                                   ",
+}
+
+g.dashboard_disable_statusline = 1

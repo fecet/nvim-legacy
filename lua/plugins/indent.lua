@@ -1,5 +1,5 @@
 return function()
-require('indent_guides').setup({
+--[[ require('indent_guides').setup({
   -- put your options in here
     indent_levels = 30;
     indent_guide_size = 1;
@@ -11,5 +11,13 @@ require('indent_guides').setup({
     exclude_filetypes = {'help','dashboard','dashpreview','NvimTree','vista','sagahover'};
     -- even_colors = { fg ='#37474F',bg='#6272a4' };
     odd_colors = {fg='#44475a',bg='#44475a'};
-})
+}) ]]
+vim.opt.list = true
+vim.opt.listchars:append("space:⋅")
+vim.opt.listchars:append("eol:↴")
+
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+}
 end

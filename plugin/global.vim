@@ -11,7 +11,7 @@ let g:smoothie_no_default_mappings=v:true
 let g:wildfire_objects = {
             \ "*" : ["iw","i'", 'i"', "i)", "i]", "i}","if","af","ic","ac"],
             \ "html,xml" : ["it", "at"],
-            \ "tex,markdown,rmd": ["iw", "i)", "i}","id","i$"],
+            \ "tex,markdown,rmd": ["iw","id","i$"],
             \ }
 
 let g:rnvimr_enable_ex = 1
@@ -76,13 +76,14 @@ let g:mkdp_preview_options = {
             \ 'content_editable': v:false,
             \ 'disable_filename': 0
             \ }
-let g:mkdp_browser = 'microsoft-edge-beta'
-"let g:mkdp_filetypes = ['markdown','rmd']
-"let g:mkdp_auto_start = 1
+" let g:mkdp_browser = 'microsoft-edge-beta'
+let g:mkdp_browser = 'google-chrome-stable'
+let g:mkdp_filetypes = ['markdown','rmd']
+let g:mkdp_auto_start = 1
 let g:mkdp_command_for_global = 1
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_open_to_the_world = 1
-let g:mkdp_port = '8296'
+" let g:mkdp_port = '8296'
 let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 
 

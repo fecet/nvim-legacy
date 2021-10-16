@@ -300,11 +300,16 @@ return require('packer').startup({
   ---- which kef
   --use {'folke/which-key.nvim', config = require('plugins.which-key')}
   -- indent
-  use {
+  --[[ use {
       'glepnir/indent-guides.nvim', 
        config=require('plugins.indent'),
        event={ "BufReadPost","BufNewFile" }
-   }
+   } ]]
+  use {
+      'lukas-reineke/indent-blankline.nvim',
+       event={ "BufReadPost","BufNewFile" },
+       config=require('plugins.indent'),
+        }
   -- run cell
   use {'adavidwilson/vim-slime',
         ft={'python','sh','r'}

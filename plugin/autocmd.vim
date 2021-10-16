@@ -5,7 +5,10 @@ augroup MarkDownStuff
     au Filetype markdown,rmd,pandoc set spell
     au Filetype markdown,rmd,pandoc let b:coc_additional_keywords = ["-"]
     au Filetype markdown,rmd let b:coc_suggest_disable=1
-    au Filetype markdown,rmd silent! :call vimtex#init()
+    " au Filetype markdown,rmd silent! :call vimtex#init()
+    " au Filetype markdown,rmd silent! :MarkdownPreview
+    " au BufRead,BufReadPre,BufNew,BufNewFile *.rmd,*.Rmd,*.Smd,*.smd,*.md silent! :MarkdownPreview
+    au BufRead,BufReadPre,BufNew,BufNewFile *.rmd,*.Rmd,*.Smd,*.smd,*.md silent! :call vimtex#init()
     " au BufRead,BufReadPre,BufNew,BufNewFile *.rmd,*.Rmd,*.Smd,*.smd,*.md silent call vimtex#init()
 augroup end
 " autocmd FileType markdown :call CocDisable()
