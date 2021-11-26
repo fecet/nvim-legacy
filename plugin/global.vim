@@ -11,7 +11,7 @@ let g:smoothie_no_default_mappings=v:true
 let g:wildfire_objects = {
             \ "*" : ["iw","i'", 'i"', "i)", "i]", "i}","if","af","ic","ac"],
             \ "html,xml" : ["it", "at"],
-            \ "tex,markdown,rmd": ["iw","id","i$"],
+            \ "tex,markdown,rmd": ["iw","i)","id","i$"],
             \ }
 
 let g:rnvimr_enable_ex = 1
@@ -20,7 +20,7 @@ let g:rnvimr_enable_picker = 1
 "0 for Disable a border for floating window
 let g:rnvimr_draw_border = 1
 " Hide the files included in gitignore
-let g:rnvimr_hide_gitignore = 1
+" let g:rnvimr_hide_gitignore = 1
 " Change the border's color
 "let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
 " Make Neovim wipe the buffers corresponding to the files deleted by Ranger
@@ -79,7 +79,7 @@ let g:mkdp_preview_options = {
 " let g:mkdp_browser = 'microsoft-edge-beta'
 let g:mkdp_browser = 'google-chrome-stable'
 let g:mkdp_filetypes = ['markdown','rmd']
-let g:mkdp_auto_start = 1
+" let g:mkdp_auto_start = 1
 let g:mkdp_command_for_global = 1
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_open_to_the_world = 1
