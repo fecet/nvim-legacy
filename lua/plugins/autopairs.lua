@@ -18,6 +18,7 @@ return function()
 	
 	npairs.setup({
 	    check_ts = true,
+        map_cr=false
 	})
 
  

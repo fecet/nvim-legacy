@@ -345,6 +345,9 @@ return require('packer').startup({
             'IPythonCellInsertBelow'
         }
     }
+  use {'bfredl/nvim-ipy',
+        ft={'python','sh','r'}
+    }
 
 -- sudo
   use {'lambdalisue/suda.vim',
