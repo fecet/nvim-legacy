@@ -22,7 +22,8 @@ return function()
             "#50fa7b",
             "#ffb86c",
             "#ff79c6",
-            "#bd93f9"}, -- table of hex strings
+            "#bd93f9"
+            }, -- table of hex strings
     },
     --refactor = {
       --highlight_definitions = { enable = true },

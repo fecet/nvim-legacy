@@ -102,7 +102,19 @@ return require('packer').startup({
   use {'p00f/nvim-ts-rainbow',
         after="nvim-treesitter",
   }
-  --use {'lewis6991/spellsitter.nvim', config = require('plugins.spellsitter')}
+  --[[ use {'lewis6991/spellsitter.nvim', 
+        config = function()
+            require('spellsitter').setup{
+                  enable = true,
+                  -- Highlight to use for bad spellings
+                  hl = 'SpellBad',
+                  -- Spellchecker to use. values:
+                  -- * vimfn: built-in spell checker using vim.fn.spellbadword()
+                  -- * ffi: built-in spell checker using the FFI to access the
+                  spellchecker = 'vimfn',
+                }
+        end
+    } ]]
   ---- git
   use {'lewis6991/gitsigns.nvim', 
       -- event = {"BufRead", "BufNewFile"},
@@ -234,7 +246,10 @@ return require('packer').startup({
   ---- rest client
   --use {'NTBBloodbath/rest.nvim', config = function() require('rest-nvim').setup() end}
   ---- project manager
-  --use {'ahmedkhalf/project.nvim', config = require('plugins.project')}
+  use {'ahmedkhalf/project.nvim', 
+        config = require('plugins.project'),
+        after='telescope.nvim'
+        }
   ---- markdown preview
   use {'iamcco/markdown-preview.nvim',
        ft = {'markdown','rmd',},

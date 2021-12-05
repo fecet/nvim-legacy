@@ -74,6 +74,8 @@ let g:coc_snippet_next = '<tab>'
 " inoremap <silent><expr> <c-space> coc#refresh()
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <c-q> "<left><right>"
+  inoremap <silent><expr> <c-e> coc#_hide()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
@@ -241,3 +243,4 @@ endif
 " BUT is overwritten by scheme so defining it in an autocmd after colorscheme
 " change
 "
+

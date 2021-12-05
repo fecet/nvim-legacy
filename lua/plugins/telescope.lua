@@ -19,7 +19,9 @@ return function()
   }
   -- require('telescope').load_extension('fzy_native')
   require('telescope').load_extension('coc')
+  require('telescope').load_extension('projects')
   -- require('telescope').load_extension('session-lens')
   -- require'telescope'.load_extension('dotfiles')
   -- require'telescope'.load_extension('gosource')
 end
+
