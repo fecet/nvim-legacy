@@ -81,7 +81,7 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 "nnoremap <silent> <Leader>on :DashboardNewFile<CR>
 
 
-nnoremap <silent> <Leader>e :RnvimrToggle<CR>
+nnoremap <silent> <Leader>ee :RnvimrToggl<CR>
 
 nnoremap <silent> <leader>k :<C-u>CocList<cr>
 nnoremap <silent> <leader>sl :Telescope session-lens search_session<cr>
@@ -102,7 +102,26 @@ map <leader>fo <Plug>(wildfire-quick-select)
 " xnoremap <silent> im <ESC>:call SelectInMath(0)<CR>
 " xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
 
-nmap <leader>sc <Plug>SlimeSendCell
+
+" nmap <leader>sc <Plug>SlimeSendCell<bar><cmd>IpythonCellNextCell<CR>
+
+command! -nargs=0 RunQtConsoleLocal
+  " \ call jobstart("~/anaconda3/bin/jupyter qtconsole --stylesheet='~/scripts/dracula.css' --ConsoleWidget.font_size=12 
+  \ call jobstart("~/anaconda3/bin/jupyter qtconsole --stylesheet='monokai' --ConsoleWidget.font_size=12 
+  \ --JupyterWidget.include_other_output=True")
+command! -nargs=0 RunQtConsoleRemote
+  \ call jobstart("~/anaconda3/bin/jupyter qtconsole --existing='~/kernelx.json' --ssh Server --style='monokai' 
+  \--ConsoleWidget.font_size=12  --JupyterWidget.include_other_output=True")
+" let g:ipy_celldef = '^# %%' " regex for cell start and end
+
+nmap <silent> <leader>jql :RunQtConsoleLocal<Enter>
+nmap <silent> <leader>jqr :RunQtConsoleRemote<Enter>
+" " nmap <silent> <leader>jk :IPython<Space>--existing<Space>--no-window<Enter>
+" " nmap <silent> <leader>jk :IPython<Space>--existing<Enter>
+" nmap <silent> <leader>jk :IPython --existing="~/kernelx.json" -ssh Server --no-window<Enter>
+" " nmap <silent> <leader>jk :IPython<Space>--existing="~/kernelx.json"<Space>--ssh<Space>Server<Enter>
+" nmap <silent> <leader>jc <Plug>(IPy-RunCell)
+" nmap <silent> <leader>ja <Plug>(IPy-RunAll)
 
 let g:UltiSnipsExpandTrigger="<C-f>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"

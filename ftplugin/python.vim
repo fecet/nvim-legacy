@@ -1,4 +1,4 @@
-nnoremap <Leader>sx :SlimeSend1 export LANG=C && ipython --matplotlib<CR>
+" nnoremap <Leader>sx :SlimeSend1 export LANG=C && ipython --matplotlib<CR>
 " map <Leader>r to run script
 
 " map <Leader>R to run script and time the execution
@@ -8,7 +8,7 @@ nnoremap <Leader>sx :SlimeSend1 export LANG=C && ipython --matplotlib<CR>
 " nnoremap <Leader><CR> :IPythonCellExecuteCell<CR>
 
 " map <Leader>C to execute the current cell and jump to the next cell
-nnoremap <Leader><CR> :IPythonCellExecuteCellVerboseJump<CR>
+" nnoremap <Leader><CR> :IPythonCellExecuteCellVerboseJump<CR>
 
 
 "" map <Leader>l to clear IPython screen
@@ -60,7 +60,7 @@ function! IPythonOpen()
 endfunction
 
 
-nnoremap <Leader>sn :call IPythonOpen()<CR>
+" nnoremap <Leader>sn :call IPythonOpen()<CR>
 
 nmap <Leader>ck :IPythonCellInsertAbove<CR>a
 nmap <Leader>cj :IPythonCellInsertBelow<CR>a
@@ -71,3 +71,9 @@ nmap <Leader>cj :IPythonCellInsertBelow<CR>a
 		"autocmd BufWinLeave ?* mkview | filetype detect
 		"autocmd BufWinEnter ?* silent loadview | filetype detect
 "augroup END
+function! SlimeSendCellJump()
+    execute "normal \<Plug>SlimeSendCell"
+    call IPythonCellNextCell()
+endfunction
+
+nmap <leader><CR> :call SlimeSendCellJump()<CR>

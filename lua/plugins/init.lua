@@ -283,8 +283,7 @@ return require('packer').startup({
   use({
     "SirVer/ultisnips",
     requires = "fecet/vim-snippets",
-    event={"InsertEnter"},
-
+    -- event={"InsertEnter"},
   })
   --use {'rafamadriz/friendly-snippets'}
   use {'neoclide/coc.nvim', 
@@ -336,18 +335,18 @@ return require('packer').startup({
   use {
         'hanschen/vim-ipython-cell',
         ft={'python'},
-        cmd={
+        --[[ cmd={
             'IPythonCellExecuteCellVerboseJump',
             'IPythonCellPrevCell',
             'IPythonCellNextCell',
             'IPythonOpen',
             'IPythonCellInsertAbove',
             'IPythonCellInsertBelow'
-        }
+        } ]]
     }
-  use {'bfredl/nvim-ipy',
+  --[[ use {'bfredl/nvim-ipy',
         ft={'python','sh','r'}
-    }
+    } ]]
 
 -- sudo
   use {'lambdalisue/suda.vim',
