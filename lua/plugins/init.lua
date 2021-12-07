@@ -37,6 +37,9 @@ return require('packer').startup({
           vim.cmd('hi Visual guibg=#8be9fd')
           vim.cmd('hi IndentBlanklineChar guifg=#444d56 gui=nocombine')
           vim.cmd('hi IndentBlanklineSpaceChar guifg=#444d56 gui=nocombine')
+          vim.cmd('hi link GitSignsCurrentLineBlame Comment')
+          -- vim.cmd('hi Conceal ctermfg=NONE guifg=#f8f8f2 ctermbg=NONE guibg=#f8f8f2')
+          -- vim.cmd('hi link Conceal Visual')
           --[[ vim.cmd('hi link IndentBlanklineChar Conceal')
           vim.cmd('hi link IndentBlanklineSpaceChar Conceal') ]]
         end
@@ -283,7 +286,7 @@ return require('packer').startup({
   use({
     "SirVer/ultisnips",
     requires = "fecet/vim-snippets",
-    -- event={"InsertEnter"},
+    event={"InsertEnter"},
   })
   --use {'rafamadriz/friendly-snippets'}
   use {'neoclide/coc.nvim', 

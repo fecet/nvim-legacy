@@ -1,8 +1,9 @@
 au BufNewFile,BufRead,BufFilePre *.zsh	set filetype=sh
 " Spell check only for writing
 augroup MarkDownStuff
-    au BufRead,BufReadPre,BufNew,BufNewFile *.rmd,*.Rmd,*.Smd,*.smd,*.md hi clear conceal
+    " au BufRead,BufReadPre,BufNew,BufNewFile *.rmd,*.Rmd,*.Smd,*.smd,*.md hi clear conceal
     au Filetype markdown,rmd,pandoc set spell
+    au Filetype markdown,rmd,pandoc hi clear conceal
     au Filetype markdown,rmd,pandoc let b:coc_additional_keywords = ["-"]
     au Filetype markdown,rmd let b:coc_suggest_disable=1
     " au Filetype markdown,rmd silent! :call vimtex#init()

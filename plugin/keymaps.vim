@@ -127,6 +127,7 @@ let g:UltiSnipsExpandTrigger="<C-f>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/site/pack/packer/start/vim-snippets/UltiSnips',$HOME.'/.local/share/nvim/site/pack/packer/opt/vim-snippets/UltiSnips']
 
 nmap <leader>pv <Plug>MarkdownPreviewToggle
 

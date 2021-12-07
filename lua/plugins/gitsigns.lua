@@ -63,6 +63,5 @@ require('gitsigns').setup {
     enable = false
   },
 }
-vim.cmd('hi link GitSignsCurrentLineBlame Comment')
 
 end
