@@ -332,6 +332,10 @@ return require('packer').startup({
        config=require('plugins.indent'),
         }
   -- run cell
+  use {'untitled-ai/jupyter_ascending.vim',
+        ft={'python','r'}
+    }
+
   use {'adavidwilson/vim-slime',
         ft={'python','sh','r'}
     }
