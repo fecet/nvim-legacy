@@ -62,8 +62,8 @@ endfunction
 
 " nnoremap <Leader>sn :call IPythonOpen()<CR>
 
-nmap <Leader>ck :IPythonCellInsertAbove<CR>a
-nmap <Leader>cj :IPythonCellInsertBelow<CR>a
+nmap <Leader>ck :IPythonCellInsertAbove<CR>xo
+nmap <Leader>cj :IPythonCellInsertBelow<CR>x0
 
 
 "augroup remember_folds
@@ -76,4 +76,13 @@ function! SlimeSendCellJump()
     call IPythonCellNextCell()
 endfunction
 
-nmap <leader><CR> :call SlimeSendCellJump()<CR>
+function! PrevExecNextCell()
+    call IPythonCellPrevCell()
+    call jupyter_ascending#execute()
+    call IPythonCellNextCell()
+    call IPythonCellNextCell()
+endfunction
+
+" nnoremap <Leader><CR> :IPythonCellExecuteCellVerboseJump<CR>
+" nmap <leader><CR> :call SlimeSendCellJump()<CR>
+nmap <leader><CR> :call PrevExecNextCell()<CR>

@@ -5,7 +5,17 @@ if empty(glob('~/.config/nvim/_machine_specific.vim'))
 endif
 source ~/.config/nvim/_machine_specific.vim
 source ~/.config/nvim/coc.vim
+
+""""""""""""""
+"  smoothie  "
+""""""""""""""
+
+
 let g:smoothie_no_default_mappings=v:true
+
+""""""""""""""
+"  wildfire  "
+""""""""""""""
 
 " in this example, html and xml share the same text objects
 let g:wildfire_objects = {
@@ -13,6 +23,10 @@ let g:wildfire_objects = {
             \ "html,xml" : ["it", "at"],
             \ "tex,markdown,rmd": ["iw","i)","id","i$"],
             \ }
+""""""""""""
+"  rnvimr  "
+""""""""""""
+
 
 let g:rnvimr_enable_ex = 1
 " Make Ranger to be hidden after picking a file
@@ -62,6 +76,9 @@ let g:rnvimr_ranger_views = [
 "" Customize multiple preset layouts
 "" '{}' represents the initial layout
 
+""""""""""
+"  mkdp  "
+""""""""""
 
 let g:mkdp_preview_options = {
             \ 'mkit': {},
@@ -86,12 +103,19 @@ let g:mkdp_open_to_the_world = 1
 " let g:mkdp_port = '8296'
 let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 
+""""""""""""""
+"  markdown  "
+""""""""""""""
 
 let g:tex_conceal='abdmg'
 let g:tex_flavor = "latex"
 " let g:vim_markdown_folding_disabled = 1
 " let g:vim_markdown_math = 1
 let g:pandoc#modules#disabled = ["folding"]
+
+""""""""""""""
+"  firenvim  "
+""""""""""""""
 
 let g:firenvim_config = { 
             \ 'globalSettings': {
@@ -108,19 +132,32 @@ let g:firenvim_config = {
             \ }
             \ }
 
+"""""""""""
+"  slime  "
+"""""""""""
+
 let g:slime_target = "x11"
 "let g:slime_python_ipython = 1
 let g:slime_python_qtconsole = 1
 let g:slime_cell_delimiter = "# %%"
+let g:ipython_cell_tag=['# %%', '#%%', '# <codecell>']
+
+"""""""""""""""
+"  simpyFold  "
+"""""""""""""""
 
 let g:SimpylFold_docstring_preview = 1
 let g:SimpylFold_docstring_preview = 1
+
+"""""""""""""
+"  neovide  "
+"""""""""""""
 "" Config for neovide
-let g:neovide_cursor_vfx_mode='railgun'
-let g:neovide_cursor_vfx_opacity=200.0
-let g:neovide_cursor_vfx_particle_lifetime=3.2
-let g:neovide_cursor_vfx_particle_density=10.0
-let g:neovide_cursor_vfx_particle_speed=10.0
-let g:neovide_cursor_vfx_particle_phase=1.5
-let g:neovide_cursor_vfx_particle_curl=1.0
+" let g:neovide_cursor_vfx_mode='railgun'
+" let g:neovide_cursor_vfx_opacity=200.0
+" let g:neovide_cursor_vfx_particle_lifetime=3.2
+" let g:neovide_cursor_vfx_particle_density=10.0
+" let g:neovide_cursor_vfx_particle_speed=10.0
+" let g:neovide_cursor_vfx_particle_phase=1.5
+" let g:neovide_cursor_vfx_particle_curl=1.0
 
