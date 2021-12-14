@@ -263,13 +263,13 @@ gls.left[15] = {
 }
 
 
-gls.mid[1] = {
+--[[ gls.mid[1] = {
     CocStatus = {
      provider = CocStatus,
      highlight = {colors.green,colors.bg},
      icon = ''
     }
-}
+} ]]
 
 gls.right[1]= {
   FileFormat = {

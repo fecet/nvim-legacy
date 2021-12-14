@@ -216,7 +216,7 @@ return require('packer').startup({
     {'nvim-lua/popup.nvim', opt = true},
     {'nvim-lua/plenary.nvim',opt = true},
     -- {'nvim-telescope/telescope-fzy-native.nvim',},
-    {'fannheyward/telescope-coc.nvim',},
+    -- {'fannheyward/telescope-coc.nvim',},
     -- {'nvim-telescope/telescope-hop.nvim',},
     -- {'nvim-telescope/telescope-fzf-writer.nvim',opt=true},
     },
@@ -289,9 +289,9 @@ return require('packer').startup({
     event={"InsertEnter"},
   })
   --use {'rafamadriz/friendly-snippets'}
-  use {'neoclide/coc.nvim', 
+  --[[ use {'neoclide/coc.nvim', 
         branch = 'release',
-    }
+    } ]]
   --use {'hrsh7th/vim-vsnip'}
   --use {'hrsh7th/vim-vsnip-integ'}
   --use {'hrsh7th/cmp-vsnip'}
@@ -362,7 +362,17 @@ return require('packer').startup({
 
   -- Faster startup
   use("nathom/filetype.nvim")
+  use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
 
+  use {"ms-jpq/coq_nvim",
+    -- opt = true,
+    after = "nvim-lspconfig",
+    branch = "coq",
+    requires = {
+        {"ms-jpq/coq.artifacts", branch = "artifacts"},
+        {"ms-jpq/coq.thirdparty", branch = "3p"}
+    }
+    }
 
 
 end,
@@ -374,3 +384,4 @@ config = {
 }
 }
 )
+
