@@ -360,6 +360,10 @@ return require('packer').startup({
        cmd={'SudaRead','SudaWrite'}
   }
 
+  -- Faster startup
+  use("nathom/filetype.nvim")
+
+
 
 end,
 config = {
