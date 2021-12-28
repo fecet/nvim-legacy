@@ -4,7 +4,7 @@ if empty(glob('~/.config/nvim/_machine_specific.vim'))
 	silent! exec "!cp ~/.config/nvim/Diff_machine_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source ~/.config/nvim/_machine_specific.vim
-" source ~/.config/nvim/coc.vim
+source ~/.config/nvim/coq.vim
 
 """"""""""""""
 "  smoothie  "
