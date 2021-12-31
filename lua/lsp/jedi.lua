@@ -1,4 +1,4 @@
 return {
-cmd = { "jedi-language-server" },
+-- cmd = { "jedi-language-server" },
 filetypes = { "python" }
 }

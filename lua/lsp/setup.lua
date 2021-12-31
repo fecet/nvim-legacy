@@ -1,36 +1,43 @@
-local lsp_installer = require "nvim-lsp-installer"
--- local coq=require("coq")
-
--- 安装列表
--- https://github.com/williamboman/nvim-lsp-installer#available-lsps
--- { key: 语言 value: 配置文件 }
-local servers = {
-  -- sumneko_lua = require "lsp.lua", -- /lua/lsp/lua.lua
-  sumneko_lua = {}, -- /lua/lsp/lua.lua
-  jedi_language_server = require "lsp.jedi",
-  grammarly = require "lsp.grammarly",
-  -- pyright={},
-  -- pylsp={},
-  -- html = {},
-  -- jsonls = {},
-  -- tsserver = {}
-}
-
--- 自动安装 LanguageServers
-for name, _ in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found then
-    if not server:is_installed() then
-      print("Installing " .. name)
-      server:install()
+return function()
+    vim.cmd('source ' .. "~/.config/nvim" .. '/lua/lsp/coq.vim')
+    if not packer_plugins["nvim-lspconfig"].loaded then
+        vim.cmd [[packadd nvim-lspconfig]]
     end
-  end
-end
 
-lsp_installer.on_server_ready(function(server)
-  local opts = servers[server.name]
-  if opts then
-    opts.on_attach = function(_, bufnr)
+    if not packer_plugins["nvim-lsp-installer"].loaded then
+        vim.cmd [[packadd nvim-lsp-installer]]
+    end
+
+    local lsp_installer = require "nvim-lsp-installer"
+    -- local coq=require("coq")
+
+    -- 安装列表
+    -- https://github.com/williamboman/nvim-lsp-installer#available-lsps
+    -- { key: 语言 value: 配置文件 }
+    local servers = {
+      -- sumneko_lua = require "lsp.lua", -- /lua/lsp/lua.lua
+      sumneko_lua = {}, -- /lua/lsp/lua.lua
+      jedi_language_server = require "lsp.jedi",
+      grammarly = require "lsp.grammarly",
+      -- pyright={},
+      -- pylsp={},
+      -- html = {},
+      -- jsonls = {},
+      -- tsserver = {}
+    }
+
+    -- 自动安装 LanguageServers
+    for name, _ in pairs(servers) do
+      local server_is_found, server = lsp_installer.get_server(name)
+      if server_is_found then
+        if not server:is_installed() then
+          print("Installing " .. name)
+          server:install()
+        end
+      end
+    end
+
+    local function on_attach(_, bufnr)
       local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
       local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -57,15 +64,23 @@ lsp_installer.on_server_ready(function(server)
       buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
       buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
       buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-      -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-      -- 绑定快捷键
+          -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     end
-    opts.flags = {
-      debounce_text_changes = 150,
-    }
-    server:setup(opts)
-    local coq = require "coq" -- add this
-    server:setup(coq.lsp_ensure_capabilities())
-  end
-end)
 
+
+    lsp_installer.on_server_ready(
+        function(server)
+          local opts = servers[server.name]
+          if opts then
+            opts.on_attach = on_attach
+            opts.flags = {
+              debounce_text_changes = 150,
+            }
+          -- server:setup(opts)
+          local coq = require "coq" -- add this
+          server:setup(coq.lsp_ensure_capabilities(opts))
+          end
+        end
+    )
+    vim.cmd('COQnow')
+end

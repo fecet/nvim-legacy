@@ -44,7 +44,7 @@ end
 
 require('plugins')
 require('settings')
-require('lsp')
+-- require('lsp')
 
 
 -- vim.cmd('hi clear conceal')

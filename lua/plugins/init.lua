@@ -4,7 +4,7 @@ return require('packer').startup({
   function(use)
   -- base plugin
   use {'wbthomason/packer.nvim',
-        event="VimEnter"
+        -- event="VimEnter"
   }
   -- use {'nvim-lua/plenary.nvim'}
   -- use {'nvim-lua/popup.nvim'}
@@ -94,8 +94,9 @@ return require('packer').startup({
   }
   ---- treesitter and treesitter base plug
   use {'nvim-treesitter/nvim-treesitter', 
-        -- run = ':TSUpdate', 
-        event={"BufRead"},
+        opt = true,
+        run = ':TSUpdate', 
+        event="VimEnter",
         config = require('plugins.treesitter'),
         --[[ requires={
             {'p00f/nvim-ts-rainbow',after='nvim-treesitter'},
@@ -104,6 +105,7 @@ return require('packer').startup({
         }, ]]
     }
   use {'p00f/nvim-ts-rainbow',
+        opt = true,
         after="nvim-treesitter",
   }
   --[[ use {'lewis6991/spellsitter.nvim', 
@@ -165,10 +167,6 @@ return require('packer').startup({
             mappings_style = "sandwich"
         }
       end
-  }
-  use {'windwp/nvim-autopairs',
-    config = require('plugins.autopairs'),
-    event={"InsertEnter"},
   }
   -- Lua
   use {
@@ -339,24 +337,35 @@ return require('packer').startup({
 
 -- sudo
   use {'lambdalisue/suda.vim',
-       cmd={'SudaRead','SudaWrite'}
-  }
+        cmd={'SudaRead','SudaWrite'}
+        }
 
   -- Faster startup
   use("nathom/filetype.nvim")
-  use {'neovim/nvim-lspconfig'}
-  use {'williamboman/nvim-lsp-installer'}
+  use {'neovim/nvim-lspconfig',
+        opt = true,
+        event = "BufReadPre",
+    }
+  use {'williamboman/nvim-lsp-installer',
+        opt = true,
+        after = "nvim-lspconfig"
+    }
 
   use {"zeertzjq/coq_nvim",
-    -- opt = true,
-    after = "nvim-lspconfig",
+    opt = true,
+    after = "nvim-lsp-installer",
     branch = "coq-marks-available",
     requires = {
         {"ms-jpq/coq.artifacts", branch = "artifacts"},
         {"ms-jpq/coq.thirdparty", branch = "3p"}
     },
+    config=require('lsp.setup')
     }
 
+  use {'windwp/nvim-autopairs',
+    config = require('plugins.autopairs'),
+    after = "coq_nvim",
+  }
 
 end,
 config = {
