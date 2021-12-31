@@ -73,7 +73,7 @@ nmap <Leader>cj :IPythonCellInsertBelow<CR>x0
 "augroup END
 function! SlimeSendCellJump()
     execute "normal \<Plug>SlimeSendCell"
-    call IPythonCellNextCell()
+    " call IPythonCellNextCell()
 endfunction
 
 function! PrevExecNextCell()
@@ -85,4 +85,6 @@ endfunction
 
 " nnoremap <Leader><CR> :IPythonCellExecuteCellVerboseJump<CR>
 " nmap <leader><CR> :call SlimeSendCellJump()<CR>
-nmap <leader><CR> :call PrevExecNextCell()<CR>
+" nmap <leader><CR> :call PrevExecNextCell()<CR>
+nmap <leader><CR> :call jupyter_ascending#execute()<CR>
+nmap <leader>sc :call SlimeSendCellJump()<CR>

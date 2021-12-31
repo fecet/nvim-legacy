@@ -1,6 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
 
-return require('packer').startup({ 
+return require('packer').startup({
   function(use)
   -- base plugin
   use {'wbthomason/packer.nvim',
@@ -29,7 +29,7 @@ return require('packer').startup({
   --
   -- use 'folke/tokyonight.nvim'
   use {'Mofiqul/dracula.nvim', 
-        after = "packer.nvim",
+        -- after = "packer.nvim",
         -- as='dracula',
         -- after='packer.nvim',
         config = function ()
@@ -38,6 +38,7 @@ return require('packer').startup({
           vim.cmd('hi IndentBlanklineChar guifg=#444d56 gui=nocombine')
           vim.cmd('hi IndentBlanklineSpaceChar guifg=#444d56 gui=nocombine')
           vim.cmd('hi link GitSignsCurrentLineBlame Comment')
+          vim.cmd('hi CursorColumn cterm=underline guibg=#44475a')
           -- vim.cmd('hi Conceal ctermfg=NONE guifg=#f8f8f2 ctermbg=NONE guibg=#f8f8f2')
           -- vim.cmd('hi link Conceal Visual')
           --[[ vim.cmd('hi link IndentBlanklineChar Conceal')
@@ -83,7 +84,7 @@ return require('packer').startup({
       'kyazdani42/nvim-web-devicons',
       after = "dracula.nvim",
   }
-  use {'akinsho/nvim-bufferline.lua', 
+  use {'akinsho/nvim-bufferline.lua',
       after = "nvim-web-devicons",
       config = require('plugins.bufferline')
   }
@@ -165,35 +166,16 @@ return require('packer').startup({
         }
       end
   }
-  use {'windwp/nvim-autopairs', 
+  use {'windwp/nvim-autopairs',
     config = require('plugins.autopairs'),
     event={"InsertEnter"},
   }
   -- Lua
   use {
   'abecodes/tabout.nvim',
-  -- event={"InsertEnter"},
-  config = function()
-    require('tabout').setup {
-    tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
-    backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
-    act_as_tab = true, -- shift content if tab out is not possible
-    act_as_shift_tab = true, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-    enable_backwards = true, -- well ...
-    completion = true, -- if the tabkey is used in a completion pum
-    tabouts = {
-      {open = "'", close = "'"},
-      {open = '"', close = '"'},
-      {open = '`', close = '`'},
-      {open = '(', close = ')'},
-      {open = '[', close = ']'},
-      {open = '{', close = '}'}
-    },
-    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-    exclude = {} -- tabout will ignore these filetypes
-  }
-  end,
-  after = {'nvim-treesitter'}, -- or require if not used so far
+  event={"InsertEnter"},
+  config = require('plugins.tabout'),
+  -- after = {'nvim-treesitter'}, -- or require if not used so far
 	-- after = {'completion-nvim'} -- if a completion plugin is using tabs load it before
   }
   --use {'itchyny/vim-cursorword'}
@@ -210,7 +192,7 @@ return require('packer').startup({
   }
   --use {'Shatur/neovim-session-manager'}
   --use {'nvim-telescope/telescope-dap.nvim'}
-  use {'nvim-telescope/telescope.nvim', 
+  use {'nvim-telescope/telescope.nvim',
     cmd = "Telescope",
     requires = {
     {'nvim-lua/popup.nvim', opt = true},
@@ -224,8 +206,8 @@ return require('packer').startup({
     }
 
   ---- motion
-  use {'phaazon/hop.nvim', 
-        as = 'hop', 
+  use {'phaazon/hop.nvim',
+        as = 'hop',
         config = function() require('hop').setup() end,
         cmd = {
                  "HopWord",
@@ -238,7 +220,7 @@ return require('packer').startup({
   use {'rhysd/clever-f.vim'}
   -- use {'psliwka/vim-smoothie'}
   use {
-      'karb94/neoscroll.nvim', 
+      'karb94/neoscroll.nvim',
        config=require('plugins.neoscroll'),
        event={"BufRead"},
   }
@@ -249,7 +231,7 @@ return require('packer').startup({
   ---- rest client
   --use {'NTBBloodbath/rest.nvim', config = function() require('rest-nvim').setup() end}
   ---- project manager
-  use {'ahmedkhalf/project.nvim', 
+  use {'ahmedkhalf/project.nvim',
         config = require('plugins.project'),
         after='telescope.nvim'
         }
@@ -308,7 +290,7 @@ return require('packer').startup({
   use { 'glacambre/firenvim', run = function() vim.fn['firenvim#install'](0) end }
   ---- discord
   use {
-      'andweeb/presence.nvim', 
+      'andweeb/presence.nvim',
       config=require('plugins.presence'),
       event="BufReadPost"
     }
@@ -322,7 +304,7 @@ return require('packer').startup({
   --use {'folke/which-key.nvim', config = require('plugins.which-key')}
   -- indent
   --[[ use {
-      'glepnir/indent-guides.nvim', 
+      'glepnir/indent-guides.nvim',
        config=require('plugins.indent'),
        event={ "BufReadPost","BufNewFile" }
    } ]]
@@ -362,12 +344,13 @@ return require('packer').startup({
 
   -- Faster startup
   use("nathom/filetype.nvim")
-  use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
+  use {'neovim/nvim-lspconfig'}
+  use {'williamboman/nvim-lsp-installer'}
 
-  use {"ms-jpq/coq_nvim",
+  use {"zeertzjq/coq_nvim",
     -- opt = true,
     after = "nvim-lspconfig",
-    branch = "coq",
+    branch = "coq-marks-available",
     requires = {
         {"ms-jpq/coq.artifacts", branch = "artifacts"},
         {"ms-jpq/coq.thirdparty", branch = "3p"}

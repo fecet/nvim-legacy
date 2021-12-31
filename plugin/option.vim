@@ -1,6 +1,7 @@
 set number
 set relativenumber
 set cursorline
+set cursorcolumn
 " set noexpandtab
 set tabstop=4
 set softtabstop=4

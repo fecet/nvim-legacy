@@ -123,9 +123,9 @@ nmap <silent> <leader>jqr :RunQtConsoleRemote<Enter>
 " nmap <silent> <leader>jc <Plug>(IPy-RunCell)
 " nmap <silent> <leader>ja <Plug>(IPy-RunAll)
 
-let g:UltiSnipsExpandTrigger="<C-f>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+let g:UltiSnipsExpandTrigger="<nop>"
+let g:UltiSnipsJumpForwardTrigger="<nop>"
+let g:UltiSnipsJumpBackwardTrigger="<nop>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/site/pack/packer/start/vim-snippets/UltiSnips',$HOME.'/.local/share/nvim/site/pack/packer/opt/vim-snippets/UltiSnips']
 
