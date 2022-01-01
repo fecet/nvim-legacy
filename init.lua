@@ -17,7 +17,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 
-local disabled_built_ins = {
+--[[ local disabled_built_ins = {
     "netrw",
     "netrwPlugin",
     "netrwSettings",
@@ -40,12 +40,10 @@ local disabled_built_ins = {
 
 for _, plugin in pairs(disabled_built_ins) do
     g["loaded_" .. plugin] = 1
-end
+end ]]
 
 require('plugins')
 require('settings')
--- require('lsp')
 
 
--- vim.cmd('hi clear conceal')
 

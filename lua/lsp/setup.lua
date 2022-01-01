@@ -4,11 +4,13 @@ return function()
         vim.cmd [[packadd nvim-lspconfig]]
     end
 
+
     if not packer_plugins["nvim-lsp-installer"].loaded then
         vim.cmd [[packadd nvim-lsp-installer]]
     end
 
     local lsp_installer = require "nvim-lsp-installer"
+    -- require("plugins.treesitter")
     -- local coq=require("coq")
 
     -- 安装列表
@@ -72,13 +74,29 @@ return function()
         function(server)
           local opts = servers[server.name]
           if opts then
+            if (server.name == "sumneko_lua") then
+                opts.settings = {
+                    Lua = {
+                        diagnostics = {globals = {"vim", "packer_plugins"}},
+                        workspace = {
+                            library = {
+                                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                                [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true
+                            },
+                            maxPreload = 100000,
+                            preloadFileSize = 10000
+                        },
+                        telemetry = {enable = false}
+                    }
+                }
+            end
             opts.on_attach = on_attach
             opts.flags = {
               debounce_text_changes = 150,
             }
           -- server:setup(opts)
-          local coq = require "coq" -- add this
-          server:setup(coq.lsp_ensure_capabilities(opts))
+            local coq = require "coq" -- add this
+            server:setup(coq.lsp_ensure_capabilities(opts))
           end
         end
     )
