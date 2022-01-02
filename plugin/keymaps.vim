@@ -55,6 +55,7 @@ map J <C-d>
 noremap <silent> H ^
 " L key: go to the end of the line
 noremap <silent> L $
+noremap <silent> gp %
 
 " inoremap <silent> <C-w> <C-W>
 " nnoremap <C-H> :tabprevious<cr>
@@ -114,8 +115,8 @@ command! -nargs=0 RunQtConsoleRemote
   \--ConsoleWidget.font_size=12  --JupyterWidget.include_other_output=True")
 " let g:ipy_celldef = '^# %%' " regex for cell start and end
 
-nmap <silent> <leader>jql :RunQtConsoleLocal<Enter>
-nmap <silent> <leader>jqr :RunQtConsoleRemote<Enter>
+" nmap <silent> <leader>jql :RunQtConsoleLocal<Enter>
+" nmap <silent> <leader>jqr :RunQtConsoleRemote<Enter>
 " " nmap <silent> <leader>jk :IPython<Space>--existing<Space>--no-window<Enter>
 " " nmap <silent> <leader>jk :IPython<Space>--existing<Enter>
 " nmap <silent> <leader>jk :IPython --existing="~/kernelx.json" -ssh Server --no-window<Enter>
@@ -130,6 +131,7 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/site/pack/packer/start/vim-snippets/UltiSnips',$HOME.'/.local/share/nvim/site/pack/packer/opt/vim-snippets/UltiSnips']
 
 nmap <leader>pv <Plug>MarkdownPreviewToggle
+nmap <leader>sol :SymbolsOutline<CR>
 
 nnoremap <leader>ff :Telescope find_files<cr>
 nnoremap <leader>fh :Telescope oldfiles<cr>

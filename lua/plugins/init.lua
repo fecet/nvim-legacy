@@ -78,9 +78,19 @@ return require('packer').startup({
               },
         }
 
-  use {'b3nj5m1n/kommentary',
-        event={"BufRead"},
-  }
+  use {"terrortylor/nvim-comment",
+        opt = true,
+        after="nvim-treesitter",
+        config = function()
+            require("nvim_comment").setup(
+                {
+                    hook = function()
+                        require("ts_context_commentstring.internal").update_commentstring()
+                    end
+                }
+            )
+        end
+        }
 
   use {'gcmt/wildfire.vim',
         event={"BufRead"},
@@ -101,17 +111,32 @@ return require('packer').startup({
       config = require('plugins.tabout'),
   }
 
-  use {'rhysd/clever-f.vim'}
+  use {'rhysd/clever-f.vim',
+        opt=true,
+        event="BufRead"
+    }
 
   use {'kevinhwang91/nvim-hlslens',
         event={"BufRead"},
   }
   -- use {'psliwka/vim-smoothie'}
+  -- use {
+  --     'karb94/neoscroll.nvim',
+  --      config=require('plugins.neoscroll'),
+  --      event={"BufRead"},
+  -- }
+
   use {
-      'karb94/neoscroll.nvim',
-       config=require('plugins.neoscroll'),
-       event={"BufRead"},
-  }
+    "simrat39/symbols-outline.nvim",
+    opt = true,
+    cmd = {"SymbolsOutline", "SymbolsOutlineOpen"},
+    config = require("plugins.symbol_outline")
+}
+
+  ------------------
+  --  treesitter  --
+  ------------------
+
 
   use {'nvim-treesitter/nvim-treesitter',
         opt = true,
@@ -147,6 +172,15 @@ return require('packer').startup({
         opt = true,
         after="nvim-treesitter",
   }
+
+  -- use {
+  --   "andymass/vim-matchup",
+  --   opt = true,
+  --   after = "nvim-treesitter",
+  --   config = function()
+  --            vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
+  --       end
+  -- }
 
   use {"Pocco81/AutoSave.nvim",
         config= require('plugins.autosave'),
@@ -264,7 +298,20 @@ return require('packer').startup({
 
   use {'kdheepak/lazygit.nvim',cmd="LazyGit"}
 
-  use("nathom/filetype.nvim")
+  use{"nathom/filetype.nvim",opt=false}
+
+  use {
+      "gelguy/wilder.nvim",
+      event = "CmdlineEnter",
+      config=require('plugins.wilder'),
+      requires = {{"romgrk/fzy-lua-native", after = "wilder.nvim"}}
+  }
+
+  use {"edluffy/specs.nvim",
+      opt = true,
+      event = "CursorMoved",
+      config = require('plugins.specs')
+  }
 
   ------------
   --  repl  --
