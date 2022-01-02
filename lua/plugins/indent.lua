@@ -22,7 +22,7 @@ require("indent_blankline").setup {
             "startify", "dashboard", "dotooagenda", "log", "fugitive",
             "gitcommit", "packer", "vimwiki",
             "vista", "help", "todoist", "NvimTree", "peekaboo", "git",
-            "TelescopePrompt", "undotree", "flutterToolsOutline",
+            "TelescopePrompt", "undotree", "flutterToolsOutline","Outline"
         },
     buftype_exclude = {"terminal", "nofile"},
     space_char_blankline = " ",

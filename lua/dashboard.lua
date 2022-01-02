@@ -17,39 +17,23 @@ g.dashboard_custom_section = {
     i = {description = {"  Exit                             Q  "}, command = "exit"}
 }
 
-vim.cmd("let packages = len(globpath('~/.local/share/nvim/site/pack/packer/start', '*', 0, 1))")
+-- vim.cmd("let packages = len(globpath('~/.local/share/nvim/site/pack/packer/start', '*', 0, 1))")
 
-vim.g.dashboard_footer_icon = '🐬 '
-vim.api.nvim_exec([[
-    let g:dashboard_custom_footer = ['neovim loaded '..packages..' packages']
-]], false)
--- g.dashboard_custom_footer = {'None are more hopelessly enslaved than those who falsely believe they are free'}
-vim.cmd [[
-augroup dashboard_au
-     autocmd! * <buffer>
-     autocmd User dashboardReady let &l:stl = 'Dashboard'
-     autocmd User dashboardReady nnoremap <buffer> <leader>q <cmd>exit<CR>
-     autocmd User dashboardReady nnoremap <buffer> <leader>u <cmd>PackerUpdate<CR>
-     autocmd User dashboardReady nnoremap <buffer> <leader>l <cmd>SessionLoad<CR>
-augroup END
-]]
+-- vim.g.dashboard_footer_icon = '🐬 '
+-- vim.api.nvim_exec([[
+--     let g:dashboard_custom_footer = ['neovim loaded '..packages..' packages']
+-- ]], false)
+-- -- g.dashboard_custom_footer = {'None are more hopelessly enslaved than those who falsely believe they are free'}
+-- vim.cmd [[
+-- augroup dashboard_au
+--      autocmd! * <buffer>
+--      autocmd User dashboardReady let &l:stl = 'Dashboard'
+--      autocmd User dashboardReady nnoremap <buffer> <leader>q <cmd>exit<CR>
+--      autocmd User dashboardReady nnoremap <buffer> <leader>u <cmd>PackerUpdate<CR>
+--      autocmd User dashboardReady nnoremap <buffer> <leader>l <cmd>SessionLoad<CR>
+-- augroup END
+-- ]]
 
---g.dashboard_preview_command = 'cat'
---g.dashboard_preview_pipeline = 'lolcat'
---g.dashboard_preview_file = '~/.config/nvim/logo.cat'
---g.dashboard_preview_file_height = 12
---g.dashboard_preview_file_width = 80
---
---[[ g.dashboard_custom_header={
-    '',
-    '    ⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄ ',
-    '    ⣾⣿⠿⠿⠶⠿⢿⣿⣿⣿⣿⣦⣤⣄⢀⡅⢠⣾⣛⡉⠄⠄⠄⠸⢀⣿⠄ ',
-    '   ⢀⡋⣡⣴⣶⣶⡀⠄⠄⠙⢿⣿⣿⣿⣿⣿⣴⣿⣿⣿⢃⣤⣄⣀⣥⣿⣿⠄ ',
-    '   ⢸⣇⠻⣿⣿⣿⣧⣀⢀⣠⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⠄ ',
-    '  ⢀⢸⣿⣷⣤⣤⣤⣬⣙⣛⢿⣿⣿⣿⣿⣿⣿⡿⣿⣿⡍⠄⠄⢀⣤⣄⠉⠋⣰ ',
-    '  ⣼⣖⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⢇⣿⣿⡷⠶⠶⢿⣿⣿⠇⢀⣤ ',
-    ' ⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗ ',
-    } ]]
 
 g.dashboard_custom_header = {
    "                                   ",

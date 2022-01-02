@@ -20,7 +20,7 @@ return function()
       -- sumneko_lua = require "lsp.lua", -- /lua/lsp/lua.lua
       sumneko_lua = {}, -- /lua/lsp/lua.lua
       jedi_language_server = require "lsp.jedi",
-      grammarly = require "lsp.grammarly",
+      -- grammarly = require "lsp.grammarly",
       -- pyright={},
       -- pylsp={},
       -- html = {},

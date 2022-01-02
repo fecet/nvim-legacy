@@ -1,12 +1,14 @@
 return function()
- vim.g.symbols_outline = {
+    require("symbols-outline").setup({
         highlight_hovered_item = true,
+        width = 60,
         show_guides = true,
         auto_preview = true,
         position = "right",
-        show_numbers = false,
-        show_relative_numbers = false,
+        show_numbers = true,
+        show_relative_numbers = true,
         show_symbol_details = true,
+        preview_bg_highlight = 'Pmenu',
         keymaps = {
             close = "<Esc>",
             goto_location = "<Cr>",
@@ -44,5 +46,5 @@ return function()
             Operator = {icon = "+", hl = "TSOperator"},
             TypeParameter = {icon = "𝙏", hl = "TSParameter"}
         }
-    }
+    })
 end

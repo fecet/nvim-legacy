@@ -22,7 +22,7 @@ local symbols_outline = {
 require("lualine").setup {
     options = {
         icons_enabled = true,
-        theme = "dracula",
+        theme = "dracula-nvim",
         disabled_filetypes = {},
         component_separators = "|",
         section_separators = {left = "", right = ""}

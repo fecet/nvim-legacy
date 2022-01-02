@@ -1,5 +1,13 @@
 return function()
   vim.cmd('colorscheme dracula')
+  -- show the '~' characters after the end of buffers
+  vim.g.dracula_show_end_of_buffer = true
+  -- use transparent background
+  vim.g.dracula_transparent_bg = true
+  -- set custom lualine background color
+  vim.g.dracula_lualine_bg_color = "#44475a"
+
+
   vim.cmd('hi Visual guibg=#8be9fd')
   vim.cmd('hi IndentBlanklineChar guifg=#444d56 gui=nocombine')
   vim.cmd('hi IndentBlanklineSpaceChar guifg=#444d56 gui=nocombine')

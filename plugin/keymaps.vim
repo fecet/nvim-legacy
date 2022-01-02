@@ -51,11 +51,12 @@ nnoremap > >>
 map K <C-u>
 map J <C-d>
 
+" map K 6k
+" map J 6j
 " H key: go to the start of the line
 noremap <silent> H ^
 " L key: go to the end of the line
 noremap <silent> L $
-noremap <silent> gp %
 
 " inoremap <silent> <C-w> <C-W>
 " nnoremap <C-H> :tabprevious<cr>
@@ -94,8 +95,8 @@ nnoremap <silent> <leader><leader>p :HopPattern<CR>
 noremap <silent> <leader>l <cmd>HopLine<CR>
 nnoremap <silent> <leader><leader>s :HopChar1<CR>
 
-map <CR> <Plug>(wildfire-fuel)
-map <leader>fo <Plug>(wildfire-quick-select)
+" map <CR> <Plug>(wildfire-fuel)
+" map <leader>fo <Plug>(wildfire-quick-select)
 " map <CR> <Plug>(wildfire-quick-select)
 " This selects the previous closest text object.
 " use '*' to mean 'all other filetypes'
@@ -138,3 +139,5 @@ nnoremap <leader>fh :Telescope oldfiles<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>en <cmd>DashboardNewFile<cr>
 
+omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
+vnoremap <silent> m :lua require('tsht').nodes()<CR>

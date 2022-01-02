@@ -5,7 +5,7 @@ return function()
             show_buffer_icons = true,
             show_close_icon = false,
             show_buffer_close_icons = false,
-            diagnostics = "nvim_lsp",
+            -- diagnostics = "nvim_lsp",
             always_show_bufferline = true,
             separator_style = "thin",
             -- diagnostics_indicator = function(count, level) return '(' .. count .. ')' end,

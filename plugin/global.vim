@@ -6,12 +6,6 @@ endif
 source ~/.config/nvim/_machine_specific.vim
 " source ~/.config/nvim/coq.vim
 
-""""""""""""""
-"  smoothie  "
-""""""""""""""
-
-
-let g:smoothie_no_default_mappings=v:true
 
 """"""""""""""
 "  wildfire  "
@@ -21,7 +15,7 @@ let g:smoothie_no_default_mappings=v:true
 let g:wildfire_objects = {
             \ "*" : ["iw","i'", 'i"', "i)", "i]", "i}","if","af","ic","ac"],
             \ "html,xml" : ["it", "at"],
-            \ "tex,markdown,rmd": ["iw","i)","id","i$"],
+            \ "tex,markdown,rmd": ["iw","i'", 'i"', "i)", "i]", "i}","id","i$"],
             \ }
 """"""""""""
 "  rnvimr  "
