@@ -20,6 +20,7 @@ return function()
       -- sumneko_lua = require "lsp.lua", -- /lua/lsp/lua.lua
       sumneko_lua = {}, -- /lua/lsp/lua.lua
       jedi_language_server = require "lsp.jedi",
+      -- ltex = require "lsp.ltex"
       -- grammarly = require "lsp.grammarly",
       -- pyright={},
       -- pylsp={},
@@ -89,6 +90,23 @@ return function()
                         telemetry = {enable = false}
                     }
                 }
+           elseif  (server.name == "ltex") then
+                    opts.settings = {
+                        ltex = {
+                            enabled = { "latex", "tex", "bib", "markdown","rmd" },
+                            language = "en",
+                            diagnosticSeverity = "information",
+                            setenceCacheSize = 2000,
+                            additionalRules = {
+                                enablePickyRules = true,
+                                motherTongue = "en",
+                            },
+                            trace = { server = "verbose" },
+                            dictionary = {},
+                            disabledRules = {},
+                            hiddenFalsePositives = {},
+                        }
+                    }
             end
             opts.on_attach = on_attach
             opts.flags = {

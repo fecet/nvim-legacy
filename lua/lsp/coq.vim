@@ -29,12 +29,15 @@ inoremap <silent><expr> <c-e> "<left><right>"
 " < C-\><C-N><cmd>lua COQ.Nav_mark()<CR>
 
 
+" ino <silent><expr> <Tab> 
+"             \ UltiSnips#CanJumpForwards() ? "<C-R>=UltiSnips#JumpForwards()<CR>":
+"             \ Marks_available() ? "<C-\><C-N><cmd>lua COQ.Nav_mark()<CR>" : "<Cmd>Tabout<CR>"
+
+
 ino <silent><expr> <Tab> 
             \ UltiSnips#CanJumpForwards() ? "<C-R>=UltiSnips#JumpForwards()<CR>":
-            \ Marks_available() ? "<C-\><C-N><cmd>lua COQ.Nav_mark()<CR>" : "<Cmd>Tabout<CR>"
+            \ Marks_available() ? "<C-\><C-N><cmd>lua COQ.Nav_mark()<CR>" : "<cmd> lua require('tabout').tabout()<CR>"
 
 ino <silent><expr> <S-Tab> 
-            \ UltiSnips#CanJumpBackwards() ? "<C-R>=UltiSnips#JumpBackwards()<CR>" : "<Cmd>TaboutBack<CR>"
-
-ino <silent><expr> <C-f> <cmd>lua require('nvim-autopairs').autopairs_cr()<CR>
+            \ UltiSnips#CanJumpBackwards() ? "<C-R>=UltiSnips#JumpBackwards()<CR>" : "<cmd> lua require('tabout').taboutBack()<CR>"
 

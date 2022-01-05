@@ -21,7 +21,7 @@ set scrolloff=4
 set wrap
 "set textwidth=0
 set indentexpr=
-set foldmethod=indent
+" set foldmethod=indent
 set foldlevelstart=99
 set foldenable
 "set formatoptions-=tc

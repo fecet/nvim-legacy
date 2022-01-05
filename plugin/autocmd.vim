@@ -1,11 +1,18 @@
 au BufNewFile,BufRead,BufFilePre *.zsh	set filetype=sh
+au BufNewFile,BufRead,BufFilePre *.Rmd	set filetype=rmd
 " Spell check only for writing
 augroup MarkDownStuff
     " au BufRead,BufReadPre,BufNew,BufNewFile *.rmd,*.Rmd,*.Smd,*.smd,*.md hi clear conceal
     au Filetype markdown,rmd,pandoc set spell
     au Filetype markdown,rmd,pandoc hi clear conceal
-    au Filetype markdown,rmd,pandoc let b:coc_additional_keywords = ["-"]
-    au Filetype markdown,rmd let b:coc_suggest_disable=1
+    " au Filetype markdown,rmd,pandoc let b:coc_additional_keywords = ["-"]
+    au Filetype markdown,rmd let g:coq_settings = { "keymap.recommended": v:false,
+            \"clients.tabnine.enabled": v:true,
+            \"keymap.pre_select": v:true,
+            \"auto_start": v:true,
+            \"keymap.jump_to_mark": "<c-j>",
+            \"completion.always": v:false
+            \ }
     " au Filetype markdown,rmd silent! :call vimtex#init()
     " au Filetype markdown,rmd silent! :MarkdownPreview
     " au BufRead,BufReadPre,BufNew,BufNewFile *.rmd,*.Rmd,*.Smd,*.smd,*.md silent! :MarkdownPreview

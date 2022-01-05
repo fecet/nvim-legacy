@@ -1,8 +1,8 @@
-let has_machine_specific_file = 1
-if empty(glob('~/.config/nvim/_machine_specific.vim'))
-	let has_machine_specific_file = 0
-	silent! exec "!cp ~/.config/nvim/Diff_machine_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-endif
+" let has_machine_specific_file = 1
+" if empty(glob('~/.config/nvim/_machine_specific.vim'))
+" 	let has_machine_specific_file = 0
+" 	silent! exec "!cp ~/.config/nvim/Diff_machine_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+" endif
 source ~/.config/nvim/_machine_specific.vim
 " source ~/.config/nvim/coq.vim
 
@@ -20,6 +20,7 @@ let g:wildfire_objects = {
 """"""""""""
 "  rnvimr  "
 """"""""""""
+
 
 
 let g:rnvimr_enable_ex = 1
@@ -101,11 +102,14 @@ let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 "  markdown  "
 """"""""""""""
 
+" let g:pandoc#filetypes#handled = ["pandoc", "markdown","rmd"]
+" let g:pandoc#filetypes#pandoc_markdown = 0
+
 let g:tex_conceal='abdmg'
 let g:tex_flavor = "latex"
 " let g:vim_markdown_folding_disabled = 1
 " let g:vim_markdown_math = 1
-let g:pandoc#modules#disabled = ["folding"]
+" let g:pandoc#modules#disabled = ["folding"]
 
 """"""""""""""
 "  firenvim  "
@@ -136,12 +140,6 @@ let g:slime_python_qtconsole = 1
 let g:slime_cell_delimiter = "# %%"
 let g:ipython_cell_tag=['# %%', '#%%', '# <codecell>']
 
-"""""""""""""""
-"  simpyFold  "
-"""""""""""""""
-
-let g:SimpylFold_docstring_preview = 1
-let g:SimpylFold_docstring_preview = 1
 
 """""""""""""
 "  neovide  "

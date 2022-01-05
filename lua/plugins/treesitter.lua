@@ -1,3 +1,25 @@
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+-- parser_config.markdown.filetype = { "rmd","markdown","pandoc" }
+parser_config.markdown = {
+    install_info = {
+        url = 'https://github.com/MDeiml/tree-sitter-markdown',
+        branch = 'main',
+        files = { 'src/parser.c', 'src/scanner.cc' },
+    },
+    filetype = 'markdown',
+    used_by = {"rmd"}
+}
+
+function _G.current_treesitter_lang()
+  local parser = require'vim.treesitter.highlighter'.active[vim.api.nvim_get_current_buf()]
+  if parser then
+    return parser.tree:lang()
+  end
+end
+
+vim.cmd("set foldmethod=expr")
+vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
+
 require('nvim-treesitter.configs').setup({
     ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = {}, -- List of parsers to ignore installing

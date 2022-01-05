@@ -133,6 +133,7 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/site/pack/packer/st
 
 nmap <leader>pv <Plug>MarkdownPreviewToggle
 nmap <leader>sol :SymbolsOutline<CR>
+nmap <leader>sw :ISwapWith<CR>
 
 nnoremap <leader>ff :Telescope find_files<cr>
 nnoremap <leader>fh :Telescope oldfiles<cr>
@@ -141,3 +142,4 @@ nnoremap <leader>en <cmd>DashboardNewFile<cr>
 
 omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
 vnoremap <silent> m :lua require('tsht').nodes()<CR>
+

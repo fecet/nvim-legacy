@@ -10,9 +10,9 @@ return function()
 
     npairs.setup(
         {
-          map_bs = false,
-          map_cr = false,
-          check_ts= true,
+            map_bs = false,
+            map_cr = false,
+            check_ts= true,
         }
     )
 
