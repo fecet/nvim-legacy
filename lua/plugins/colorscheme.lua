@@ -19,6 +19,6 @@ return function()
     -- vim.cmd('hi link Conceal Visual')
     --[[ vim.cmd('hi link IndentBlanklineChar Conceal')
 vim.cmd('hi link IndentBlanklineSpaceChar Conceal') ]]
-    vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank()]]
+    vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank({timeout=300,on_visual=true})]]
 end
 
