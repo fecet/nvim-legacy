@@ -240,8 +240,13 @@ config = function() require('plugins.eviline') end
         -- after = "nvim-treesitter",
         -- branch = "coq-marks-available",
         requires = {
-            {"ms-jpq/coq.artifacts", branch = "artifacts"},
-            {"ms-jpq/coq.thirdparty", branch = "3p"}
+            {"ms-jpq/coq.artifacts",
+                branch = "artifacts",
+            },
+            {"ms-jpq/coq.thirdparty",
+                branch = "3p",
+                config=require("plugins.coq3p")
+            }
         },
     }
 
@@ -254,10 +259,8 @@ config = function() require('plugins.eviline') end
         "SirVer/ultisnips",
         requires = {"fecet/vim-snippets",opt= true},
         event={"InsertEnter"},
-        -- config=require('plugins.ultisnips')
     }
-    
-    
+
 ---- git
 
     use {'nvim-telescope/telescope.nvim',
@@ -289,7 +292,8 @@ config = function() require('plugins.eviline') end
         ft={'markdown','rmd'},
     }
     use {'lervag/vimtex',
-        ft={'markdown','rmd','tex'},
+        opt=true,
+        ft={'markdown','rmd','tex','latex',"tex.rmd"},
     }
 --     use {'vim-pandoc/vim-pandoc-syntax',
 --         ft={'markdown','rmd','tex'},
@@ -394,11 +398,4 @@ return require('packer').startup({
         compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
     }
 })
-
-
-
-
-
-
-
 

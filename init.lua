@@ -6,13 +6,13 @@
 local g = vim.g
 g.mapleader = " "
 vim.opt.termguicolors = true
--- local fn = vim.fn
+local fn = vim.fn
 --
--- local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
--- if fn.empty(fn.glob(install_path)) > 0 then
---   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
---   vim.cmd 'packadd packer.nvim'
--- end
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+  vim.cmd 'packadd packer.nvim'
+end
 
 require('impatient').enable_profile()
 
@@ -42,4 +42,5 @@ for _, plugin in pairs(disabled_built_ins) do
 end
 require('plugins')
 require('dashboard')
+require('ultisnips')
 require('packer_compiled')

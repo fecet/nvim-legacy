@@ -125,11 +125,11 @@ command! -nargs=0 RunQtConsoleRemote
 " nmap <silent> <leader>jc <Plug>(IPy-RunCell)
 " nmap <silent> <leader>ja <Plug>(IPy-RunAll)
 
-let g:UltiSnipsExpandTrigger="<nop>"
-let g:UltiSnipsJumpForwardTrigger="<nop>"
-let g:UltiSnipsJumpBackwardTrigger="<nop>"
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/site/pack/packer/start/vim-snippets/UltiSnips',$HOME.'/.local/share/nvim/site/pack/packer/opt/vim-snippets/UltiSnips']
+" let g:UltiSnipsExpandTrigger="<f21>"
+" let g:UltiSnipsJumpForwardTrigger="<f20>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-f20>"
+" let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/site/pack/packer/start/vim-snippets/UltiSnips',$HOME.'/.local/share/nvim/site/pack/packer/opt/vim-snippets/UltiSnips']
 
 nmap <leader>pv <Plug>MarkdownPreviewToggle
 nmap <leader>sol :SymbolsOutline<CR>
