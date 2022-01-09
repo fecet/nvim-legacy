@@ -4,7 +4,8 @@ return function()
             enabled = true,
             execution_message = function()
                 vim.notify=require("notify")
-                vim.notify(" AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
+                -- vim.notify(" AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S"))
+                return " AutoSave: saved at " .. vim.fn.strftime("%H:%M:%S")
             end,
             events = {"InsertLeave", "TextChanged"},
             conditions = {
