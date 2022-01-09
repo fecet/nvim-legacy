@@ -46,7 +46,13 @@ require('nvim-treesitter.configs').setup({
             "#bd93f9"
         }, -- table of hex strings
     },
-    context_commentstring = {enable = true, enable_autocmd = false},
+    context_commentstring = {
+        enable = true,
+        enable_autocmd = false,
+        config={
+            rmd="<!-- %s -->"
+        }
+    },
     -- matchup = {enable = true},
     context = {enable = true, throttle = true},
     textobjects = {

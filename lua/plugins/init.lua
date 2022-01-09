@@ -1,7 +1,8 @@
 vim.cmd [[packadd packer.nvim]]
 
 local function use_packages(use)
--- base plugin
+
+    -- base plugin
     use {'wbthomason/packer.nvim'}
 
     ----------
@@ -94,15 +95,7 @@ config = function() require('plugins.eviline') end
     use {"terrortylor/nvim-comment",
         opt = true,
         after="nvim-treesitter",
-        config = function()
-            require("nvim_comment").setup(
-                {
-                    hook = function()
-                        require("ts_context_commentstring.internal").update_commentstring()
-                    end
-                }
-            )
-        end
+        config = require("plugins.comment")
     }
 
     use {'gcmt/wildfire.vim',
@@ -281,31 +274,30 @@ config = function() require('plugins.eviline') end
     --  markdown  --
     ----------------
 
----- markdown preview
     use {'iamcco/markdown-preview.nvim',
         ft = {'markdown','rmd',},
         run = 'cd app && yarn install'
     }
--- use {'jbyuki/nabla.nvim'}
 
     use {'ekickx/clipboard-image.nvim',
-        ft={'markdown','rmd'},
+        cmd="PasteImg",
+        config = require('plugins.clipimg')
     }
-    use {'lervag/vimtex',
-        opt=true,
-        ft={'markdown','rmd','tex','latex',"tex.rmd"},
+    -- use {'lervag/vimtex',
+    --     opt=true,
+    --     ft={'markdown','rmd','tex','latex',"tex.rmd"},
+    -- }
+    use {'vim-pandoc/vim-pandoc-syntax',
+        ft={'markdown','rmd','tex'},
     }
---     use {'vim-pandoc/vim-pandoc-syntax',
---         ft={'markdown','rmd','tex'},
---     }
---
---     use {'vim-pandoc/vim-pandoc',
---         ft={'markdown','rmd','tex'},
---     }
---
---     use {'vim-pandoc/vim-rmarkdown',
---         ft={'rmd'},
---     }
+
+    use {'vim-pandoc/vim-pandoc',
+        ft={'markdown','rmd','tex'},
+    }
+
+    use {'vim-pandoc/vim-rmarkdown',
+        ft={'rmd'},
+    }
 
 
 -- use {'vigoux/LanguageTool.nvim',
@@ -359,6 +351,15 @@ config = function() require('plugins.eviline') end
         "itchyny/calendar.vim",
         opt=true,
         cmd={'Calendar'}
+    }
+
+    use {
+        "rcarriga/nvim-notify",
+        event="BufRead",
+    }
+    use {
+        "stevearc/dressing.nvim",
+        event="BufRead",
     }
 
     ------------

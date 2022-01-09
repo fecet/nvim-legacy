@@ -1,4 +1,4 @@
-set filetype=tex.rmd
+" set filetype=tex.rmd
 set spell
 hi clear conceal
 let g:coq_settings = { "keymap.recommended": v:false,
@@ -8,3 +8,16 @@ let g:coq_settings = { "keymap.recommended": v:false,
             \"keymap.jump_to_mark": "<c-j>",
             \"completion.always": v:false
             \ }
+
+
+
+" function! SlimeSendCellJump()
+"     execute "! R -e "rmarkdown::render('$1')'"
+"   \ exec '.shellescape('%')<CR>
+" endfunction
+"
+function! Knit()
+    let fn = expand('%:f')
+    execute "! R -e \"rmarkdown::render(" . "'" . fn . "'" . ")\""
+    " execute "! R -e \"rmarkdown::render(" . fn . ")\""
+endfunction
