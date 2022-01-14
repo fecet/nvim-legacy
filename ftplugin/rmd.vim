@@ -16,7 +16,7 @@ let g:coq_settings = { "keymap.recommended": v:false,
 "   \ exec '.shellescape('%')<CR>
 " endfunction
 "
-function! knit()
+function! Knit()
     let fn = expand('%:f')
     execute "! export LANG=C"
     execute "! R -e \"rmarkdown::render(" . "'" . fn . "'" . ")\""

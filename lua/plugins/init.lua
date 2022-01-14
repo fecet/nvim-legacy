@@ -35,8 +35,13 @@ config = function() require('plugins.eviline') end
         config = require("plugins.session")
     }
 
-    use {'glepnir/dashboard-nvim',
-        opt=true,
+    -- use {'glepnir/dashboard-nvim',
+    --     opt=true,
+    --     event="BufWinEnter"
+    -- }
+    use {
+        'goolord/alpha-nvim',
+        config = require("plugins.alpha"),
         event="BufWinEnter"
     }
 
