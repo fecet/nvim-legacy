@@ -41,6 +41,6 @@ for _, plugin in pairs(disabled_built_ins) do
     g["loaded_" .. plugin] = 1
 end
 require('plugins')
-require('dashboard')
+-- require('dashboard')
 require('ultisnips')
 require('packer_compiled')
