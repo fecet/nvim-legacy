@@ -5,7 +5,8 @@ let g:coq_settings = { "keymap.recommended": v:false,
             \"clients.tabnine.enabled": v:true,
             \"keymap.pre_select": v:true,
             \"auto_start": v:true,
-            \"keymap.jump_to_mark": "<c-j>"
+            \"keymap.jump_to_mark": "<c-j>",
+            \"clients.lsp.short_name": "LS",
             \ }
 " let coq_settings.clients.tabnine.enabled=true
 

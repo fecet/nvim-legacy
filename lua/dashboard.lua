@@ -19,7 +19,7 @@ g.dashboard_custom_section = {
 
 -- vim.cmd("let packages = len(globpath('~/.local/share/nvim/site/pack/packer/start', '*', 0, 1))")
 
--- vim.g.dashboard_footer_icon = '🐬 '
+g.dashboard_footer_icon = '🐬 '
 -- vim.api.nvim_exec([[
 --     let g:dashboard_custom_footer = ['neovim loaded '..packages..' packages']
 -- ]], false)

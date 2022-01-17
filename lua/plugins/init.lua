@@ -25,7 +25,7 @@ config = function() require('plugins.eviline') end
     }
     use {'hoob3rt/lualine.nvim',
         after = "lualine-lsp-progress",
-        config = function() require('plugins.lualine') end
+        config = function() require('plugins.lualine_conf') end
     }
 
     use {
@@ -293,11 +293,11 @@ config = function() require('plugins.eviline') end
     --     ft={'markdown','rmd','tex','latex',"tex.rmd"},
     -- }
     use {'vim-pandoc/vim-pandoc-syntax',
-        ft={'markdown','rmd','tex'},
+        ft={'rmd','tex'},
     }
 
     use {'vim-pandoc/vim-pandoc',
-        ft={'markdown','rmd','tex'},
+        ft={'rmd','tex'},
     }
 
     use {'vim-pandoc/vim-rmarkdown',
@@ -383,9 +383,9 @@ config = function() require('plugins.eviline') end
         ft={'python'},
     }
 
------------------
---  lua-stuff  --
------------------
+    -----------------
+    --  lua-stuff  --
+    -----------------
 
     use{"nathom/filetype.nvim",opt=false}
 -- Is using a standard Neovim install, i.e. built from source or using a
