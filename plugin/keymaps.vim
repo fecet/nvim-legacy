@@ -3,7 +3,7 @@
 " nnoremap gj j
 " nnoremap k gk
 " nnoremap gk k
-nmap <C-_> gcc
+" nmap <C-_> gcc
 " Save & quit
 "
 noremap Q :q<CR>
@@ -22,10 +22,6 @@ nnoremap > >>
 "noremap <LEADER><CR> :nohlsearch<CR>
 
 " Adjacent duplicate words
-
-" Space to Tab
-"nnoremap <LEADER>tt :%s/    /\t/g
-"vnoremap <LEADER>tt :s/    /\t/g
 
 " Folding
 "noremap <silent> <LEADER>o za
@@ -85,8 +81,7 @@ nnoremap <silent> <leader>gg :LazyGit<CR>
 
 nnoremap <silent> <Leader>ee :RnvimrToggl<CR>
 
-nnoremap <silent> <leader>k :<C-u>CocList<cr>
-nnoremap <silent> <leader>sl :Telescope session-lens search_session<cr>
+" nnoremap <silent> <leader>k :<C-u>CocList<cr>
 " nnoremap <silent> <leader>k :<C-u>Telescope<cr>
 
 

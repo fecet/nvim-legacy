@@ -1,10 +1,11 @@
 return function()
     require("symbols-outline").setup({
         highlight_hovered_item = true,
-        width = 60,
+        width = 40,
         show_guides = true,
         auto_preview = true,
-        position = "right",
+        -- position = "right",
+        position = "left",
         show_numbers = true,
         show_relative_numbers = true,
         show_symbol_details = true,

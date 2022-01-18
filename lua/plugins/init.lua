@@ -1,5 +1,4 @@
 vim.cmd [[packadd packer.nvim]]
-
 local function use_packages(use)
 
     -- base plugin
@@ -229,7 +228,23 @@ config = function() require('plugins.eviline') end
     use {'williamboman/nvim-lsp-installer',
         opt = true,
         after = "nvim-lspconfig",
-        config=require('lsp.setup')
+        config=function() require('lsp.setup') end
+    }
+
+--     use {
+--         "jose-elias-alvarez/null-ls.nvim",
+--         after="nvim-lsp-installer"
+--     }
+-- 
+--     use {
+--         "MunifTanjim/prettier.nvim",
+--         after="null-ls.nvim",
+--         config=require('plugins.prettier')
+--     }
+    use {
+      'creativenull/efmls-configs-nvim',
+      opt=false,
+      tag = 'v0.1.2', -- tag is optional
     }
 
     use {"ms-jpq/coq_nvim",
@@ -358,10 +373,10 @@ config = function() require('plugins.eviline') end
         cmd={'Calendar'}
     }
 
-    use {
-        "rcarriga/nvim-notify",
-        event="BufRead",
-    }
+    -- use {
+    --     "rcarriga/nvim-notify",
+    --     event="BufRead",
+    -- }
     use {
         "stevearc/dressing.nvim",
         event="BufRead",
