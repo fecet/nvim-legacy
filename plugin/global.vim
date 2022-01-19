@@ -144,6 +144,7 @@ let g:ipython_cell_tag=['# %%', '#%%', '# <codecell>']
 """""""""""""
 "  neovide  "
 """""""""""""
+
 "" Config for neovide
 " let g:neovide_cursor_vfx_mode='railgun'
 " let g:neovide_cursor_vfx_opacity=200.0
@@ -153,3 +154,8 @@ let g:ipython_cell_tag=['# %%', '#%%', '# <codecell>']
 " let g:neovide_cursor_vfx_particle_phase=1.5
 " let g:neovide_cursor_vfx_particle_curl=1.0
 
+
+if has('nvim') && executable('nvr')
+  let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+  " let $GIT_EDITOR = "nvr -cc split"
+endif

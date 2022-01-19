@@ -45,8 +45,8 @@ config = function() require('plugins.eviline') end
     -- }
 
     use {'akinsho/nvim-bufferline.lua',
-        opt=true,
-        event="BufRead",
+        -- opt=true,
+        -- event="BufRead",
         -- after = "nvim-web-devicons",
         config = require('plugins.bufferline')
     }
@@ -351,7 +351,9 @@ config = function() require('plugins.eviline') end
         cmd="RnvimrToggle"
     }
 
-    use {'kdheepak/lazygit.nvim',cmd="LazyGit"}
+    use {'kdheepak/lazygit.nvim',
+        cmd="LazyGit"
+    }
 
 
     use {
