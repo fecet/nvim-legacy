@@ -395,6 +395,11 @@ config = function() require('plugins.eviline') end
     use {'adavidwilson/vim-slime',
         ft={'python','sh','r'}
     }
+
+    use {'Klafyvel/vim-slime-cells',
+        ft={'python','sh','r'}
+    }
+
     use {
         'hanschen/vim-ipython-cell',
         ft={'python'},
