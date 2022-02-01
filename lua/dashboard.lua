@@ -6,12 +6,13 @@ g.dashboard_session_directory = vim.fn.stdpath('data').."/sessions/" ]]
 g.dashboard_default_executive ='telescope'
 g.dashboard_custom_section = {
     a = {description = {"  Recents                   leader f h"}, command = "Telescope oldfiles"},
-    b = {description = {"  Find File                 leader f f"}, command = "Telescope find_files"},
+    -- b = {description = {"  Find File                 leader f f"}, command = "Telescope find_files"},
     c = {description = {"  Find Word                 leader f g"}, command = "Telescope live_grep"},
     d = {description = {"  New File                  leader e n"}, command = "DashboardNewFile"},
     e = {description = {"  Explorer                  leader e e"}, command = "RnvimrToggle"},
     -- f = {description = {"  Sessions                  leader s l"}, command = "Telescope session-lens search_session"},
     -- g = {description = {"  Update Plugins            leader u  "}, command = "PackerUpdate"},
+    f = {description = {"  Lazy Git                  leader g g"}, command = "LazyGit"},
     g = {description = {"  StartupTime               leader u  "}, command = "StartupTime"},
     h = {description = {"  Settings                  leader e v"}, command = "edit $MYVIMRC"},
     i = {description = {"  Exit                             Q  "}, command = "exit"}

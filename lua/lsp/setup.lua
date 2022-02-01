@@ -152,7 +152,7 @@ local shellcheck = require("efmls-configs.linters.shellcheck")
 local staticcheck = require("efmls-configs.linters.staticcheck")
 
 local black = require("efmls-configs.formatters.black")
-local isort = require("efmls-configs.formatters.black")
+-- local isort = require("efmls-configs.formatters.isort")
 local luafmt = require("efmls-configs.formatters.lua_format")
 local clangfmt = require("efmls-configs.formatters.clang_format")
 local goimports = require("efmls-configs.formatters.goimports")
@@ -170,7 +170,7 @@ flake8 = vim.tbl_extend('force', flake8, {
     lintStdin = true,
     lintIgnoreExitCode = true,
     lintFormats = {"%f:%l:%c: %t%n%n%n %m"},
-    lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405,E203,E402 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -"
+    lintCommand = "flake8 --max-line-length 160 --extend-ignore F403,F405,E203,E402,E731 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -"
 })
 
 -- Setup formatter and linter for efmls here
@@ -181,7 +181,7 @@ efmls.setup {
     c = {formatter = clangfmt, linter = clangtidy},
     cpp = {formatter = clangfmt, linter = clangtidy},
     go = {formatter = goimports, linter = staticcheck},
-    python = {formatter = {black,isort}, linter = flake8},
+    python = {formatter = {black}, linter = flake8},
     vue = {formatter = prettier},
     typescript = {formatter = prettier, linter = eslint},
     javascript = {formatter = prettier, linter = eslint},

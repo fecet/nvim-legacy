@@ -133,7 +133,7 @@ config = function() require('plugins.eviline') end
     }
 
     use {'kevinhwang91/nvim-hlslens',
-        even="BufRead"
+        event="BufRead"
     }
 -- use {'psliwka/vim-smoothie'}
 -- use {
@@ -414,6 +414,10 @@ config = function() require('plugins.eviline') end
 -- provided appimage.
     use 'lewis6991/impatient.nvim'
 
+    use {
+        'h-hg/fcitx.nvim',
+        event={"InsertEnter"},
+    }
 end
 
 return require('packer').startup({
