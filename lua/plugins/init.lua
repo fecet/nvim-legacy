@@ -106,7 +106,7 @@ config = function() require('plugins.eviline') end
         event={"BufRead"},
     }
     use {
-        "blackCauldron7/surround.nvim",
+        "ur4ltz/surround.nvim",
         event={"BufRead"},
         config = function()
             require"surround".setup {
