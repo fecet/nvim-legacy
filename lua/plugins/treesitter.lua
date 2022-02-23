@@ -7,12 +7,12 @@ parser_config.markdown = {
         files = { 'src/parser.c', 'src/scanner.cc' },
     },
     filetype = 'markdown',
-    used_by = {"rmd"}
+    filetype_to_parsername = {"rmd"}
 }
 
 
 -- parser_config.latex.filetype="rmd"
-parser_config.latex.used_by={"rmd","markdown","pandoc","tex","latex"}
+parser_config.latex.filetype_to_parsername={"rmd","markdown","pandoc","tex","latex"}
 
 function _G.current_treesitter_lang()
   local parser = require'vim.treesitter.highlighter'.active[vim.api.nvim_get_current_buf()]
