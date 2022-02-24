@@ -389,15 +389,15 @@ config = function() require('plugins.eviline') end
     ------------
 
     use {'untitled-ai/jupyter_ascending.vim',
-        ft={'python','r'}
+        ft={'python','r','rmd'}
     }
 
     use {'adavidwilson/vim-slime',
-        ft={'python','sh','r'}
+        ft={'python','sh','r','rmd'}
     }
 
     use {'Klafyvel/vim-slime-cells',
-        ft={'python','sh','r'}
+        ft={'python','sh','r','rmd'}
     }
 
     use {
@@ -409,7 +409,7 @@ config = function() require('plugins.eviline') end
     --  lua-stuff  --
     -----------------
 
-    use{"nathom/filetype.nvim",opt=false}
+    use{"nathom/filetype.nvim"}
 -- Is using a standard Neovim install, i.e. built from source or using a
 -- provided appimage.
     use 'lewis6991/impatient.nvim'

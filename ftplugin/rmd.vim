@@ -16,6 +16,10 @@ let g:coq_settings = { "keymap.recommended": v:false,
 "   \ exec '.shellescape('%')<CR>
 " endfunction
 "
+"
+let b:slime_cell_delimiter = "```.*$"
+nmap <leader>sc <Plug>SlimeSendCell<CR><ESC>
+
 function! Knit()
     let fn = expand('%:f')
     execute "! export LANG=C"

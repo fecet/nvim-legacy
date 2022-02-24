@@ -86,5 +86,9 @@ endfunction
 " nnoremap <Leader><CR> :IPythonCellExecuteCellVerboseJump<CR>
 " nmap <leader><CR> :call SlimeSendCellJump()<CR>
 " nmap <leader><CR> :call PrevExecNextCell()<CR>
+
+let b:slime_cell_delimiter = "# %%"
+nmap <leader>sc <Plug>SlimeSendCell<CR>
+
 nmap <leader><CR> :call jupyter_ascending#execute()<CR>
 nmap <leader>sc :call SlimeSendCellJump()<CR>

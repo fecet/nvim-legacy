@@ -137,7 +137,6 @@ let g:firenvim_config = {
 let g:slime_target = "x11"
 "let g:slime_python_ipython = 1
 let g:slime_python_qtconsole = 1
-let g:slime_cell_delimiter = "# %%"
 let g:ipython_cell_tag=['# %%', '#%%', '# <codecell>']
 
 
