@@ -117,8 +117,9 @@ config = function() require('plugins.eviline') end
 
     use {
         'abecodes/tabout.nvim',
-        event={"InsertEnter"},
+        -- event={"InsertEnter"},
         config = require('plugins.tabout'),
+        after="nvim-treesitter",
     }
 
     use {'rhysd/clever-f.vim',
