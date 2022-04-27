@@ -8,7 +8,7 @@ local function use_packages(use)
     --  ui  --
     ----------
 
---[[ use {'glepnir/galaxyline.nvim', branch = 'main',
+    --[[ use {'glepnir/galaxyline.nvim', branch = 'main',
 after = "nvim-web-devicons",
 config = function() require('plugins.eviline') end
 } ]]
@@ -50,7 +50,7 @@ config = function() require('plugins.eviline') end
         -- after = "nvim-web-devicons",
         config = require('plugins.bufferline')
     }
--- use 'folke/tokyonight.nvim'
+    -- use 'folke/tokyonight.nvim'
     use {
         'kyazdani42/nvim-web-devicons',
         opt=false,
@@ -76,12 +76,12 @@ config = function() require('plugins.eviline') end
     ------------
     --  edit  --
     ------------
---
--- use {"folke/trouble.nvim",
---   opt = true,
---   cmd = {"Trouble", "TroubleToggle", "TroubleRefresh"},
---   -- config = require('plugins.trouble')
--- }
+    --
+    -- use {"folke/trouble.nvim",
+    --   opt = true,
+    --   cmd = {"Trouble", "TroubleToggle", "TroubleRefresh"},
+    --   -- config = require('plugins.trouble')
+    -- }
 
     use {'phaazon/hop.nvim',
         as = 'hop',
@@ -136,12 +136,12 @@ config = function() require('plugins.eviline') end
     use {'kevinhwang91/nvim-hlslens',
         event="BufRead"
     }
--- use {'psliwka/vim-smoothie'}
--- use {
---     'karb94/neoscroll.nvim',
---      config=require('plugins.neoscroll'),
---      event={"BufRead"},
--- }
+    -- use {'psliwka/vim-smoothie'}
+    -- use {
+    --     'karb94/neoscroll.nvim',
+    --      config=require('plugins.neoscroll'),
+    --      event={"BufRead"},
+    -- }
 
     use {
         "simrat39/symbols-outline.nvim",
@@ -190,14 +190,14 @@ config = function() require('plugins.eviline') end
         after="nvim-treesitter",
     }
 
--- use {
---   "andymass/vim-matchup",
---   opt = true,
---   after = "nvim-treesitter",
---   config = function()
---            vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
---       end
--- }
+    -- use {
+    --   "andymass/vim-matchup",
+    --   opt = true,
+    --   after = "nvim-treesitter",
+    --   config = function()
+    --            vim.cmd [[let g:matchup_matchparen_offscreen = {'method': 'popup'}]]
+    --       end
+    -- }
 
     use {"Pocco81/AutoSave.nvim",
         config= require('plugins.autosave'),
@@ -232,20 +232,20 @@ config = function() require('plugins.eviline') end
         config=function() require('lsp.setup') end
     }
 
---     use {
---         "jose-elias-alvarez/null-ls.nvim",
---         after="nvim-lsp-installer"
---     }
--- 
---     use {
---         "MunifTanjim/prettier.nvim",
---         after="null-ls.nvim",
---         config=require('plugins.prettier')
---     }
+    --     use {
+    --         "jose-elias-alvarez/null-ls.nvim",
+    --         after="nvim-lsp-installer"
+    --     }
+    -- 
+    --     use {
+    --         "MunifTanjim/prettier.nvim",
+    --         after="null-ls.nvim",
+    --         config=require('plugins.prettier')
+    --     }
     use {
-      'creativenull/efmls-configs-nvim',
-      opt=false,
-      tag = 'v0.1.2', -- tag is optional
+        'creativenull/efmls-configs-nvim',
+        opt=false,
+        tag = 'v0.1.2', -- tag is optional
     }
 
     -- use {"ms-jpq/coq_nvim",
@@ -263,6 +263,35 @@ config = function() require('plugins.eviline') end
     --         }
     --     },
     -- }
+    --
+    use {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        requires = {
+            { "lukas-reineke/cmp-under-comparator" },
+            -- { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
+            { "quangnguyen30192/cmp-nvim-ultisnips", after = "nvim-cmp",config=function()
+                -- optional call to setup (see customization section)
+                require("cmp_nvim_ultisnips").setup{}
+            end, },
+            { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+            { "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
+            { "andersevenrud/cmp-tmux", after = "cmp-nvim-lua" },
+            { "hrsh7th/cmp-path", after = "cmp-tmux" },
+            { "f3fora/cmp-spell", after = "cmp-path" },
+            { "hrsh7th/cmp-buffer", after = "cmp-spell" },
+            { "kdheepak/cmp-latex-symbols", after = "cmp-buffer" },
+            { "hrsh7th/cmp-cmdline", after = "cmp-buffer" },
+            -- {
+            --     'tzachar/cmp-tabnine',
+            --     run = './install.sh',
+            --     after = 'cmp-spell',
+            --     config = conf.tabnine
+            -- }
+        },
+        config = require('plugins.nvim_cmp')
+
+    }
 
     use {
         "brymer-meneses/grammar-guard.nvim",
@@ -275,7 +304,7 @@ config = function() require('plugins.eviline') end
         event={"InsertEnter"},
     }
 
----- git
+    ---- git
 
     use {'nvim-telescope/telescope.nvim',
         cmd = "Telescope",
@@ -321,10 +350,10 @@ config = function() require('plugins.eviline') end
     }
 
 
--- use {'vigoux/LanguageTool.nvim',
---       ft={'rmd',"markdown","tex"},
---       config = require('plugins.langtool'),
--- }
+    -- use {'vigoux/LanguageTool.nvim',
+    --       ft={'rmd',"markdown","tex"},
+    --       config = require('plugins.langtool'),
+    -- }
 
     -------------
     --  tools  --
@@ -411,8 +440,8 @@ config = function() require('plugins.eviline') end
     -----------------
 
     use{"nathom/filetype.nvim"}
--- Is using a standard Neovim install, i.e. built from source or using a
--- provided appimage.
+    -- Is using a standard Neovim install, i.e. built from source or using a
+    -- provided appimage.
     use 'lewis6991/impatient.nvim'
 
     use {
