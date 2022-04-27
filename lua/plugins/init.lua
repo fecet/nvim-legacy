@@ -266,14 +266,17 @@ config = function() require('plugins.eviline') end
     --
     use {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        -- event = "InsertEnter",
         requires = {
             { "lukas-reineke/cmp-under-comparator" },
             -- { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
-            { "quangnguyen30192/cmp-nvim-ultisnips", after = "nvim-cmp",config=function()
+            { "quangnguyen30192/cmp-nvim-ultisnips", 
+                -- after = "nvim-cmp",
+                config=function()
                 -- optional call to setup (see customization section)
                 require("cmp_nvim_ultisnips").setup{}
-            end, },
+                end, 
+            },
             { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
             { "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
             { "andersevenrud/cmp-tmux", after = "cmp-nvim-lua" },
@@ -289,7 +292,7 @@ config = function() require('plugins.eviline') end
             --     config = conf.tabnine
             -- }
         },
-        config = require('plugins.nvim_cmp')
+        config = require('plugins.nvim_cmp_conf')
 
     }
 
@@ -301,7 +304,8 @@ config = function() require('plugins.eviline') end
     use {
         "SirVer/ultisnips",
         requires = {"fecet/vim-snippets",opt= true},
-        event={"InsertEnter"},
+        -- event={"InsertEnter"},
+        -- after={"nvim-cmp"}
     }
 
     ---- git
