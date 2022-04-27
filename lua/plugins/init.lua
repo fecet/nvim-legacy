@@ -248,21 +248,21 @@ config = function() require('plugins.eviline') end
       tag = 'v0.1.2', -- tag is optional
     }
 
-    use {"ms-jpq/coq_nvim",
-        opt = false,
-        -- after = "nvim-lsp-installer",
-        -- after = "nvim-treesitter",
-        -- branch = "coq-marks-available",
-        requires = {
-            {"ms-jpq/coq.artifacts",
-                branch = "artifacts",
-            },
-            {"ms-jpq/coq.thirdparty",
-                branch = "3p",
-                config=require("plugins.coq3p")
-            }
-        },
-    }
+    -- use {"ms-jpq/coq_nvim",
+    --     opt = false,
+    --     -- after = "nvim-lsp-installer",
+    --     -- after = "nvim-treesitter",
+    --     -- branch = "coq-marks-available",
+    --     requires = {
+    --         {"ms-jpq/coq.artifacts",
+    --             branch = "artifacts",
+    --         },
+    --         {"ms-jpq/coq.thirdparty",
+    --             branch = "3p",
+    --             config=require("plugins.coq3p")
+    --         }
+    --     },
+    -- }
 
     use {
         "brymer-meneses/grammar-guard.nvim",

@@ -1,4 +1,4 @@
-vim.cmd('source ' .. "~/.config/nvim" .. '/lua/lsp/coq.vim')
+-- vim.cmd('source ' .. "~/.config/nvim" .. '/lua/lsp/coq.vim')
 if not packer_plugins["nvim-lspconfig"].loaded then
     vim.cmd [[packadd nvim-lspconfig]]
 end
@@ -126,9 +126,9 @@ lsp_installer.on_server_ready(
             opts.flags = {
                 debounce_text_changes = 150,
             }
-            -- server:setup(opts)
-            local coq = require "coq" -- add this
-            server:setup(coq.lsp_ensure_capabilities(opts))
+            server:setup(opts)
+            -- local coq = require "coq" -- add this
+            -- server:setup(coq.lsp_ensure_capabilities(opts))
         end
     end
 )
