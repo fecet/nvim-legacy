@@ -201,4 +201,3 @@ efmls.setup {
 
 
 
-vim.cmd('COQnow')
