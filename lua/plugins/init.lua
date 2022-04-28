@@ -196,7 +196,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"windwp/nvim-autopairs",
 		config = require("plugins.autopairs"),
-		after = "nvim-treesitter",
+		after = "nvim-cmp",
 	})
 
 	----------------
