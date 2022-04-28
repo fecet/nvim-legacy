@@ -43,6 +43,9 @@ for name, _ in pairs(servers) do
     end
 end
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+
 local function on_attach(_, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
@@ -122,6 +125,7 @@ lsp_installer.on_server_ready(
                 }
             }
         end
+        opts.capabilities = capabilities
         opts.on_attach = on_attach
         opts.flags = {
             debounce_text_changes = 150,
