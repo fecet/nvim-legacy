@@ -248,7 +248,7 @@ config = function() require('plugins.eviline') end
 	--
 	use({
 		"hrsh7th/nvim-cmp",
-		-- event = "InsertEnter",
+		event = "InsertEnter",
 		requires = {
 			{ "lukas-reineke/cmp-under-comparator" },
 			-- { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
@@ -295,7 +295,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"nvim-telescope/telescope.nvim",
         event="BufRead",
-		-- cmd = "Telescope",
+		cmd = "Telescope",
 		requires = {
 			{ "nvim-lua/popup.nvim", opt = true },
 			{ "nvim-lua/plenary.nvim", opt = true },
