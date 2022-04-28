@@ -92,7 +92,8 @@ return function()
             -- ["<C-n>"] = cmp.mapping.select_next_item(),
             -- ["<C-d>"] = cmp.mapping.scroll_docs(-4),
             -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            -- ["<C-e>"] = cmp.mapping.close(),
+            ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
+            ["<C-e>"] = cmp.mapping.close(),
             -- ["<Tab>"] = cmp.mapping(function(fallback)
             --     if cmp.visible() then
             --         cmp.select_next_item()
@@ -125,13 +126,15 @@ return function()
             -- end,
             ["<Tab>"] = cmp.mapping(
                 function(fallback)
-                    cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+                    -- cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
+                    cmp_ultisnips_mappings.compose { "expand", "jump_forwards" }(fallback)
                 end,
                 { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
             ),
             ["<S-Tab>"] = cmp.mapping(
                 function(fallback)
-                    cmp_ultisnips_mappings.jump_backwards(fallback)
+                    -- cmp_ultisnips_mappings.jump_backwards(fallback)
+                    cmp_ultisnips_mappings.compose { "jump_backwards" }(fallback)
                 end,
                 { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
             ),
