@@ -1,6 +1,10 @@
 return function()
-    local cmp = require("cmp")
+    if not packer_plugins["nvim-cmp"].loaded then
+        vim.cmd [[packadd nvim-cmp]]
+    end
     vim.cmd [[packadd cmp-nvim-ultisnips]]
+
+    local cmp = require("cmp")
     local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
     -- vim.cmd([[highlight CmpItemAbbrDeprecated guifg=#D8DEE9 guibg=NONE gui=strikethrough]])
