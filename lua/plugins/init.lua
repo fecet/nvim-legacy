@@ -413,6 +413,9 @@ config = function() require('plugins.eviline') end
 		"h-hg/fcitx.nvim",
 		event = { "InsertEnter" },
 	})
+
+
+	use({ "kmonad/kmonad-vim", ft = { "kbd" } })
 end
 
 return require("packer").startup({
