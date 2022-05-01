@@ -47,6 +47,25 @@ nnoremap > >>
 map K <C-u>
 map J <C-d>
 
+nnoremap <C-h> <left>
+inoremap <C-h> <left>
+cnoremap <C-h> <left>
+xnoremap <C-h> <left>
+
+nnoremap <C-j> <down>
+inoremap <C-j> <down>
+cnoremap <C-j> <down>
+xnoremap <C-j> <down>
+
+nnoremap <C-k> <up>
+inoremap <C-k> <up>
+cnoremap <C-k> <up>
+xnoremap <C-k> <up>
+
+nnoremap <C-l> <right>
+inoremap <C-l> <right>
+cnoremap <C-l> <right>
+xnoremap <C-l> <right>
 " map K 6k
 " map J 6j
 " H key: go to the start of the line
@@ -59,7 +78,10 @@ noremap <silent> L $
 " nnoremap <C-L> :tabnext<cr>
 
 noremap <C-H> :BufferLineCyclePrev<CR>
+noremap <C-S-h> :BufferLineCyclePrev<CR>
 noremap <C-L> :BufferLineCycleNext<CR>
+noremap <C-S-l> :BufferLineCycleNext<CR>
+
 noremap <silent> <leader>bc :BufferLinePickClose<CR>
 noremap <silent> <leader>gb :BufferLinePick<CR>
 
