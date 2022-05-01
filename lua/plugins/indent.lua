@@ -20,7 +20,7 @@ odd_colors = {fg='#44475a',bg='#44475a'};
     require("indent_blankline").setup {
         filetype_exclude = {
             "startify", "dashboard", "dotooagenda", "log", "fugitive",
-            "gitcommit", "packer", "vimwiki","Telescope",
+            "gitcommit", "packer", "vimwiki","Telescope", "telescope",
             "vista", "help", "todoist", "NvimTree", "peekaboo", "git",
             "TelescopePrompt", "undotree", "flutterToolsOutline","Outline"
         },

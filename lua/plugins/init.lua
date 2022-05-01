@@ -254,7 +254,7 @@ config = function() require('plugins.eviline') end
 			-- { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
 			{
 				"quangnguyen30192/cmp-nvim-ultisnips",
-				after = "nvim-cmp",
+				after = {"nvim-cmp","ultisnips"},
 				config = function()
 					-- optional call to setup (see customization section)
 					require("cmp_nvim_ultisnips").setup({})
@@ -286,7 +286,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"SirVer/ultisnips",
 		requires = { "fecet/vim-snippets", opt = true },
-		-- event={"InsertEnter"},
+		event={"InsertEnter"},
 		-- after={"nvim-cmp"}
 	})
 

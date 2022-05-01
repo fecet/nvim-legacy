@@ -139,6 +139,7 @@ let g:slime_target = "x11"
 let g:slime_python_qtconsole = 1
 let g:ipython_cell_tag=['# %%', '#%%', '# <codecell>']
 
+let b:slime_cell_delimiter = "# %%"
 
 """""""""""""
 "  neovide  "
