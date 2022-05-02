@@ -268,12 +268,12 @@ config = function() require('plugins.eviline') end
 			{ "hrsh7th/cmp-buffer", after = "cmp-spell" },
 			{ "kdheepak/cmp-latex-symbols", after = "cmp-buffer" },
 			{ "hrsh7th/cmp-cmdline", after = "cmp-buffer" },
-			-- {
-			--     'tzachar/cmp-tabnine',
-			--     run = './install.sh',
-			--     after = 'cmp-spell',
-			--     config = conf.tabnine
-			-- }
+			{
+			    'tzachar/cmp-tabnine',
+			    run = './install.sh',
+			    after = 'cmp-spell',
+			    config = require("plugins.tabnine"),
+			}
 		},
 		config = require("plugins.nvim_cmp_conf"),
 	})

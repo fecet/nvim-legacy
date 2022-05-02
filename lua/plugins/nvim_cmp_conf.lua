@@ -75,7 +75,7 @@ return function()
                 vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
 
                 vim_item.menu = ({
-                    -- cmp_tabnine = "[TN]",
+                    cmp_tabnine = "[TN]",
                     buffer = "[BUF]",
                     orgmode = "[ORG]",
                     nvim_lsp = "[LSP]",
@@ -169,7 +169,7 @@ return function()
             { name = "orgmode" },
             { name = "buffer" },
             { name = "latex_symbols" },
-            -- {name = 'cmp_tabnine'}
+            { name = 'cmp_tabnine'}
         },
     })
 
