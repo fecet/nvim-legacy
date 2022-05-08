@@ -22,7 +22,7 @@ nmap <leader>sc <Plug>SlimeSendCell<CR><ESC>
 
 function! Knit()
     let fn = expand('%:f')
-    execute "! export LANG=C"
+    " execute "! export LANG=C"
     execute "! R -e \"rmarkdown::render(" . "'" . fn . "'" . ")\""
     " execute "! R -e \"rmarkdown::render(" . fn . ")\""
 endfunction

@@ -103,12 +103,12 @@ let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 """"""""""""""
 
 " let g:pandoc#filetypes#handled = ["pandoc", "markdown","rmd"]
-" let g:pandoc#filetypes#pandoc_markdown = 0
+let g:pandoc#filetypes#pandoc_markdown = 0
 
-" let g:tex_conceal='abdmg'
+let g:tex_conceal='abdmg'
 let g:tex_flavor = "latex"
 let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_math = 1
+let g:vim_markdown_math = 0
 let g:pandoc#modules#disabled = ["folding"]
 
 """"""""""""""
@@ -145,15 +145,15 @@ let b:slime_cell_delimiter = "# %%"
 "  neovide  "
 """""""""""""
 
-"" Config for neovide
-" let g:neovide_cursor_vfx_mode='railgun'
+"Config for neovide
+let g:neovide_cursor_vfx_mode='railgun'
 " let g:neovide_cursor_vfx_opacity=200.0
 " let g:neovide_cursor_vfx_particle_lifetime=3.2
 " let g:neovide_cursor_vfx_particle_density=10.0
 " let g:neovide_cursor_vfx_particle_speed=10.0
 " let g:neovide_cursor_vfx_particle_phase=1.5
 " let g:neovide_cursor_vfx_particle_curl=1.0
-
+" let g:neovide_profiler = v:true
 
 if has('nvim') && executable('nvr')
   let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"

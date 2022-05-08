@@ -254,7 +254,7 @@ config = function() require('plugins.eviline') end
 			-- { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
 			{
 				"quangnguyen30192/cmp-nvim-ultisnips",
-				after = {"nvim-cmp","ultisnips"},
+				after = { "nvim-cmp", "ultisnips" },
 				config = function()
 					-- optional call to setup (see customization section)
 					require("cmp_nvim_ultisnips").setup({})
@@ -269,11 +269,11 @@ config = function() require('plugins.eviline') end
 			{ "kdheepak/cmp-latex-symbols", after = "cmp-buffer" },
 			{ "hrsh7th/cmp-cmdline", after = "cmp-buffer" },
 			{
-			    'tzachar/cmp-tabnine',
-			    run = './install.sh',
-			    after = 'cmp-spell',
-			    config = require("plugins.tabnine"),
-			}
+				"tzachar/cmp-tabnine",
+				run = "./install.sh",
+				after = "cmp-spell",
+				config = require("plugins.tabnine"),
+			},
 		},
 		config = require("plugins.nvim_cmp_conf"),
 	})
@@ -286,7 +286,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"SirVer/ultisnips",
 		requires = { "fecet/vim-snippets", opt = true },
-		event={"InsertEnter"},
+		event = { "InsertEnter" },
 		-- after={"nvim-cmp"}
 	})
 
@@ -294,7 +294,7 @@ config = function() require('plugins.eviline') end
 
 	use({
 		"nvim-telescope/telescope.nvim",
-        event="BufRead",
+		event = "BufRead",
 		cmd = "Telescope",
 		requires = {
 			{ "nvim-lua/popup.nvim", opt = true },
@@ -312,10 +312,12 @@ config = function() require('plugins.eviline') end
 	use({ "iamcco/markdown-preview.nvim", ft = { "markdown", "rmd" }, run = "cd app && yarn install" })
 
 	use({ "ekickx/clipboard-image.nvim", cmd = "PasteImg", config = require("plugins.clipimg") })
-	-- use {'lervag/vimtex',
-	--     opt=true,
-	--     ft={'markdown','rmd','tex','latex',"tex.rmd"},
-	-- }
+
+	use {'lervag/vimtex',
+	    opt=true,
+	    ft={'markdown','rmd','tex','latex',"tex.rmd"},
+	}
+
 	use({ "vim-pandoc/vim-pandoc-syntax", ft = { "rmd", "tex" } })
 
 	use({ "vim-pandoc/vim-pandoc", ft = { "rmd", "tex" } })
@@ -414,7 +416,6 @@ config = function() require('plugins.eviline') end
 		event = { "InsertEnter" },
 	})
 
-
 	use({ "kmonad/kmonad-vim", ft = { "kbd" } })
 end
 
@@ -428,4 +429,3 @@ return require("packer").startup({
 		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
 })
-
