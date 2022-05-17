@@ -318,9 +318,9 @@ config = function() require('plugins.eviline') end
 	    ft={'markdown','rmd','tex','latex',"tex.rmd"},
 	}
 
-	use({ "vim-pandoc/vim-pandoc-syntax", ft = { "rmd", "tex" } })
+	use({ "vim-pandoc/vim-pandoc-syntax", ft = { "rmd", "tex", "pandoc","markdown" } })
 
-	use({ "vim-pandoc/vim-pandoc", ft = { "rmd", "tex" } })
+	use({ "vim-pandoc/vim-pandoc", ft = { "rmd", "tex", "pandoc","markdown" } })
 
 	use({ "vim-pandoc/vim-rmarkdown", ft = { "rmd" } })
 

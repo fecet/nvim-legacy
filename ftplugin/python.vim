@@ -92,3 +92,6 @@ nmap <leader>sc <Plug>SlimeSendCell<CR>
 
 nmap <leader><CR> :call jupyter_ascending#execute()<CR>
 nmap <leader>sc :call SlimeSendCellJump()<CR>
+
+
+imap <S><CR> :call jupyter_ascending#execute()<CR>
