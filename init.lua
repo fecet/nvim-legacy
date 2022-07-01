@@ -46,4 +46,3 @@ require('plugins')
 require('dashboard')
 require('ultisnips')
 require('packer_compiled')
-
