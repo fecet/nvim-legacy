@@ -37,7 +37,7 @@ config = function() require('plugins.eviline') end
 	})
 
 	-- use({ "glepnir/dashboard-nvim", opt = true, event = "BufWinEnter" })
-	use({ "glepnir/dashboard-nvim"})
+	use({ "glepnir/dashboard-nvim" })
 	-- use {
 	--     'goolord/alpha-nvim',
 	--     config = require("plugins.alpha"),
@@ -204,12 +204,12 @@ config = function() require('plugins.eviline') end
 	--  nvim-lsp  --
 	----------------
 
-	use({ "neovim/nvim-lspconfig", opt = true, event = "BufReadPre" })
+	use({ "neovim/nvim-lspconfig", opt = true, event = { "BufReadPre", "BufNewFile" } })
 
 	use({
 		"williamboman/nvim-lsp-installer",
-		opt = true,
-		after = "nvim-lspconfig",
+		-- opt = true,
+		-- after = "nvim-lspconfig",
 		config = function()
 			require("lsp.setup")
 		end,
@@ -314,14 +314,11 @@ config = function() require('plugins.eviline') end
 
 	use({ "ekickx/clipboard-image.nvim", cmd = "PasteImg", config = require("plugins.clipimg") })
 
-	use {'lervag/vimtex',
-	    opt=true,
-	    ft={'markdown','rmd','tex','latex',"tex.rmd"},
-	}
+	use({ "lervag/vimtex", opt = true, ft = { "markdown", "rmd", "tex", "latex", "tex.rmd" } })
 
-	use({ "vim-pandoc/vim-pandoc-syntax", ft = { "rmd", "tex", "pandoc","markdown" } })
+	use({ "vim-pandoc/vim-pandoc-syntax", ft = { "rmd", "tex", "pandoc", "markdown" } })
 
-	use({ "vim-pandoc/vim-pandoc", ft = { "rmd", "tex", "pandoc","markdown" } })
+	use({ "vim-pandoc/vim-pandoc", ft = { "rmd", "tex", "pandoc", "markdown" } })
 
 	use({ "vim-pandoc/vim-rmarkdown", ft = { "rmd" } })
 
@@ -430,4 +427,3 @@ return require("packer").startup({
 		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
 })
-
