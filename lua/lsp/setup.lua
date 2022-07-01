@@ -1,4 +1,6 @@
 -- vim.cmd('source ' .. "~/.config/nvim" .. '/lua/lsp/coq.vim')
+
+vim.cmd [[packadd cmp-nvim-lsp]]
 if not packer_plugins["nvim-lspconfig"].loaded then
     vim.cmd [[packadd nvim-lspconfig]]
 end
