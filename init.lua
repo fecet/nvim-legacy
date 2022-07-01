@@ -43,6 +43,6 @@ end
 
 
 require('plugins')
-require('dashboard')
+require('dashboard1')
 require('ultisnips')
 require('packer_compiled')
