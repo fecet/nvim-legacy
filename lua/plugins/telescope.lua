@@ -26,6 +26,6 @@ override_file_sorter = true,
 	-- require('telescope').load_extension('session-lens')
 	require("telescope").load_extension("fzy_native")
 	-- require("telescope").load_extension("dotfiles")
-	require("telescope").load_extension("gosource")
+	-- require("telescope").load_extension("gosource")
 	require("telescope").load_extension("file_browser")
 end
