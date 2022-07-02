@@ -295,11 +295,13 @@ config = function() require('plugins.eviline') end
 
 	use({
 		"nvim-telescope/telescope.nvim",
-		event = "BufRead",
+		-- event = "BufRead",
 		cmd = "Telescope",
 		requires = {
 			{ "nvim-lua/popup.nvim", opt = true },
 			{ "nvim-lua/plenary.nvim", opt = true },
+			{ "nvim-telescope/telescope-fzy-native.nvim", opt = true },
+			{ "nvim-telescope/telescope-file-browser.nvim", opt = true },
 		},
 		config = require("plugins.telescope"),
 	})

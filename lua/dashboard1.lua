@@ -18,73 +18,53 @@ g.dashboard_custom_section = {
     i = {description = {"  Exit                             Q  "}, command = "exit"}
 }
 
--- vim.cmd("let packages = len(globpath('~/.local/share/nvim/site/pack/packer/start', '*', 0, 1))")
-
-g.dashboard_footer_icon = '🐬 '
--- vim.api.nvim_exec([[
---     let g:dashboard_custom_footer = ['neovim loaded '..packages..' packages']
--- ]], false)
--- -- g.dashboard_custom_footer = {'None are more hopelessly enslaved than those who falsely believe they are free'}
--- vim.cmd [[
--- augroup dashboard_au
---      autocmd! * <buffer>
---      autocmd User dashboardReady let &l:stl = 'Dashboard'
---      autocmd User dashboardReady nnoremap <buffer> <leader>q <cmd>exit<CR>
---      autocmd User dashboardReady nnoremap <buffer> <leader>u <cmd>PackerUpdate<CR>
---      autocmd User dashboardReady nnoremap <buffer> <leader>l <cmd>SessionLoad<CR>
--- augroup END
--- ]]
-
-
-g.dashboard_custom_header = {
-   "                                   ",
-   "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          ",
-   "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       ",
-   "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     ",
-   "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    ",
-   "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   ",
-   "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  ",
-   "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
-   " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  ",
-   " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ ",
-   "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
-   "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
-   "                                   ",
-}
-
-g.dashboard_disable_statusline = 1
-
 local home = os.getenv('HOME')
 local db = require('dashboard')
 db.preview_command = 'cat | lolcat -F 0.3'
+-- db.custom_footer="NEVER"
 -- db.preview_command = 'lolcat'
 db.preview_file_path = home .. '/.config/nvim/neovim.cat'
 db.preview_file_height = 12
 db.preview_file_width = 80
+db.hide_statusline = true
+db.hide_tabline = true
 db.custom_center = {
-    {icon = '  ',
+    {icon = '  ',
     desc = 'Recently opened files                   ',
-    shortcut = 'SPC s l',
-    action ='SessionLoad'},
-    {icon = '  ',
-    desc = 'Recently opened files                   ',
-    action =  'DashboardFindHistory',
-    shortcut = 'SPC f h'},
-    {icon = '  ',
-    desc = 'Find  File                              ',
-    action = 'Telescope find_files find_command=rg,--hidden,--files',
-    shortcut = 'SPC f f'},
-    {icon = '  ',
-    desc ='File Browser                            ',
-    action =  'Telescope file_browser',
-    shortcut = 'SPC f b'},
+    shortcut = 'SPC f h',
+    action ='Telescope oldfiles'},
     {icon = '  ',
     desc = 'Find  word                              ',
     action = 'Telescope live_grep',
-    shortcut = 'SPC f w'},
+    shortcut = 'SPC f g'},
+    {icon = '  ',
+    desc = 'New file                                ',
+    action = 'DashboardNewFile',
+    shortcut = 'SPC e n'},
+    -- {icon = '  ',
+    -- desc = 'Recently opened files                   ',
+    -- action =  'DashboardFindHistory',
+    -- shortcut = 'SPC f h'},
+    -- {icon = '  ',
+    -- desc = 'Find  File                              ',
+    -- action = 'Telescope find_files find_command=rg,--hidden,--files',
+    -- shortcut = 'SPC f f'},
+    {icon = '  ',
+    desc ='File browser                            ',
+    action =  'RnvimrToggle',
+    shortcut = 'SPC e e'},
+    {icon = '  ',
+    desc ='Neovim startuptime                      ',
+    action =  'StartupTime',
+    shortcut = 'SPC u  '},
     {
-        icon = '  ',
-    desc = 'Open Personal dotfiles                  ',
-    action = 'Telescope dotfiles path=' .. home ..'/.dotfiles',
-    shortcut = 'SPC f d'},
+    icon = '  ',
+    desc = 'Open personal dotfiles                  ',
+    -- action = 'Telescope dotfiles path=' .. home ..'/.dotfiles',
+    action = 'Telescope dotfiles path=' .. home ..'/.config',
+    shortcut = 'SPC e v'},
   }
+
+
+
+

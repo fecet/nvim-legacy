@@ -21,5 +21,10 @@ return function()
     --[[ vim.cmd('hi link IndentBlanklineChar Conceal')
 vim.cmd('hi link IndentBlanklineSpaceChar Conceal') ]]
     vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank({timeout=300,on_visual=true})]]
+    vim.cmd('hi DashboardShortCut ctermbg=238 guifg=#50fa7b')
+    vim.cmd('hi DashboardFooter ctermbg=238 guifg=#50fa7b')
+    vim.cmd('hi DashBoardHeader guifg=#fa541c')
+    vim.cmd('hi DashboardCenter guifg=#fa541c')
+    vim.cmd('hi DashboardCenterIcon guifg=#fa541c')
 end
 
