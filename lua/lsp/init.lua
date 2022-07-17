@@ -279,7 +279,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"quangnguyen30192/cmp-nvim-ultisnips",
 		-- event = "InsertEnter",
-		-- after = { "nvim-cmp", "ultisnips" },
+		after = { "nvim-cmp", "ultisnips" },
 		ft = { "python", "lua" },
 		config = require("plugins.cmp_ultisnip"),
 	})
@@ -434,4 +434,3 @@ return require("packer").startup({
 		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
 })
-
