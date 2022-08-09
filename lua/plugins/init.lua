@@ -398,9 +398,9 @@ config = function() require('plugins.eviline') end
 
 	use({ "untitled-ai/jupyter_ascending.vim", ft = { "python", "r"} })
 
-	use({ "adavidwilson/vim-slime", ft = { "python", "sh", "r" } })
+	use({ "adavidwilson/vim-slime", ft = { "python", "r" } })
 
-	use({ "Klafyvel/vim-slime-cells", ft = { "python", "sh", "r"} })
+	use({ "Klafyvel/vim-slime-cells", ft = { "python", "r"} })
 
 	use({
 		"hanschen/vim-ipython-cell",
