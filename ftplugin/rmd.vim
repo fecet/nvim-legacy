@@ -26,3 +26,5 @@ function! Knit()
     execute "! R -e \"rmarkdown::render(" . "'" . fn . "'" . ")\""
     " execute "! R -e \"rmarkdown::render(" . fn . ")\""
 endfunction
+
+let g:UltiSnipsExpandTrigger="<Tab>"

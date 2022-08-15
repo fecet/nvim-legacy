@@ -205,11 +205,14 @@ config = function() require('plugins.eviline') end
 	--  nvim-lsp  --
 	----------------
 
-	use({ "neovim/nvim-lspconfig", opt = true, event = { "BufReadPre", "BufNewFile" },
-        config = function()
+	use({
+		"neovim/nvim-lspconfig",
+		opt = true,
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
 			require("lsp.setup")
 		end,
-     })
+	})
 
 	use({
 		"williamboman/nvim-lsp-installer",
@@ -396,11 +399,11 @@ config = function() require('plugins.eviline') end
 	--  repl  --
 	------------
 
-	use({ "untitled-ai/jupyter_ascending.vim", ft = { "python", "r"} })
+	use({ "untitled-ai/jupyter_ascending.vim", ft = { "python", "r" } })
 
 	use({ "adavidwilson/vim-slime", ft = { "python", "r" } })
 
-	use({ "Klafyvel/vim-slime-cells", ft = { "python", "r"} })
+	use({ "Klafyvel/vim-slime-cells", ft = { "python", "r" } })
 
 	use({
 		"hanschen/vim-ipython-cell",
@@ -422,6 +425,20 @@ config = function() require('plugins.eviline') end
 	})
 
 	use({ "kmonad/kmonad-vim", ft = { "kbd" } })
+
+	use({
+		"chipsenkbeil/distant.nvim",
+		config = function()
+			require("distant").setup({
+				-- Applies Chip's personal settings to every machine you connect to
+				--
+				-- 1. Ensures that distant servers terminate with no connections
+				-- 2. Provides navigation bindings for remote directories
+				-- 3. Provides keybinding to jump into a remote file's parent directory
+				["*"] = require("distant.settings").chip_default(),
+			})
+		end,
+	})
 end
 
 return require("packer").startup({
@@ -434,4 +451,3 @@ return require("packer").startup({
 		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
 })
-

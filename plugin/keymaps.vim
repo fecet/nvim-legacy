@@ -147,7 +147,6 @@ command! -nargs=0 RunQtConsoleRemote
 " let g:UltiSnipsJumpBackwardTrigger="<s-f20>"
 " let g:UltiSnipsEditSplit="vertical"
 " let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/site/pack/packer/start/vim-snippets/UltiSnips',$HOME.'/.local/share/nvim/site/pack/packer/opt/vim-snippets/UltiSnips']
-let g:UltiSnipsExpandTrigger="<Tab>"
 let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 let g:UltiSnipsEditSplit="vertical"

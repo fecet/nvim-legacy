@@ -9,7 +9,7 @@
 1. Modify `./_machine_specific.vim` properly if necessary
 1. 
     ```
-    yay -S figlet cow python-pynvim ranger ueberzug
+    yay -S figlet cow python-pynvim ranger ueberzug lolcat efm-langserver
     ```
 1.
     ```
