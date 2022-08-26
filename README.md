@@ -9,8 +9,9 @@
 1. Modify `./_machine_specific.vim` properly if necessary
 1. 
     ```
-    yay -S figlet cow python-pynvim ranger ueberzug lolcat efm-langserver
+    yay -S figlet cow python-pynvim ranger ueberzug lolcat efm-langserver lean-community python-mathlibtools
     ```
+
 1.
     ```
     pip install jupyter_ascending
