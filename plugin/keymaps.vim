@@ -4,6 +4,8 @@
 " nnoremap k gk
 " nnoremap gk k
 " nmap <C-_> gcc
+let maplocalleader = "<Space><Space>"
+let maplocalleader = "\<Space>\<Space>"
 " Save & quit
 "
 noremap Q :q<CR>
@@ -160,4 +162,4 @@ nnoremap <leader>en <cmd>DashboardNewFile<cr>
 
 omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
 vnoremap <silent> m :lua require('tsht').nodes()<CR>
-
+o

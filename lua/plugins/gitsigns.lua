@@ -11,7 +11,7 @@ return function()
         numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
         linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
         word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
-        keymaps = {
+        -- keymaps = {
 --             -- Default keymap options
 --             noremap = true,
 --             ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'"},
@@ -29,7 +29,7 @@ return function()
 --             -- Text objects
 --             ['o ih'] = ':<C-U>Gitsigns select_hunk<CR>',
 --             ['x ih'] = ':<C-U>Gitsigns select_hunk<CR>'
-        },
+        -- },
         attach_to_untracked = true,
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
         current_line_blame_opts = {

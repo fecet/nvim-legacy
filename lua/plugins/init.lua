@@ -215,46 +215,24 @@ config = function() require('plugins.eviline') end
     })
 
     use({
-        "williamboman/nvim-lsp-installer",
-        -- opt = true,
-        -- after = "nvim-lspconfig",
-        -- config = function()
-        -- 	require("lsp.setup")
-        -- end,
+        "williamboman/mason.nvim",
+        requires = {
+            { "williamboman/mason-lspconfig.nvim" },
+            {
+                "WhoIsSethDaniel/mason-tool-installer.nvim",
+                config = function()
+                    require("lsp.mason")
+                end,
+            },
+        },
     })
 
-    --     use {
-    --         "jose-elias-alvarez/null-ls.nvim",
-    --         after="nvim-lsp-installer"
-    --     }
-    --
-    --     use {
-    --         "MunifTanjim/prettier.nvim",
-    --         after="null-ls.nvim",
-    --         config=require('plugins.prettier')
-    --     }
     use({
         "creativenull/efmls-configs-nvim",
         opt = false,
         tag = "v0.1.2", -- tag is optional
     })
 
-    -- use {"ms-jpq/coq_nvim",
-    --     opt = false,
-    --     -- after = "nvim-lsp-installer",
-    --     -- after = "nvim-treesitter",
-    --     -- branch = "coq-marks-available",
-    --     requires = {
-    --         {"ms-jpq/coq.artifacts",
-    --             branch = "artifacts",
-    --         },
-    --         {"ms-jpq/coq.thirdparty",
-    --             branch = "3p",
-    --             config=require("plugins.coq3p")
-    --         }
-    --     },
-    -- }
-    --
     use({
         "hrsh7th/nvim-cmp",
         -- event = "InsertEnter",
@@ -285,11 +263,6 @@ config = function() require('plugins.eviline') end
         -- after = { "nvim-cmp", "ultisnips" },
         ft = { "python", "lua", "sh" },
         config = require("plugins.cmp_ultisnip"),
-    })
-
-    use({
-        "brymer-meneses/grammar-guard.nvim",
-        after = "nvim-lsp-installer",
     })
 
     use({

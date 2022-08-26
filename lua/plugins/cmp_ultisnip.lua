@@ -1,5 +1,4 @@
 return function()
-
 	local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 	require("cmp_nvim_ultisnips").setup({})
 
@@ -32,20 +31,18 @@ return function()
 			-- { name = "luasnip" },
 			{ name = "ultisnips" },
 			{ name = "path" },
+			{ name = "cmp_tabnine" },
 			{ name = "spell" },
 			{ name = "tmux" },
 			{ name = "orgmode" },
 			{ name = "buffer" },
 			{ name = "latex_symbols" },
-			{ name = "cmp_tabnine" },
 		},
 	})
 
-    local g = vim.g
+	local g = vim.g
 
-    g.UltiSnipsExpandTrigger="<f20>"
-    g.UltiSnipsJumpForwardTrigger="<f21>"
-    g.UltiSnipsJumpBackwardTrigger="<s-f21>"
+	g.UltiSnipsExpandTrigger = "<f20>"
+	g.UltiSnipsJumpForwardTrigger = "<f21>"
+	g.UltiSnipsJumpBackwardTrigger = "<s-f21>"
 end
-
-
