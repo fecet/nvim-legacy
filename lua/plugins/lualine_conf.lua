@@ -36,7 +36,8 @@ local colors = {
 local config={
     options = {
         icons_enabled = true,
-        theme = "dracula-nvim",
+        -- theme = "dracula-nvim",
+        theme = "tokyonight",
         disabled_filetypes = {},
         component_separators = "|",
         section_separators = {left = "", right = ""}
@@ -88,7 +89,7 @@ end
 
 ins_left {
 	'lsp_progress',
-	display_components = { 'lsp_client_name', { 'title', 'percentage', 'message' }},
+	-- display_components = { 'lsp_client_name', { 'title', 'percentage', 'message' }},
 	-- With spinner
 	-- display_components = { 'lsp_client_name', 'spinner', { 'title', 'percentage', 'message' }},
 	colors = {
@@ -102,7 +103,7 @@ ins_left {
 	separators = {
 		component = ' ',
 		progress = ' | ',
-		message = { pre = '(', post = ')'},
+		-- message = { pre = '(', post = ')'},
 		percentage = { pre = '', post = '%% ' },
 		title = { pre = '', post = ': ' },
 		lsp_client_name = { pre = '[', post = ']' },

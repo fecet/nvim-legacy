@@ -20,7 +20,8 @@ mason_lsp.setup({
 		"sumneko_lua",
 		"clangd",
 		"gopls",
-		"jedi_language_server",
+		-- "jedi_language_server",
+		"pyright",
 		"vimls",
 		"cssls",
 		"html",
@@ -49,7 +50,7 @@ local function custom_attach(_, bufnr)
 	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	buf_set_keymap("n", "D", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	-- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	--[[ buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
 buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -61,7 +62,8 @@ buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_wo
 	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.format{async=true}<CR>", opts)
+	-- buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.format{async=true}<CR>", opts)
+    buf_set_keymap('n', '<space>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 	-- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 end
 

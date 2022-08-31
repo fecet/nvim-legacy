@@ -8,13 +8,13 @@ g.mapleader = " "
 vim.opt.termguicolors = true
 local fn = vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd 'packadd packer.nvim'
+    fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
+    vim.cmd("packadd packer.nvim")
 end
 
-require('impatient').enable_profile()
+--require('impatient').enable_profile()
 
 local disabled_built_ins = {
     "netrw",
@@ -34,15 +34,15 @@ local disabled_built_ins = {
     "logipat",
     "rrhelper",
     "spellfile_plugin",
-    "matchit"
+    "matchit",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
     g["loaded_" .. plugin] = 1
 end
 
-
-require('plugins')
-require('dashboard1')
-require('ultisnips')
-require('packer_compiled')
+require("plugins")
+require("packer_compiled")
+require("dashboard1")
+require("ultisnips")
+require("colorscheme")
