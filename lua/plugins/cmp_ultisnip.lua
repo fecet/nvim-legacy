@@ -7,6 +7,12 @@ return function()
 	end
 	local cmp = require("cmp")
 
+	local g = vim.g
+
+	g.UltiSnipsExpandTrigger = "<f20>"
+	g.UltiSnipsJumpForwardTrigger = "<f21>"
+	g.UltiSnipsJumpBackwardTrigger = "<s-f21>"
+
 	cmp.setup({
 		-- You can set mappings if you want
 		mapping = cmp.mapping.preset.insert({
@@ -40,9 +46,4 @@ return function()
 		},
 	})
 
-	local g = vim.g
-
-	g.UltiSnipsExpandTrigger = "<f20>"
-	g.UltiSnipsJumpForwardTrigger = "<f21>"
-	g.UltiSnipsJumpBackwardTrigger = "<s-f21>"
 end

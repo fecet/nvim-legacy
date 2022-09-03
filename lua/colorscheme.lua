@@ -2,6 +2,8 @@
 -- vim.cmd('colorscheme oxocarbon')
 --
 vim.g.tokyonight_style = "night"
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+vim.g.tokyonight_lualine_bold = true
 vim.cmd("colorscheme tokyonight")
 -- require('starry.functions').toggle_style("dracula")
 -- vim.cmd("colorscheme starry")
