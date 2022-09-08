@@ -59,7 +59,7 @@ config = function() require('plugins.eviline') end
 
 	--colorschemes
 
-	-- use({ "Mofiqul/dracula.nvim", opt = false, config=require("plugins.dracula") })
+	use({ "Mofiqul/dracula.nvim", opt = false, config=require("plugins.dracula") })
 
 	-- use({ "shaunsingh/oxocarbon.nvim", run = "./install.sh" })
 
