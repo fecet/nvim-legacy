@@ -2,15 +2,15 @@
 -- vim.cmd('colorscheme oxocarbon')
 --
 -- vim.g.tokyonight_style = "night"
-vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
-vim.g.tokyonight_lualine_bold = true
-vim.cmd("colorscheme tokyonight")
+-- vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+-- vim.g.tokyonight_lualine_bold = true
+-- vim.cmd("colorscheme tokyonight")
 -- vim.cmd("colorscheme dracula")
 -- require('starry.functions').toggle_style("dracula")
 -- vim.cmd("colorscheme starry")
--- vim.cmd("Starry dracula")
+vim.cmd("colorscheme dracula")
 
-vim.cmd("hi Normal guibg=#000000")
+-- vim.cmd("hi Normal guibg=#000000")
 vim.cmd("hi IndentBlanklineChar guifg=#444d56 gui=nocombine")
 vim.cmd("hi IndentBlanklineSpaceChar guifg=#444d56 gui=nocombine")
 vim.cmd("hi link GitSignsCurrentLineBlame Comment")
@@ -28,3 +28,5 @@ vim.cmd("hi DashboardFooter ctermbg=238 guifg=#50fa7b")
 vim.cmd("hi DashBoardHeader guifg=#fa541c")
 vim.cmd("hi DashboardCenter guifg=#fa541c")
 vim.cmd("hi DashboardCenterIcon guifg=#fa541c")
+
+vim.cmd("hi rainbowcol1 guifg=#8be9fd")
