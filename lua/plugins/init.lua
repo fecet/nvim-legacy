@@ -59,27 +59,31 @@ config = function() require('plugins.eviline') end
 
 	--colorschemes
 
-	use({ "Mofiqul/dracula.nvim", opt = false, config = require("plugins.dracula") })
+	-- use({ "Mofiqul/dracula.nvim", opt = false, config = require("plugins.dracula") })
 
 	-- use({ "shaunsingh/oxocarbon.nvim", run = "./install.sh" })
 
 	use({ "folke/tokyonight.nvim" })
 
-	-- use({
-	-- 	"ray-x/starry.nvim",
-	-- 	setup = function()
-	-- 		-- see example setup below
-	-- 		vim.g.starry_italic_comments = true
-	-- 		-- vim.g.starry_set_hl = true
-	-- 		-- vim.g.starry_deep_black = true
-	-- 		vim.g.starry_italic_keywords = true
-	-- 		vim.g.starry_italic_functions = true
-	-- 		vim.g.starry_italic_comments = true
-	-- 		vim.g.starry_italic_string = true
-	-- 		vim.g.starry_italic_variables = true
-	--             vim.g.starry_style="dracula-blood"
-	-- 	end,
-	-- })
+	-- use({ "tiagovla/tokyodark.nvim" })
+	-- use({ "projekt0n/github-nvim-theme" })
+        
+
+	use({
+		"ray-x/starry.nvim",
+		setup = function()
+			-- see example setup below
+			-- vim.g.starry_italic_comments = true
+			-- vim.g.starry_set_hl = true
+			-- vim.g.starry_deep_black = true
+			vim.g.starry_italic_keywords = true
+			-- vim.g.starry_italic_functions = true
+			-- vim.g.starry_italic_comments = true
+			-- vim.g.starry_italic_string = true
+			-- vim.g.starry_italic_variables = true
+            vim.g.starry_style="dracula"
+		end,
+	})
 
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -444,7 +448,6 @@ config = function() require('plugins.eviline') end
 		-- ft = { "lean" },
 	})
 	use({ "nvim-lua/plenary.nvim" })
-
 end
 
 return require("packer").startup({
