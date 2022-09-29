@@ -293,7 +293,7 @@ config = function() require('plugins.eviline') end
 
 	use({
 		"SirVer/ultisnips",
-		requires = { "fecet/vim-snippets", opt = true },
+		requires = { "fecet/vim-snippets"},
 		event = { "InsertEnter" },
 		-- after={"nvim-cmp"}
 	})
@@ -460,3 +460,7 @@ return require("packer").startup({
 		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
 })
+
+
+
+
