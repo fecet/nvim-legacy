@@ -67,7 +67,6 @@ config = function() require('plugins.eviline') end
 
 	-- use({ "tiagovla/tokyodark.nvim" })
 	-- use({ "projekt0n/github-nvim-theme" })
-        
 
 	use({
 		"ray-x/starry.nvim",
@@ -81,7 +80,7 @@ config = function() require('plugins.eviline') end
 			-- vim.g.starry_italic_comments = true
 			-- vim.g.starry_italic_string = true
 			-- vim.g.starry_italic_variables = true
-            vim.g.starry_style="dracula"
+			vim.g.starry_style = "dracula"
 		end,
 	})
 
@@ -293,7 +292,7 @@ config = function() require('plugins.eviline') end
 
 	use({
 		"SirVer/ultisnips",
-		requires = { "fecet/vim-snippets"},
+		requires = { "fecet/vim-snippets" },
 		event = { "InsertEnter" },
 		-- after={"nvim-cmp"}
 	})
@@ -448,6 +447,7 @@ config = function() require('plugins.eviline') end
 		-- ft = { "lean" },
 	})
 	use({ "nvim-lua/plenary.nvim" })
+	use({ "yamatsum/nvim-cursorline", config = require("plugins.cursorline") })
 end
 
 return require("packer").startup({
@@ -460,7 +460,3 @@ return require("packer").startup({
 		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
 	},
 })
-
-
-
-
