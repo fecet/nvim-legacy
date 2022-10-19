@@ -74,7 +74,7 @@ config = function() require('plugins.eviline') end
 			-- see example setup below
 			-- vim.g.starry_italic_comments = true
 			-- vim.g.starry_set_hl = true
-			-- vim.g.starry_deep_black = true
+			vim.g.starry_deep_black = true
 			vim.g.starry_italic_keywords = true
 			-- vim.g.starry_italic_functions = true
 			-- vim.g.starry_italic_comments = true
@@ -83,6 +83,8 @@ config = function() require('plugins.eviline') end
 			vim.g.starry_style = "dracula"
 		end,
 	})
+
+    use({"neg-serg/neg.nvim"})
 
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -448,6 +450,18 @@ config = function() require('plugins.eviline') end
 	})
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "yamatsum/nvim-cursorline", config = require("plugins.cursorline") })
+	use({
+		"tamton-aquib/duck.nvim",
+		config = function()
+			vim.keymap.set("n", "<leader>dd", function()
+				require("duck").hatch()
+			end, {})
+			vim.keymap.set("n", "<leader>dk", function()
+				require("duck").cook()
+			end, {})
+		end,
+	})
+
 end
 
 return require("packer").startup({

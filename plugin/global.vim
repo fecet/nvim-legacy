@@ -153,6 +153,9 @@ let g:neovide_cursor_vfx_mode='railgun'
 " let g:neovide_cursor_vfx_particle_phase=1.5
 " let g:neovide_cursor_vfx_particle_curl=1.0
 " let g:neovide_profiler = v:true
+let g:neovide_refresh_rate = 138
+let g:neovide_no_idle = v:true
+let g:neovide_profiler = v:true
 
 if has('nvim') && executable('nvr')
   let $GIT_EDITOR = "nvr -cc split --remote-wait +'set bufhidden=wipe'"

@@ -10,15 +10,16 @@ vim.cmd("colorscheme tokyonight")
 
 -- vim.cmd("colorscheme dracula")
 -- require('starry.functions').toggle_style("dracula")
+-- vim.cmd("colorscheme neg")
 -- vim.cmd("colorscheme starry")
 -- vim.cmd("colorscheme dracula")
 
--- vim.cmd("hi Normal guibg=#000000")
+vim.cmd("hi Normal guibg=#000000")
 vim.cmd("hi IndentBlanklineChar guifg=#444d56 gui=nocombine")
 vim.cmd("hi IndentBlanklineSpaceChar guifg=#444d56 gui=nocombine")
 vim.cmd("hi link GitSignsCurrentLineBlame Comment")
 vim.cmd("hi CursorColumn cterm=underline guibg=#44475a")
--- vim.cmd("hi IPythonCell ctermbg=238 guifg=#50fa7b guibg=#444d56")
+vim.cmd("hi IPythonCell ctermbg=238 guifg=#50fa7b guibg=#444d56")
 vim.cmd("hi link RnvimrNormal CursorLine")
 vim.cmd("hi DiffText guibg=#bd93f9")
 -- vim.cmd('hi Conceal ctermfg=NONE guifg=#f8f8f2 ctermbg=NONE guibg=#f8f8f2')
@@ -33,3 +34,4 @@ vim.cmd("hi DashboardCenter guifg=#fa541c")
 vim.cmd("hi DashboardCenterIcon guifg=#fa541c")
 
 vim.cmd("hi rainbowcol1 guifg=#8be9fd")
+
