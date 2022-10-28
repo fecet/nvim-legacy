@@ -50,7 +50,7 @@ local function custom_attach(_, bufnr)
 	buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	buf_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	buf_set_keymap("n", "D", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 	buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	--[[ buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
 buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -63,7 +63,7 @@ buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_wo
 	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 	-- buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.format{async=true}<CR>", opts)
-    buf_set_keymap('n', '<space>fm', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+	buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 	-- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 end
 
@@ -121,6 +121,25 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 						typeCheckingMode = "off",
 					},
 				},
+			},
+		})
+	elseif server == "clangd" then
+		nvim_lsp.clangd.setup({
+			capabilities = capabilities,
+			single_file_support = true,
+			on_attach = custom_attach,
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--pch-storage=memory",
+				-- You MUST set this arg ↓ to your clangd executable location (if not included)!
+				"--query-driver=/usr/bin/clang++,/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++,/usr/bin/clangd",
+				"--clang-tidy",
+				"--all-scopes-completion",
+				"--cross-file-rename",
+				"--completion-style=detailed",
+				"--header-insertion-decorators",
+				"--header-insertion=iwyu",
 			},
 		})
 	else
@@ -191,8 +210,8 @@ flake8 = vim.tbl_extend("force", flake8, {
 efmls.setup({
 	vim = { formatter = vint },
 	lua = { formatter = luafmt },
-	c = { formatter = clangfmt, linter = clangtidy },
-	cpp = { formatter = clangfmt, linter = clangtidy },
+	c = { formatter = clangfmt },
+	cpp = { formatter = clangfmt },
 	-- go = { formatter = goimports, linter = staticcheck },
 	python = { formatter = { black }, linter = flake8 },
 	vue = { formatter = prettier },
@@ -217,7 +236,7 @@ require("lean").setup({
 		on_attach = custom_attach,
 		capabilities = capabilities,
 		-- cmd = { "lean-language-server", "--stdio" },
-        cmd = {"lean-language-server", "--stdio", "--", "-M", "8192", "-T", "100000" };
+		cmd = { "lean-language-server", "--stdio", "--", "-M", "8192", "-T", "100000" },
 	},
 	mappings = true,
 	ft = { default = "lean3" },
