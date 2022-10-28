@@ -5,7 +5,9 @@
 -- require('starry.functions').change_style("dracula")
 -- vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
 -- vim.g.tokyonight_lualine_bold = true
-vim.cmd("colorscheme tokyonight")
+-- vim.cmd("colorscheme tokyonight-moon")
+vim.cmd("colorscheme catppuccin")
+
 -- vim.cmd("colorscheme aquarium")
 
 -- vim.cmd("colorscheme dracula")
@@ -14,7 +16,7 @@ vim.cmd("colorscheme tokyonight")
 -- vim.cmd("colorscheme starry")
 -- vim.cmd("colorscheme dracula")
 
-vim.cmd("hi Normal guibg=#000000")
+-- vim.cmd("hi Normal guibg=#000000")
 vim.cmd("hi IndentBlanklineChar guifg=#444d56 gui=nocombine")
 vim.cmd("hi IndentBlanklineSpaceChar guifg=#444d56 gui=nocombine")
 vim.cmd("hi link GitSignsCurrentLineBlame Comment")

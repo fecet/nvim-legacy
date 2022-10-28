@@ -46,6 +46,7 @@ config = function() require('plugins.eviline') end
 
 	use({
 		"akinsho/nvim-bufferline.lua",
+		tag = "v3.*",
 		-- opt=true,
 		-- event="BufRead",
 		-- after = "nvim-web-devicons",
@@ -67,24 +68,11 @@ config = function() require('plugins.eviline') end
 
 	-- use({ "tiagovla/tokyodark.nvim" })
 	-- use({ "projekt0n/github-nvim-theme" })
-
 	use({
-		"ray-x/starry.nvim",
-		setup = function()
-			-- see example setup below
-			-- vim.g.starry_italic_comments = true
-			-- vim.g.starry_set_hl = true
-			vim.g.starry_deep_black = true
-			vim.g.starry_italic_keywords = true
-			-- vim.g.starry_italic_functions = true
-			-- vim.g.starry_italic_comments = true
-			-- vim.g.starry_italic_string = true
-			-- vim.g.starry_italic_variables = true
-			vim.g.starry_style = "dracula"
-		end,
+		"catppuccin/nvim",
+		as = "catppuccin",
+		config = require("plugins.cat"),
 	})
-
-    use({"neg-serg/neg.nvim"})
 
 	use({
 		"lewis6991/gitsigns.nvim",
@@ -461,7 +449,6 @@ config = function() require('plugins.eviline') end
 			end, {})
 		end,
 	})
-
 end
 
 return require("packer").startup({
