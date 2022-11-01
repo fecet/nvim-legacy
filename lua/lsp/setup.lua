@@ -14,7 +14,7 @@ local mason_lsp = require("mason-lspconfig")
 mason.setup()
 mason_lsp.setup({
 	ensure_installed = {
-		"bash-language-server",
+		-- "bash-language-server",
 		"efm",
 		-- "lua-language-server",
 		"sumneko_lua",
@@ -29,7 +29,8 @@ mason_lsp.setup({
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+-- capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local function custom_attach(_, bufnr)
 	local function buf_set_keymap(...)

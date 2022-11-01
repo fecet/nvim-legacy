@@ -147,7 +147,13 @@ config = function() require('plugins.eviline') end
 		config = require("plugins.iswap"),
 	})
 
-	use({ "kevinhwang91/nvim-hlslens", event = "BufRead" })
+	use({
+		"kevinhwang91/nvim-hlslens",
+		event = "BufRead",
+		config = function()
+			require("hlslens").setup()
+		end,
+	})
 	-- use {'psliwka/vim-smoothie'}
 	-- use {
 	--     'karb94/neoscroll.nvim',
@@ -304,8 +310,7 @@ config = function() require('plugins.eviline') end
 			if not packer_plugins["LuaSnip"].loaded then
 				vim.cmd([[packadd LuaSnip]])
 			end
-			require("luasnip-latex-snippets").setup({ use_treesitter = true }
-)
+			require("luasnip-latex-snippets").setup({ use_treesitter = true })
 		end,
 		ft = { "tex", "markdown", "rmd" },
 		requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
