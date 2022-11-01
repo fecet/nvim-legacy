@@ -292,8 +292,31 @@ config = function() require('plugins.eviline') end
 		"L3MON4D3/LuaSnip",
 		tag = "v<CurrentMajor>.*",
 		after = "nvim-cmp",
-		config = "plugins.luasnips",
+		config = require("plugins.luasnips"),
 		-- requires = "rafamadriz/friendly-snippets",
+	})
+
+	use({
+		"jczhang02/luasnips-mathtex-snippets",
+		config = function()
+			if not packer_plugins["LuaSnip"].loaded then
+				vim.cmd([[packadd LuaSnip]])
+			end
+			vim.cmd([[packadd vimtex]])
+			vim.cmd([[packadd vim-markdown]])
+			require("luasnip-latex-snippets").setup()
+			-- or setup({ use_treesitter = true })
+		end,
+		ft = { "tex", "markdown", "rmd" },
+	})
+
+	use({
+		"preservim/vim-markdown",
+		opt = true,
+		ft = "markdown",
+		config = function()
+			vim.cmd([[let g:vim_markdown_math = 1]])
+		end,
 	})
 
 	---- git
@@ -323,11 +346,11 @@ config = function() require('plugins.eviline') end
 
 	use({ "lervag/vimtex", opt = true, ft = { "markdown", "rmd", "tex", "latex", "tex.rmd" } })
 
-	use({ "vim-pandoc/vim-pandoc-syntax", ft = { "rmd", "tex", "pandoc", "markdown" } })
-
-	use({ "vim-pandoc/vim-pandoc", ft = { "rmd", "tex", "pandoc", "markdown" } })
-
-	use({ "vim-pandoc/vim-rmarkdown", ft = { "rmd" } })
+	-- use({ "vim-pandoc/vim-pandoc-syntax", ft = { "rmd", "tex", "pandoc", "markdown" } })
+	--
+	-- use({ "vim-pandoc/vim-pandoc", ft = { "rmd", "tex", "pandoc", "markdown" } })
+	--
+	-- use({ "vim-pandoc/vim-rmarkdown", ft = { "rmd" } })
 
 	-- use {'vigoux/LanguageTool.nvim',
 	--       ft={'rmd',"markdown","tex"},
