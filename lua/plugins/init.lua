@@ -299,15 +299,16 @@ config = function() require('plugins.eviline') end
 	use({
 		"jczhang02/luasnips-mathtex-snippets",
 		config = function()
+			vim.cmd([[packadd vimtex]])
+			vim.cmd([[packadd vim-markdown]])
 			if not packer_plugins["LuaSnip"].loaded then
 				vim.cmd([[packadd LuaSnip]])
 			end
-			vim.cmd([[packadd vimtex]])
-			vim.cmd([[packadd vim-markdown]])
-			require("luasnip-latex-snippets").setup()
-			-- or setup({ use_treesitter = true })
+			require("luasnip-latex-snippets").setup({ use_treesitter = true }
+)
 		end,
 		ft = { "tex", "markdown", "rmd" },
+		requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
 	})
 
 	use({
@@ -344,7 +345,7 @@ config = function() require('plugins.eviline') end
 
 	use({ "ekickx/clipboard-image.nvim", cmd = "PasteImg", config = require("plugins.clipimg") })
 
-	use({ "lervag/vimtex", opt = true, ft = { "markdown", "rmd", "tex", "latex", "tex.rmd" } })
+	-- use({ "lervag/vimtex", opt = true, ft = { "markdown", "rmd", "tex", "latex", "tex.rmd" } })
 
 	-- use({ "vim-pandoc/vim-pandoc-syntax", ft = { "rmd", "tex", "pandoc", "markdown" } })
 	--
