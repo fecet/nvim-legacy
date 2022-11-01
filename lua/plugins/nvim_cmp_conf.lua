@@ -5,6 +5,7 @@ return function()
 	-- vim.cmd [[packadd cmp-nvim-ultisnips]]
 
 	local cmp = require("cmp")
+	local luasnip = require("luasnip")
 	-- local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 	-- vim.cmd([[highlight CmpItemAbbrDeprecated guifg=#D8DEE9 guibg=NONE gui=strikethrough]])
@@ -141,7 +142,27 @@ return function()
 			--         cmp_ultisnips_mappings.compose { "jump_backwards" }(fallback)
 			--     end,
 			--     { "i", "s", --[[ "c" (to enable the mapping in command mode) ]] }
-			-- ),
+			["<Tab>"] = function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item()
+				elseif luasnip.expand_or_jumpable() then
+					vim.fn.feedkeys(
+						vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
+						""
+					)
+				else
+					fallback()
+				end
+			end,
+			["<S-Tab>"] = function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item()
+				elseif luasnip.jumpable(-1) then
+					vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
+				else
+					fallback()
+				end
+			end, -- ),
 		}),
 
 		-- snippet = {
@@ -151,7 +172,8 @@ return function()
 
 		snippet = {
 			expand = function(args)
-				vim.fn["UltiSnips#Anon"](args.body)
+				-- 	vim.fn["UltiSnips#Anon"](args.body)
+				luasnip.lsp_expand(args.body)
 			end,
 		},
 
@@ -160,7 +182,7 @@ return function()
 		sources = {
 			{ name = "nvim_lsp" },
 			{ name = "nvim_lua" },
-			-- { name = "luasnip" },
+			{ name = "luasnip" },
 			-- { name = "ultisnips" },
 			{ name = "path" },
 			{ name = "spell" },

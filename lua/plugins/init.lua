@@ -253,7 +253,7 @@ config = function() require('plugins.eviline') end
 		-- event = "InsertEnter",
 		requires = {
 			{ "lukas-reineke/cmp-under-comparator" },
-			-- { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
+			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
 			{ "andersevenrud/cmp-tmux", after = "cmp-nvim-lua" },
@@ -272,20 +272,23 @@ config = function() require('plugins.eviline') end
 		config = require("plugins.nvim_cmp_conf"),
 	})
 
-	use({
-		"quangnguyen30192/cmp-nvim-ultisnips",
-		-- event = "InsertEnter",
-		-- after = { "nvim-cmp", "ultisnips" },
-		ft = { "python", "lua", "sh" },
-		config = require("plugins.cmp_ultisnip"),
-	})
-
-	use({
-		"SirVer/ultisnips",
-		requires = { "fecet/vim-snippets" },
-		event = { "InsertEnter" },
-		-- after={"nvim-cmp"}
-	})
+	-- use({
+	-- 	"quangnguyen30192/cmp-nvim-ultisnips",
+	-- 	-- event = "InsertEnter",
+	-- 	-- after = { "nvim-cmp", "ultisnips" },
+	-- 	ft = { "python", "lua", "sh" },
+	-- 	config = require("plugins.cmp_ultisnip"),
+	-- })
+	--
+	-- use({
+	-- 	"SirVer/ultisnips",
+	-- 	requires = { "fecet/vim-snippets" },
+	-- 	event = { "InsertEnter" },
+	-- 	-- after={"nvim-cmp"}
+	-- })
+	--
+	use({ "honza/vim-snippets" })
+	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
 
 	---- git
 
