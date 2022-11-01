@@ -250,7 +250,7 @@ config = function() require('plugins.eviline') end
 
 	use({
 		"hrsh7th/nvim-cmp",
-		-- event = "InsertEnter",
+		event = "InsertEnter",
 		requires = {
 			{ "lukas-reineke/cmp-under-comparator" },
 			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
@@ -288,7 +288,13 @@ config = function() require('plugins.eviline') end
 	-- })
 	--
 	use({ "honza/vim-snippets" })
-	use({ "L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*" })
+	use({
+		"L3MON4D3/LuaSnip",
+		tag = "v<CurrentMajor>.*",
+		after = "nvim-cmp",
+		config = "plugins.luasnips",
+		-- requires = "rafamadriz/friendly-snippets",
+	})
 
 	---- git
 

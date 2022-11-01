@@ -44,11 +44,6 @@ end
 require("plugins")
 require("packer_compiled")
 require("dashboard1")
-require("ultisnips")
+-- require("ultisnips")
 require("colorscheme")
-require("luasnip.loaders.from_snipmate").lazy_load({ include = { "python" } }) -- Load only python snippets
-
-require("luasnip.loaders.from_snipmate").lazy_load({ path = { "/home/rok/.config/nvim/vim-snippets/UltiSnips/" } }) -- Load snippets from my-snippets folder
--- If path is not specified, luasnip will look for the `snippets` directory in rtp (for custom-snippet probably
--- `~/.config/nvim/snippets`).
 
