@@ -31,8 +31,8 @@ config = function() require('plugins.eviline') end
 
 	use({
 		"rmagatti/auto-session",
-		-- opt = true,
-		-- cmd = {"SaveSession", "RestoreSession", "DeleteSession"},
+		opt = true,
+		cmd = {"SaveSession", "RestoreSession", "DeleteSession"},
 		config = require("plugins.session"),
 	})
 
@@ -45,11 +45,10 @@ config = function() require('plugins.eviline') end
 	-- }
 
 	use({
-		"akinsho/nvim-bufferline.lua",
-		tag = "v3.*",
-		-- opt=true,
-		-- event="BufRead",
-		-- after = "nvim-web-devicons",
+		"akinsho/bufferline.nvim",
+		-- tag = "v3.*",
+        tag = "*",
+        event = "BufReadPost",
 		config = require("plugins.bufferline"),
 	})
 	-- use 'folke/tokyonight.nvim'
@@ -369,12 +368,12 @@ config = function() require('plugins.eviline') end
 
 	use({ "lambdalisue/suda.vim", cmd = { "SudaRead", "SudaWrite" } })
 
-	use({
-		"glacambre/firenvim",
-		run = function()
-			vim.fn["firenvim#install"](0)
-		end,
-	})
+	-- use({
+	-- 	"glacambre/firenvim",
+	-- 	run = function()
+	-- 		vim.fn["firenvim#install"](0)
+	-- 	end,
+	-- })
 
 	use({
 		"andweeb/presence.nvim",
@@ -472,10 +471,10 @@ config = function() require('plugins.eviline') end
 	--
 	use({
 		"Julian/lean.nvim",
-		-- ft = { "lean" },
+		-- ft = { "lean", "lean3" },
 	})
 	use({ "nvim-lua/plenary.nvim" })
-	use({ "yamatsum/nvim-cursorline", config = require("plugins.cursorline") })
+	use({ "yamatsum/nvim-cursorline", config = require("plugins.cursorline"), event = "BufRead" })
 	use({
 		"tamton-aquib/duck.nvim",
 		config = function()
@@ -486,6 +485,7 @@ config = function() require('plugins.eviline') end
 				require("duck").cook()
 			end, {})
 		end,
+		event = "BufRead",
 	})
 end
 
