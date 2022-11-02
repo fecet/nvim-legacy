@@ -303,7 +303,7 @@ config = function() require('plugins.eviline') end
 	})
 
 	use({
-		"jczhang02/luasnips-mathtex-snippets",
+		"fecet/luasnips-mathtex-snippets",
 		config = function()
 			-- vim.cmd([[packadd vimtex]])
 			-- vim.cmd([[packadd vim-markdown]])
