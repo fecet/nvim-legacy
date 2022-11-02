@@ -293,37 +293,37 @@ config = function() require('plugins.eviline') end
 	-- 	-- after={"nvim-cmp"}
 	-- })
 	--
-	use({ "honza/vim-snippets" })
+	use({ "fecet/vim-snippets" })
 	use({
 		"L3MON4D3/LuaSnip",
 		tag = "v<CurrentMajor>.*",
 		after = "nvim-cmp",
 		config = require("plugins.luasnips"),
-		-- requires = "rafamadriz/friendly-snippets",
+		requires = "rafamadriz/friendly-snippets",
 	})
 
 	use({
 		"jczhang02/luasnips-mathtex-snippets",
 		config = function()
-			vim.cmd([[packadd vimtex]])
-			vim.cmd([[packadd vim-markdown]])
+			-- vim.cmd([[packadd vimtex]])
+			-- vim.cmd([[packadd vim-markdown]])
 			if not packer_plugins["LuaSnip"].loaded then
 				vim.cmd([[packadd LuaSnip]])
 			end
 			require("luasnip-latex-snippets").setup({ use_treesitter = true })
 		end,
 		ft = { "tex", "markdown", "rmd" },
-		requires = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+		requires = { "L3MON4D3/LuaSnip" },
 	})
 
-	use({
-		"preservim/vim-markdown",
-		opt = true,
-		ft = "markdown",
-		config = function()
-			vim.cmd([[let g:vim_markdown_math = 1]])
-		end,
-	})
+	-- use({
+	-- 	"preservim/vim-markdown",
+	-- 	opt = true,
+	-- 	ft = "markdown",
+	-- 	config = function()
+	-- 		vim.cmd([[let g:vim_markdown_math = 1]])
+	-- 	end,
+	-- })
 
 	---- git
 
@@ -452,21 +452,21 @@ config = function() require('plugins.eviline') end
 
 	use({ "kmonad/kmonad-vim", ft = { "kbd" } })
 
-	use({
-		"chipsenkbeil/distant.nvim",
-		config = function()
-			require("distant").setup({
-				-- Applies Chip's personal settings to every machine you connect to
-				--
-				-- 1. Ensures that distant servers terminate with no connections
-				-- 2. Provides navigation bindings for remote directories
-				-- 3. Provides keybinding to jump into a remote file's parent directory
-				["*"] = vim.tbl_deep_extend("force", require("distant.settings").chip_default(), {
-					mode = "ssh",
-				}),
-			})
-		end,
-	})
+	-- use({
+	-- 	"chipsenkbeil/distant.nvim",
+	-- 	config = function()
+	-- 		require("distant").setup({
+	-- 			-- Applies Chip's personal settings to every machine you connect to
+	-- 			--
+	-- 			-- 1. Ensures that distant servers terminate with no connections
+	-- 			-- 2. Provides navigation bindings for remote directories
+	-- 			-- 3. Provides keybinding to jump into a remote file's parent directory
+	-- 			["*"] = vim.tbl_deep_extend("force", require("distant.settings").chip_default(), {
+	-- 				mode = "ssh",
+	-- 			}),
+	-- 		})
+	-- 	end,
+	-- })
 
 	-- math
 	--

@@ -1,5 +1,5 @@
 return function()
-	local snippet_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/vim-snippets/UltiSnips"
+	local snippet_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/vim-snippets/snippets"
 	-- require("luasnip.loaders.from_snipmate").lazy_load({ path = { snips_path } }) -- Load snippets from my-snippets folder
 	-- If path is not specified, luasnip will look for the `snippets` directory in rtp (for custom-snippet probably
 	-- `~/.config/nvim/snippets`).

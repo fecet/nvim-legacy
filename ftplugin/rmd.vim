@@ -1,4 +1,4 @@
-" set filetype=tex.rmd
+set filetype=markdown.rmd
 set spell
 hi clear conceal
 let g:coq_settings = { "keymap.recommended": v:false,
