@@ -12,6 +12,7 @@ return function()
 		updateevents = "TextChanged,TextChangedI",
 		delete_check_events = "TextChanged,InsertLeave",
 		enable_autosnippets = true,
+        store_selection_keys="<tab>"
 	})
 	require("luasnip.loaders.from_lua").lazy_load()
 	require("luasnip.loaders.from_vscode").lazy_load()
