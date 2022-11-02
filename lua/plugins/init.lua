@@ -443,7 +443,7 @@ config = function() require('plugins.eviline') end
 	use({ "nathom/filetype.nvim" })
 	-- Is using a standard Neovim install, i.e. built from source or using a
 	-- provided appimage.
-	-- use("lewis6991/impatient.nvim")
+	use("lewis6991/impatient.nvim")
 
 	use({
 		"h-hg/fcitx.nvim",
