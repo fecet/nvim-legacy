@@ -63,8 +63,8 @@ buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_wo
 	buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
 	buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	-- buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.format{async=true}<CR>", opts)
-	buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.format{async=true}<CR>", opts)
+	-- buf_set_keymap("n", "<space>fm", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 	-- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 end
 
