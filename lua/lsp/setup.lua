@@ -237,7 +237,7 @@ require("lean").setup({
 		on_attach = custom_attach,
 		capabilities = capabilities,
 		-- cmd = { "lean-language-server", "--stdio" },
-		cmd = { "lean-language-server", "--stdio", "--", "-M", "8192", "-T", "100000" },
+		cmd = { "lean-language-server", "--stdio", "--", "-M", "16384", "-T", "100000" },
 	},
 	mappings = true,
 	ft = { default = "lean3" },
