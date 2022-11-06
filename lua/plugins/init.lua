@@ -472,6 +472,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"Julian/lean.nvim",
 		-- ft = { "lean", "lean3" },
+        config = require("plugins.lean")
 	})
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "yamatsum/nvim-cursorline", config = require("plugins.cursorline"), event = "BufRead" })
