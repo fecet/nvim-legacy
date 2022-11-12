@@ -43,6 +43,7 @@ nnoremap > >>
 "     j
 "     v
 
+noremap <silent> <leader>J J
 " K/J keys for 5 times k/j (faster navigation)
 " silent! map <unique> K <Plug>(SmoothieUpwards)
 " silent! map <unique> J <Plug>(SmoothieDownwards)

@@ -231,21 +231,18 @@ efmls.setup({
 })
 
 require("lean").setup({
-	abbreviations = { builtin = true },
-	lsp = { enable = false },
 	lsp3 = {
 		on_attach = custom_attach,
 		capabilities = capabilities,
-		-- cmd = { "lean-language-server", "--stdio" },
 		cmd = { "lean-language-server", "--stdio", "--", "-M", "16384", "-T", "100000" },
 	},
-	mappings = true,
-	ft = { default = "lean3" },
-	progress_bars = {
-		-- Enable the progress bars?
+	abbreviations = {
 		enable = true,
-		-- Use a different priority for the signs
-		priority = 10,
+		extra = {
+			wknight = "♘",
+			sun = "☼",
+		},
+		leader = "/",
 	},
 })
 

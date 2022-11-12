@@ -1,10 +1,9 @@
 return function()
 	require("lean").setup({
-		abbreviations = { builtin = true },
 		lsp = { enable = false },
 		lsp3 = {
 			cmd = { "lean-language-server", "--stdio", "--", "-M", "16384", "-T", "100000" },
-            filetypes={"lean","lean3"}
+			filetypes = { "lean", "lean3" },
 		},
 		mappings = true,
 		ft = { default = "lean3" },
