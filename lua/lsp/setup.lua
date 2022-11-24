@@ -6,6 +6,7 @@
 -- end
 
 vim.cmd([[packadd cmp-nvim-lsp]])
+vim.cmd([[packadd lean.nvim]])
 
 local nvim_lsp = require("lspconfig")
 local mason = require("mason")
