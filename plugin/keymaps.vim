@@ -91,6 +91,7 @@ noremap <silent> <leader>gb :BufferLinePick<CR>
 map <leader>aq :qa<CR>
 map <leader>noh :noh<CR>
 map <leader>toc :TOC<CR>
+map <leader>cc :cclose<CR>
 nnoremap <silent> <leader>gg :LazyGit<CR>
 
 "nmap <Leader>sl :<C-u>SessionLoad<CR>
