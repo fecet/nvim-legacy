@@ -22,3 +22,4 @@ let g:mkdp_open_ip = ''
 let g:mkdp_port = ''
 
 set guifont=Victor\ Mono:h30
+let g:neovide_refresh_rate = 138
