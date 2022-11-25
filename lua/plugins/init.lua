@@ -32,7 +32,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"rmagatti/auto-session",
 		opt = true,
-		cmd = {"SaveSession", "RestoreSession", "DeleteSession"},
+		cmd = { "SaveSession", "RestoreSession", "DeleteSession" },
 		config = require("plugins.session"),
 	})
 
@@ -47,8 +47,8 @@ config = function() require('plugins.eviline') end
 	use({
 		"akinsho/bufferline.nvim",
 		-- tag = "v3.*",
-        tag = "*",
-        event = "BufReadPost",
+		tag = "*",
+		event = "BufReadPost",
 		config = require("plugins.bufferline"),
 	})
 	-- use 'folke/tokyonight.nvim'
@@ -221,6 +221,42 @@ config = function() require('plugins.eviline') end
 		after = "nvim-cmp",
 	})
 
+	-- use({
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	event = "VimEnter",
+	-- 	config = function()
+	-- 		vim.defer_fn(function()
+	-- 			require("copilot").setup()
+	-- 		end, 100)
+	-- 	end,
+	-- })
+
+	use({
+		"zbirenbaum/copilot.lua",
+		event = "InsertEnter",
+		config = function()
+			vim.schedule(function()
+				require("copilot").setup({
+				})
+			end)
+		end,
+	})
+
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = "copilot.lua",
+		config = function()
+			require("copilot_cmp").setup({
+				method = "getPanelCompletions",
+				formatters = {
+					label = require("copilot_cmp.format").format_label_text,
+					insert_text = require("copilot_cmp.format").remove_existing,
+					preview = require("copilot_cmp.format").deindent,
+				},
+			})
+		end,
+	})
+
 	----------------
 	--  nvim-lsp  --
 	----------------
@@ -257,6 +293,7 @@ config = function() require('plugins.eviline') end
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		requires = {
+			{ "onsails/lspkind.nvim" },
 			{ "lukas-reineke/cmp-under-comparator" },
 			{ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" },
 			{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
@@ -267,12 +304,12 @@ config = function() require('plugins.eviline') end
 			{ "hrsh7th/cmp-buffer", after = "cmp-spell" },
 			{ "kdheepak/cmp-latex-symbols", after = "cmp-buffer" },
 			{ "hrsh7th/cmp-cmdline", after = "cmp-buffer" },
-			{
-				"tzachar/cmp-tabnine",
-				run = "./install.sh",
-				after = "cmp-spell",
-				config = require("plugins.tabnine"),
-			},
+			-- {
+			-- 	"tzachar/cmp-tabnine",
+			-- 	run = "./install.sh",
+			-- 	after = "cmp-spell",
+			-- 	config = require("plugins.tabnine"),
+			-- },
 		},
 		config = require("plugins.nvim_cmp_conf"),
 	})
@@ -472,7 +509,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"Julian/lean.nvim",
 		ft = { "lean", "lean3" },
-        config = require("plugins.lean")
+		config = require("plugins.lean"),
 	})
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "yamatsum/nvim-cursorline", config = require("plugins.cursorline"), event = "BufRead" })
