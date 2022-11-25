@@ -66,6 +66,16 @@ return function()
 		-- You can set mappings if you want
 		mapping = cmp.mapping.preset.insert({
 			["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+			-- ["<CR>"] = cmp.mapping(function(fallback)
+			-- 	if cmp.visible() then
+			-- 		cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+			-- 	elseif require("copilot.suggestion").is_visible() then
+			-- 		require("copilot.suggestion").accept()
+			-- 	else
+			-- 		fallback()
+			-- 	end
+			-- end, { "i","s" }),
+
 			["<C-k>"] = cmp.mapping.select_prev_item(),
 			["<C-j>"] = cmp.mapping.select_next_item(),
 
@@ -87,6 +97,8 @@ return function()
 						vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
 						""
 					)
+				elseif require("copilot.suggestion").is_visible() then
+					require("copilot.suggestion").accept()
 				else
 					fallback()
 				end

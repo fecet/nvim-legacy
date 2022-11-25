@@ -110,6 +110,7 @@ config = function() require('plugins.eviline') end
 			"HopChar2",
 			"HopPattern",
 			"HopLineStart",
+			"HopAnywhere",
 		},
 	})
 
@@ -234,12 +235,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"zbirenbaum/copilot.lua",
 		event = "InsertEnter",
-		config = function()
-			vim.schedule(function()
-				require("copilot").setup({
-				})
-			end)
-		end,
+		config = require("plugins.copilot"),
 	})
 
 	use({
@@ -509,7 +505,7 @@ config = function() require('plugins.eviline') end
 	use({
 		"Julian/lean.nvim",
 		ft = { "lean", "lean3" },
-		config = require("plugins.lean"),
+		-- config = require("plugins.lean"),
 	})
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "yamatsum/nvim-cursorline", config = require("plugins.cursorline"), event = "BufRead" })

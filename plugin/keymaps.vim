@@ -111,10 +111,10 @@ nnoremap <silent> <Leader>ee :RnvimrToggl<CR>
 " nnoremap <silent> <leader>k :<C-u>Telescope<cr>
 
 
-noremap <silent> <leader>w <cmd>HopWord<CR>
+noremap <silent> <leader>w <cmd>HopAnywhere<CR>
 nnoremap <silent> <leader><leader>p :HopPattern<CR>
 noremap <silent> <leader>l <cmd>HopLine<CR>
-nnoremap <silent> <leader><leader>s :HopChar1<CR>
+nnoremap <silent> <leader>s :HopChar2<CR>
 
 " map <CR> <Plug>(wildfire-fuel)
 " map <leader>fo <Plug>(wildfire-quick-select)
@@ -164,4 +164,4 @@ nnoremap <leader>en <cmd>DashboardNewFile<cr>
 
 omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
 vnoremap <silent> m :lua require('tsht').nodes()<CR>
-o
+
