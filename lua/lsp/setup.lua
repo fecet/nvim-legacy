@@ -237,6 +237,7 @@ require("lean").setup({
 		on_attach = custom_attach,
 		capabilities = capabilities,
 		cmd = { "lean-language-server", "--stdio", "--", "-M", "16384", "-T", "100000" },
+		filetypes = { "lean", "lean3" },
 	},
 	abbreviations = {
 		enable = true,
@@ -245,6 +246,14 @@ require("lean").setup({
 			sun = "☼",
 		},
 		leader = "/",
+	},
+	mappings = true,
+	ft = { default = "lean3" },
+	progress_bars = {
+		-- Enable the progress bars?
+		enable = true,
+		-- Use a different priority for the signs
+		priority = 10,
 	},
 })
 

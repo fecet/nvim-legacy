@@ -3,10 +3,10 @@
 --
 -- vim.g.tokyonight_style = "storm"
 -- require('starry.functions').change_style("dracula")
--- vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
--- vim.g.tokyonight_lualine_bold = true
+vim.g.tokyonight_sidebars = { "qf", "vista_kind", "terminal", "packer" }
+vim.g.tokyonight_lualine_bold = true
 -- vim.cmd("colorscheme tokyonight-moon")
-vim.cmd("colorscheme catppuccin")
+-- vim.cmd("colorscheme catppuccin")
 
 -- vim.cmd("colorscheme aquarium")
 
@@ -14,7 +14,7 @@ vim.cmd("colorscheme catppuccin")
 -- require('starry.functions').toggle_style("dracula")
 -- vim.cmd("colorscheme neg")
 -- vim.cmd("colorscheme starry")
--- vim.cmd("colorscheme dracula")
+vim.cmd("colorscheme tokyonight-night")
 
 -- vim.cmd("hi Normal guibg=#000000")
 vim.cmd("hi IndentBlanklineChar guifg=#444d56 gui=nocombine")

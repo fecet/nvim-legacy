@@ -21,5 +21,6 @@ let g:mkdp_open_ip = ''
 " use a custom port to start server or random for empty
 let g:mkdp_port = ''
 
-set guifont=Victor\ Mono:h30
+set guifont=Victor\ Mono:h36
 let g:neovide_refresh_rate = 138
+" let g:neovide_profiler = v:true
