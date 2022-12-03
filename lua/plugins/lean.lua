@@ -6,7 +6,7 @@ return function()
 			filetypes = { "lean", "lean3" },
 		},
 		mappings = true,
-		ft = { default = "lean3" },
+		-- ft = { default = "lean3" },
 		progress_bars = {
 			-- Enable the progress bars?
 			enable = true,

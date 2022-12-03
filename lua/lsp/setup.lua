@@ -6,7 +6,6 @@
 -- end
 
 vim.cmd([[packadd cmp-nvim-lsp]])
-vim.cmd([[packadd lean.nvim]])
 
 local nvim_lsp = require("lspconfig")
 local mason = require("mason")
@@ -232,12 +231,13 @@ efmls.setup({
 	-- rust = {formatter = rustfmt},
 })
 
+vim.cmd([[packadd lean.nvim]])
 require("lean").setup({
 	lsp3 = {
 		on_attach = custom_attach,
 		capabilities = capabilities,
-		cmd = { "lean-language-server", "--stdio", "--", "-M", "16384", "-T", "100000" },
-		filetypes = { "lean", "lean3" },
+		cmd = { "lean-language-server", "--stdio", "--", "-M", "10384", "-T", "100000" },
+		-- filetypes = { "lean", "lean3" },
 	},
 	abbreviations = {
 		enable = true,
@@ -248,7 +248,7 @@ require("lean").setup({
 		leader = "/",
 	},
 	mappings = true,
-	ft = { default = "lean3" },
+	-- ft = { default = "lean3" },
 	progress_bars = {
 		-- Enable the progress bars?
 		enable = true,

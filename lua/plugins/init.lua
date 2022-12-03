@@ -206,18 +206,18 @@ config = function() require('plugins.eviline') end
 
 	use({ "Pocco81/AutoSave.nvim", config = require("plugins.autosave"), event = "BufReadPre" })
 
-	use({
-		"kevinhwang91/nvim-fundo",
-		requires = "kevinhwang91/promise-async",
-		run = function()
-			require("fundo").install()
-		end,
-		config = function()
-			vim.o.undofile = true
-			require("fundo").setup()
-		end,
-		event = "BufRead",
-	})
+	-- use({
+	-- 	"kevinhwang91/nvim-fundo",
+	-- 	requires = "kevinhwang91/promise-async",
+	-- 	run = function()
+	-- 		require("fundo").install()
+	-- 	end,
+	-- 	config = function()
+	-- 		vim.o.undofile = true
+	-- 		require("fundo").setup()
+	-- 	end,
+	-- 	event = "BufRead",
+	-- })
 
 	use({
 		"norcalli/nvim-colorizer.lua",
@@ -517,7 +517,8 @@ config = function() require('plugins.eviline') end
 	--
 	use({
 		"Julian/lean.nvim",
-		ft = { "lean", "lean3" },
+		event = { "BufRead" },
+		-- ft = { "lean", "lean3" },
 		-- config = require("plugins.lean"),
 	})
 	use({ "nvim-lua/plenary.nvim" })
