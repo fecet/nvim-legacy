@@ -344,7 +344,7 @@ config = function() require('plugins.eviline') end
 		tag = "v<CurrentMajor>.*",
 		after = "nvim-cmp",
 		config = require("plugins.luasnips"),
-		requires = "rafamadriz/friendly-snippets",
+		-- requires = "rafamadriz/friendly-snippets",
 	})
 
 	use({
