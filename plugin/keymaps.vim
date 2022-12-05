@@ -117,6 +117,7 @@ noremap <silent> <leader>l <cmd>HopLine<CR>
 nnoremap <silent> <leader>s :HopChar2<CR>
 
 " map <CR> <Plug>(wildfire-fuel)
+vmap <C-SPACE> <Plug>(wildfire-water)
 " map <leader>fo <Plug>(wildfire-quick-select)
 " map <CR> <Plug>(wildfire-quick-select)
 " This selects the previous closest text object.
@@ -164,4 +165,6 @@ nnoremap <leader>en <cmd>DashboardNewFile<cr>
 
 omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
 vnoremap <silent> m :lua require('tsht').nodes()<CR>
+
+snoremap <BS> <C-O>s
 
