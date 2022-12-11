@@ -65,7 +65,8 @@ return function()
 		}, -- },
 		-- You can set mappings if you want
 		mapping = cmp.mapping.preset.insert({
-			["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+			-- ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+			["<CR>"] = cmp.mapping.confirm({ select = true }),
 			-- ["<CR>"] = cmp.mapping(function(fallback)
 			-- 	if cmp.visible() then
 			-- 		cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
@@ -134,6 +135,9 @@ return function()
 			{ name = "buffer" },
 			{ name = "latex_symbols" },
 			-- { name = "cmp_tabnine" },
+		},
+		completion = {
+			completeopt = "menu,menuone,noinsert",
 		},
 	})
 
