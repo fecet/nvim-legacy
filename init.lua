@@ -14,7 +14,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd("packadd packer.nvim")
 end
 
-require('impatient').enable_profile()
+require("impatient").enable_profile()
 
 local disabled_built_ins = {
 	"netrw",
@@ -47,3 +47,10 @@ require("dashboard1")
 -- require("ultisnips")
 require("colorscheme")
 
+function Reload_luasnip()
+	-- This is the body of the function where you can write your code
+	local snippet_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/vim-snippets/snippets"
+	require("luasnip").cleanup()
+	require("luasnip-latex-snippets").setup({ use_treesitter = true })
+	require("luasnip.loaders.from_snipmate").lazy_load({ { snippet_path } })
+end

@@ -20,6 +20,8 @@ let g:mkdp_open_ip = ''
 
 " use a custom port to start server or random for empty
 let g:mkdp_port = ''
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 0
 
 set guifont=Liga\ SFMonoNerdFont:h36
 let g:neovide_refresh_rate = 138

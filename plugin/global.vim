@@ -91,11 +91,9 @@ let g:mkdp_preview_options = {
 " let g:mkdp_browser = 'microsoft-edge-beta'
 let g:mkdp_browser = 'google-chrome-stable'
 let g:mkdp_filetypes = ['markdown','rmd']
-let g:mkdp_auto_start = 1
 let g:mkdp_command_for_global = 1
 let g:mkdp_echo_preview_url = 1
 let g:mkdp_open_to_the_world = 1
-let g:mkdp_auto_close = 0
 " let g:mkdp_port = '8296'
 let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 
