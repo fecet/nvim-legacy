@@ -17,7 +17,9 @@ local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 function _G.current_treesitter_lang()
 	local parser = require("vim.treesitter.highlighter").active[vim.api.nvim_get_current_buf()]
 	if parser then
-		return parser.tree:lang()
+        local cur_lang=parser.tree:lang()
+        print(cur_lang)
+        return cur_lang
 	end
 end
 
@@ -35,6 +37,7 @@ require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true, -- false will disable the whole extension
 		use_languagetree = true,
+		disable = { "markdown" },
 	},
 	rainbow = {
 		enable = true,
@@ -52,7 +55,7 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 		enable_autocmd = false,
 		config = {
-			rmd = "<!-- %s -->",
+			markdown = "<!-- %s -->",
 		},
 	},
 	-- matchup = {enable = true},

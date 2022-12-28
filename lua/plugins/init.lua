@@ -351,7 +351,7 @@ config = function() require('plugins.eviline') end
         "fecet/luasnips-mathtex-snippets",
         config = function()
             -- vim.cmd([[packadd vimtex]])
-            -- vim.cmd([[packadd vim-markdown]])
+            vim.cmd([[packadd vim-markdown]])
             if not packer_plugins["LuaSnip"].loaded then
                 vim.cmd([[packadd LuaSnip]])
             end
@@ -361,26 +361,27 @@ config = function() require('plugins.eviline') end
         requires = { "L3MON4D3/LuaSnip" },
     })
 
-    -- use({
-    -- 	"preservim/vim-markdown",
-    -- 	opt = true,
-    -- 	ft = "markdown",
-    -- 	config = function()
-    -- 		vim.cmd([[let g:vim_markdown_math = 1]])
-    -- 	end,
-    -- })
+    use({
+    	"preservim/vim-markdown",
+    	-- opt = true,
+    	-- ft = "markdown",
+        ft = { "tex", "markdown", "rmd", "qmd" },
+    	config = function()
+    		vim.cmd([[let g:vim_markdown_math = 1]])
+    	end,
+    })
 
     ---- git
 
     use({
         "nvim-telescope/telescope.nvim",
-        event = "BufRead",
         cmd = "Telescope",
         requires = {
             { "nvim-lua/popup.nvim", opt = true },
             { "nvim-lua/plenary.nvim", opt = true },
             { "nvim-telescope/telescope-fzy-native.nvim", opt = true },
             { "nvim-telescope/telescope-file-browser.nvim", opt = true },
+            { "debugloop/telescope-undo.nvim", opt = true },
         },
         config = require("plugins.telescope"),
     })

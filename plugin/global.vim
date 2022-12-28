@@ -102,13 +102,12 @@ let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 """"""""""""""
 
 " let g:pandoc#filetypes#handled = ["pandoc", "markdown","rmd"]
-let g:pandoc#filetypes#pandoc_markdown = 0
+" let g:pandoc#filetypes#pandoc_markdown = 0
+" let g:pandoc#modules#disabled = ["folding"]
 
-let g:tex_conceal='abdmg'
+let g:tex_conceal='abdmgs'
 let g:tex_flavor = "latex"
 let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_math = 0
-let g:pandoc#modules#disabled = ["folding"]
 
 """"""""""""""
 "  firenvim  "
