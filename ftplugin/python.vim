@@ -62,8 +62,8 @@ endfunction
 
 " nnoremap <Leader>sn :call IPythonOpen()<CR>
 
-nmap <Leader>ck :IPythonCellInsertAbove<CR>xo
-nmap <Leader>cj :IPythonCellInsertBelow<CR>x0
+inoremap <c-m>a <ESC>:IPythonCellInsertAbove<CR>o<CR>
+inoremap <c-m>b <ESC>:IPythonCellInsertBelow<CR>o<CR>
 
 
 "augroup remember_folds
