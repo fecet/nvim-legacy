@@ -24,5 +24,5 @@ let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 0
 
 set guifont=Liga\ SFMonoNerdFont:h36
-let g:neovide_refresh_rate = 138
+let g:neovide_refresh_rate = 60
 " let g:neovide_profiler = v:true

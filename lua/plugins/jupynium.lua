@@ -55,18 +55,39 @@ return function()
 
 		use_default_keybindings = false,
 		textobjects = {
-			use_default_keybindings = true,
+			use_default_keybindings = false,
 		},
 
 		-- Dim all cells except the current one
 		-- Related command :JupyniumShortsightedToggle
 		shortsighted = false,
 	})
+
 	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 		pattern = "*.ju.*",
 		callback = function()
 			local buf_id = vim.api.nvim_get_current_buf()
 			vim.keymap.set({ "n", "x" }, "<space><CR>", "<cmd>JupyniumExecuteSelectedCells<CR>", { buffer = buf_id })
+		end,
+	})
+
+	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+		pattern = "*.sync.*",
+		callback = function()
+			local buf_id = vim.api.nvim_get_current_buf()
+			vim.keymap.set(
+				{ "n", "x" },
+				"<space><CR>",
+				"<cmd>call jupyter_ascending#execute()<CR>",
+				{ buffer = buf_id }
+			)
+		end,
+	})
+
+	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+		pattern = "*.ju.*,*.sync.*",
+		callback = function()
+			local buf_id = vim.api.nvim_get_current_buf()
 			-- vim.keymap.set({ "n", "x" }, "<space>cc", "<cmd>JupyniumClearSelectedCellsOutputs<CR>", { buffer = buf_id })
 			-- vim.keymap.set({ "n", "x" }, "<space>S", "<cmd>JupyniumScrollToCell<cr>", { buffer = buf_id })
 			vim.keymap.set(
@@ -77,6 +98,48 @@ return function()
 			)
 			vim.keymap.set("", "<PageUp>", "<cmd>JupyniumScrollUp<cr>", { buffer = buf_id })
 			vim.keymap.set("", "<PageDown>", "<cmd>JupyniumScrollDown<cr>", { buffer = buf_id })
+			vim.keymap.set(
+				{ "n", "x", "o" },
+				"[j",
+				"<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
+				{ buffer = buf_id }
+			)
+			vim.keymap.set(
+				{ "n", "x", "o" },
+				"]j",
+				"<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
+				{ buffer = buf_id }
+			)
+			vim.keymap.set(
+				{ "n", "x", "o" },
+				"<space>j",
+				"<cmd>lua require'jupynium.textobj'.goto_current_cell_separator()<cr>",
+				{ buffer = buf_id }
+			)
+			vim.keymap.set(
+				{ "x", "o" },
+				"aj",
+				"<cmd>lua require'jupynium.textobj'.select_cell(true, false)<cr>",
+				{ buffer = buf_id }
+			)
+			vim.keymap.set(
+				{ "x", "o" },
+				"ij",
+				"<cmd>lua require'jupynium.textobj'.select_cell(false, false)<cr>",
+				{ buffer = buf_id }
+			)
+			vim.keymap.set(
+				{ "x", "o" },
+				"aJ",
+				"<cmd>lua require'jupynium.textobj'.select_cell(true, true)<cr>",
+				{ buffer = buf_id }
+			)
+			vim.keymap.set(
+				{ "x", "o" },
+				"iJ",
+				"<cmd>lua require'jupynium.textobj'.select_cell(false, true)<cr>",
+				{ buffer = buf_id }
+			)
 		end,
 	})
 end

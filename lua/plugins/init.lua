@@ -496,14 +496,14 @@ config = function() require('plugins.eviline') end
 
 	use({ "untitled-ai/jupyter_ascending.vim", ft = { "python", "r" } })
 
-	use({ "adavidwilson/vim-slime", ft = { "python", "r" } })
-
-	use({ "Klafyvel/vim-slime-cells", ft = { "python", "r" } })
-
-	use({
-		"hanschen/vim-ipython-cell",
-		ft = { "python" },
-	})
+	-- use({ "adavidwilson/vim-slime", ft = { "python", "r" } })
+	--
+	-- use({ "Klafyvel/vim-slime-cells", ft = { "python", "r" } })
+	--
+	-- use({
+	-- 	"hanschen/vim-ipython-cell",
+	-- 	ft = { "python" },
+	-- })
 
 	use({ "kiyoon/jupynium.nvim",
         -- run = "pip3 install --user .",
