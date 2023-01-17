@@ -61,8 +61,7 @@ map J <C-d>
 " xnoremap <C-j> <down>
 "
 " nnoremap <C-k> <up>
-" inoremap <C-k> <up>
-" cnoremap <C-k> <up>
+" inoremap <C-k> <up> cnoremap <C-k> <up>
 " xnoremap <C-k> <up>
 "
 " nnoremap <C-l> <right>
@@ -127,32 +126,12 @@ vmap <C-SPACE> <Plug>(wildfire-water)
 " xnoremap <silent> am <ESC>:call SelectInMath(1)<CR>
 
 
-" nmap <leader>sc <Plug>SlimeSendCell<bar><cmd>IpythonCellNextCell<CR>
-
-command! -nargs=0 RunQtConsoleLocal
-  " \ call jobstart("~/anaconda3/bin/jupyter qtconsole --stylesheet='~/scripts/dracula.css' --ConsoleWidget.font_size=12 
-  \ call jobstart("~/anaconda3/bin/jupyter qtconsole --stylesheet='monokai' --ConsoleWidget.font_size=12 
-  \ --JupyterWidget.include_other_output=True")
-command! -nargs=0 RunQtConsoleRemote
-  \ call jobstart("~/anaconda3/bin/jupyter qtconsole --existing='~/kernelx.json' --ssh Server --style='monokai' 
-  \--ConsoleWidget.font_size=12  --JupyterWidget.include_other_output=True")
-" let g:ipy_celldef = '^# %%' " regex for cell start and end
-
-" nmap <silent> <leader>jql :RunQtConsoleLocal<Enter>
-" nmap <silent> <leader>jqr :RunQtConsoleRemote<Enter>
-" " nmap <silent> <leader>jk :IPython<Space>--existing<Space>--no-window<Enter>
-" " nmap <silent> <leader>jk :IPython<Space>--existing<Enter>
-" nmap <silent> <leader>jk :IPython --existing="~/kernelx.json" -ssh Server --no-window<Enter>
-" " nmap <silent> <leader>jk :IPython<Space>--existing="~/kernelx.json"<Space>--ssh<Space>Server<Enter>
-" nmap <silent> <leader>jc <Plug>(IPy-RunCell)
-" nmap <silent> <leader>ja <Plug>(IPy-RunAll)
-
 " let g:UltiSnipsExpandTrigger="<f21>"
 " let g:UltiSnipsJumpForwardTrigger="<f20>"
 " let g:UltiSnipsJumpBackwardTrigger="<s-f20>"
 " let g:UltiSnipsEditSplit="vertical"
 " let g:UltiSnipsSnippetDirectories=[$HOME.'/.local/share/nvim/site/pack/packer/start/vim-snippets/UltiSnips',$HOME.'/.local/share/nvim/site/pack/packer/opt/vim-snippets/UltiSnips']
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsEditSplit="vertical"
 
 nmap <leader>pv <Plug>MarkdownPreviewToggle
 nmap <leader>sol :SymbolsOutline<CR>
