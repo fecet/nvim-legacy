@@ -505,6 +505,11 @@ config = function() require('plugins.eviline') end
 		ft = { "python" },
 	})
 
+	use({ "kiyoon/jupynium.nvim",
+        -- run = "pip3 install --user .",
+        config = require("plugins.jupynium") 
+    })
+
 	-----------------
 	--  lua-stuff  --
 	-----------------
