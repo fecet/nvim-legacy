@@ -62,8 +62,10 @@ endfunction
 
 " nnoremap <Leader>sn :call IPythonOpen()<CR>
 
-inoremap <c-m>a <ESC>:IPythonCellInsertAbove<CR>o<CR>
-inoremap <c-m>b <ESC>:IPythonCellInsertBelow<CR>o<CR>
+" inoremap <c-p>a <ESC>:IPythonCellInsertAbove<CR>o<CR>
+" inoremap <c-p>b <ESC>:IPythonCellInsertBelow<CR>o<CR>
+"
+" inoremap <c-p><CR> <ESC>:call jupyter_ascending#execute()<CR>
 
 
 "augroup remember_folds
@@ -89,11 +91,10 @@ endfunction
 
 nmap <leader>sc <Plug>SlimeSendCell<CR>
 
-nmap <leader><CR> :call jupyter_ascending#execute()<CR>
+nmap <leader><CR> :call jupyter_ascending#execute()<CR><CR>
 nmap <leader>sc :call SlimeSendCellJump()<CR>
 
 
-imap <S><CR> :call jupyter_ascending#execute()<CR>
 
 
 let g:slime_cell_delimiter = "# %%"

@@ -123,10 +123,10 @@ return function()
 		-- },
 		-- You should specify your *installed* sources.
 		sources = {
+			{ name = "luasnip" },
 			{ name = "copilot" },
 			{ name = "nvim_lsp" },
 			{ name = "nvim_lua" },
-			{ name = "luasnip" },
 			-- { name = "ultisnips" },
 			{ name = "path" },
 			{ name = "spell" },
