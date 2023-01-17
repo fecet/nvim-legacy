@@ -500,10 +500,10 @@ config = function() require('plugins.eviline') end
 	--
 	-- use({ "Klafyvel/vim-slime-cells", ft = { "python", "r" } })
 	--
-	-- use({
-	-- 	"hanschen/vim-ipython-cell",
-	-- 	ft = { "python" },
-	-- })
+	use({
+		"hanschen/vim-ipython-cell",
+		ft = { "python" },
+	})
 
 	use({ "kiyoon/jupynium.nvim",
         -- run = "pip3 install --user .",
