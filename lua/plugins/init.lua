@@ -177,7 +177,7 @@ config = function() require('plugins.eviline') end
 		opt = true,
 		run = ":TSUpdate",
 		-- after="nvim-lsp-installer",
-		event = { "BufRead" },
+		event = { "BufReadPost" },
 		-- event="VimEnter",
 		config = function()
 			require("plugins.treesitter")
@@ -280,17 +280,7 @@ config = function() require('plugins.eviline') end
 	--
 	use({
 		"dnlhc/glance.nvim",
-		config = function()
-			-- Lua
-			require("glance").setup({
-				-- your configuration
-				--
-			})
-			vim.keymap.set("n", "gd", "<CMD>Glance definitions<CR>")
-			vim.keymap.set("n", "gr", "<CMD>Glance references<CR>")
-			vim.keymap.set("n", "gy", "<CMD>Glance type_definitions<CR>")
-			vim.keymap.set("n", "gi", "<CMD>Glance implementations<CR>")
-		end,
+		config = require("plugins.glance"),
 	})
 
 	use({
@@ -481,10 +471,11 @@ config = function() require('plugins.eviline') end
 		cmd = { "Calendar" },
 	})
 
-	-- use {
-	--     "rcarriga/nvim-notify",
-	--     event="BufRead",
-	-- }
+	use({
+		"rcarriga/nvim-notify",
+		event = "BufRead",
+	})
+
 	use({
 		"stevearc/dressing.nvim",
 		event = "BufRead",
@@ -495,20 +486,22 @@ config = function() require('plugins.eviline') end
 	------------
 
 	use({ "untitled-ai/jupyter_ascending.vim", ft = { "python", "r" } })
-
-	-- use({ "adavidwilson/vim-slime", ft = { "python", "r" } })
 	--
-	-- use({ "Klafyvel/vim-slime-cells", ft = { "python", "r" } })
-	--
+	-- -- use({ "adavidwilson/vim-slime", ft = { "python", "r" } })
+	-- --
+	-- -- use({ "Klafyvel/vim-slime-cells", ft = { "python", "r" } })
+	-- --
 	use({
 		"hanschen/vim-ipython-cell",
 		ft = { "python" },
 	})
 
-	use({ "kiyoon/jupynium.nvim",
-        -- run = "pip3 install --user .",
-        config = require("plugins.jupynium") 
-    })
+	use({
+		"kiyoon/jupynium.nvim",
+		-- run = "pip3 install --user .",
+		config = require("plugins.jupynium"),
+		event = "BufRead",
+	})
 
 	-----------------
 	--  lua-stuff  --

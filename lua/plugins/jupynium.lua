@@ -6,6 +6,12 @@ return function()
 
 		default_notebook_URL = "localhost:8888",
 
+		firefox_profiles_ini_path = "~/.mozilla/firefox/profiles.ini",
+		-- firefox_profiles_ini_path = vim.fn.isdirectory(vim.fn.expand("~/snap/firefox/common/.mozilla/firefox"))
+		-- 		and "~/snap/firefox/common/.mozilla/firefox/profiles.ini"
+		-- 	or "~/.mozilla/firefox/profiles.ini",
+		firefox_profile_name = nil,
+
 		-- Open the Jupynium server if it is not already running
 		-- which means that it will open the Selenium browser when you open this file.
 		-- Related command :JupyniumStartAndAttachToServer
@@ -34,7 +40,7 @@ return function()
 		-- by downloading from the Jupyter Notebook server.
 		-- WARNING: this will overwrite the file without asking
 		-- Related command :JupyniumDownloadIpynb
-		auto_download_ipynb = true,
+		auto_download_ipynb = false,
 
 		-- Always scroll to the current cell.
 		-- Related command :JupyniumScrollToCell
