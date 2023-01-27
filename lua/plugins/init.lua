@@ -37,7 +37,12 @@ config = function() require('plugins.eviline') end
 	})
 
 	-- use({ "glepnir/dashboard-nvim", opt = true, event = "BufWinEnter" })
-	use({ "glepnir/dashboard-nvim" })
+	use({
+		"glepnir/dashboard-nvim",
+		event = "VimEnter",
+		config = require("plugins.dashboard"),
+		require = { { "nvim-tree/nvim-web-devicons" } },
+	})
 	-- use {
 	--     'goolord/alpha-nvim',
 	--     config = require("plugins.alpha"),
@@ -519,10 +524,10 @@ config = function() require('plugins.eviline') end
 
 	use({ "kmonad/kmonad-vim", ft = { "kbd" } })
 
-	use({
-		"quarto-dev/quarto-nvim",
-		requires = { "neovim/nvim-lspconfig", "jmbuhr/otter.nvim" },
-	})
+	-- use({
+	-- 	"quarto-dev/quarto-nvim",
+	-- 	requires = { "neovim/nvim-lspconfig", "jmbuhr/otter.nvim" },
+	-- })
 
 	-- use({
 	-- 	"chipsenkbeil/distant.nvim",

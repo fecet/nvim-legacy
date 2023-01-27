@@ -43,14 +43,7 @@ end
 
 require("plugins")
 require("packer_compiled")
-require("dashboard1")
+-- require("dashboard1")
 -- require("ultisnips")
 require("colorscheme")
 
-function Reload_luasnip()
-	-- This is the body of the function where you can write your code
-	local snippet_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/vim-snippets/snippets"
-	require("luasnip").cleanup()
-	require("luasnip-latex-snippets").setup({ use_treesitter = true })
-	require("luasnip.loaders.from_snipmate").lazy_load({ { snippet_path } })
-end

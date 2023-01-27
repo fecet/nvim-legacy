@@ -5,17 +5,32 @@ let g:python3_host_prog='/usr/bin/python3'
 " let g:python3_host_prog='/home/rok/anaconda3/bin/python'
 " let g:node_host_prog = ''
 
-" let g:mkdp_browser = 'chromium'
+""""""""""
+"  mkdp  "
+""""""""""
 
-" === markdown-preview.nvim ===
-" source ~/.config/nvim/Diff_machine_configs/linux_config.vim
-" source ~/.config/nvim/Diff_machine_configs/server_config.vim
-" source ~/.config/nvim/Diff_machine_configs/wsl_config.vim
+let g:mkdp_preview_options = {
+            \ 'mkit': {},
+            \ 'katex': {},
+            \ 'uml': {},
+            \ 'maid': {},
+            \ 'disable_sync_scroll': 0,
+            \ 'sync_scroll_type': 'middle',
+            \ 'hide_yaml_meta': 1,
+            \ 'sequence_diagrams': {},
+            \ 'flowchart_diagrams': {},
+            \ 'content_editable': v:false,
+            \ 'disable_filename': 0
+            \ }
+" let g:mkdp_browser = 'microsoft-edge-beta'
+let g:mkdp_browser = 'firefox'
+let g:mkdp_filetypes = ['markdown','rmd',"qmd"]
+let g:mkdp_command_for_global = 1
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_open_to_the_world = 1
+" let g:mkdp_port = '8296'
+let g:mkdp_page_title = 'MarkdownPreview「${name}」'
 
-" use custom IP to open preview page
-" useful when you work in remote vim and preview on local browser
-" more detail see: https://github.com/iamcco/markdown-preview.nvim/pull/9
-" default empty
 let g:mkdp_open_ip = ''
 
 " use a custom port to start server or random for empty
