@@ -16,8 +16,8 @@ mason_lsp.setup({
 	ensure_installed = {
 		-- "bash-language-server",
 		"efm",
-		-- "lua-language-server",
-		"sumneko_lua",
+		"lua_ls",
+		-- "sumneko_lua",
 		"clangd",
 		"gopls",
 		-- "jedi_language_server",
