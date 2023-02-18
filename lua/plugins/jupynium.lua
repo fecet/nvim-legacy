@@ -67,6 +67,7 @@ return function()
 		-- Dim all cells except the current one
 		-- Related command :JupyniumShortsightedToggle
 		shortsighted = false,
+        auto_close_tab = false
 	})
 
 	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {

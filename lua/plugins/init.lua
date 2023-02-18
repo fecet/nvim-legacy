@@ -53,7 +53,7 @@ config = function() require('plugins.eviline') end
 		"akinsho/bufferline.nvim",
 		-- tag = "v3.*",
 		tag = "*",
-		event = "BufReadPost",
+		event = "BufWinEnter",
 		config = require("plugins.bufferline"),
 	})
 	-- use 'folke/tokyonight.nvim'

@@ -85,7 +85,8 @@ noremap <C-L> :BufferLineCycleNext<CR>
 noremap <C-S-l> :BufferLineCycleNext<CR>
 
 noremap <silent> <leader>bc :BufferLinePickClose<CR>
-noremap <silent> <leader>gb :BufferLinePick<CR>
+" noremap <silent> <leader>bp :BufferLinePick<CR>
+nnoremap <leader>bb :Telescope buffers<cr>
 
 map <leader>aq :qa<CR>
 map <leader>noh :noh<CR>

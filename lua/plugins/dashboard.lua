@@ -24,6 +24,9 @@ return function()
 					key = "d",
 				},
 			},
+			hide = {
+				tabline = false,
+			},
 		},
 		-- preview = {
 		-- 	command = "cat",
