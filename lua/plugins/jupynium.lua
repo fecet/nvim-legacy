@@ -107,13 +107,13 @@ return function()
 			vim.keymap.set("", "<PageDown>", "<cmd>JupyniumScrollDown<cr>", { buffer = buf_id })
 			vim.keymap.set(
 				{ "n", "x", "o" },
-				"[j",
+				"<C-b>",
 				"<cmd>lua require'jupynium.textobj'.goto_previous_cell_separator()<cr>",
 				{ buffer = buf_id }
 			)
 			vim.keymap.set(
 				{ "n", "x", "o" },
-				"]j",
+				"<C-f>",
 				"<cmd>lua require'jupynium.textobj'.goto_next_cell_separator()<cr>",
 				{ buffer = buf_id }
 			)
