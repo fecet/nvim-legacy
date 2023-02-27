@@ -66,7 +66,7 @@ return function()
 		-- You can set mappings if you want
 		mapping = cmp.mapping.preset.insert({
 			-- ["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
+			["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
 			-- ["<CR>"] = cmp.mapping(function(fallback)
 			-- 	if cmp.visible() then
 			-- 		cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
