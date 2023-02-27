@@ -4,18 +4,13 @@ require("mason-tool-installer").setup({
 	-- start; they should be the names Mason uses for each tool
 	ensure_installed = {
 		-- you can turn off/on auto_update per tool
-		"editorconfig-checker",
-
+		-- "editorconfig-checker",
 		"stylua",
-
 		"black",
-
 		"prettier",
-
 		"shellcheck",
 		"shfmt",
-
-		"vint",
+		-- "vint",
 	},
 
 	-- if set to true this will check each tool for updates. If updates
@@ -29,4 +24,3 @@ require("mason-tool-installer").setup({
 	-- Default: true
 	run_on_start = true,
 })
-
