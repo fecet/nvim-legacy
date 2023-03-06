@@ -121,6 +121,7 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 						diagnosticMode = "workspace",
 						useLibraryCodeForTypes = true,
 						typeCheckingMode = "off",
+                        autoImportCompletions=false,
 					},
 				},
 			},
