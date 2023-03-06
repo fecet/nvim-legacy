@@ -5,11 +5,11 @@ require("mason-tool-installer").setup({
 	ensure_installed = {
 		-- you can turn off/on auto_update per tool
 		-- "editorconfig-checker",
-		"stylua",
-		"black",
-		"prettier",
-		"shellcheck",
-		"shfmt",
+		-- "stylua",
+		-- "black",
+		-- "prettier",
+		-- "shellcheck",
+		-- "shfmt",
 		-- "vint",
 	},
 
