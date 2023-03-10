@@ -25,7 +25,7 @@ return function()
 		-- Related command :JupyniumAttachToServer
 		auto_attach_to_server = {
 			enable = true,
-			file_pattern = { "*.ju.*", "*.md" },
+			file_pattern = { "*.ju.*" },
 		},
 
 		-- Automatically open an Untitled.ipynb file on Notebook
@@ -33,7 +33,7 @@ return function()
 		-- Related command :JupyniumStartSync
 		auto_start_sync = {
 			enable = false,
-			file_pattern = { "*.ju.*", "*.md" },
+			file_pattern = { "*.ju.*" },
 		},
 
 		-- Automatically keep filename.ipynb copy of filename.ju.py
@@ -67,7 +67,7 @@ return function()
 		-- Dim all cells except the current one
 		-- Related command :JupyniumShortsightedToggle
 		shortsighted = false,
-        auto_close_tab = false
+		auto_close_tab = false,
 	})
 
 	vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
@@ -102,6 +102,12 @@ return function()
 				"<space>T",
 				"<cmd>JupyniumToggleSelectedCellsOutputsScroll<cr>",
 				{ buffer = buf_id }
+			)
+			vim.keymap.set(
+				{ "n" },
+				"<space>K",
+				"<cmd>JupyniumKernelHover<cr>",
+				{ buffer = buf_id, desc = "Jupynium hover (inspect a variable)" }
 			)
 			vim.keymap.set("", "<PageUp>", "<cmd>JupyniumScrollUp<cr>", { buffer = buf_id })
 			vim.keymap.set("", "<PageDown>", "<cmd>JupyniumScrollDown<cr>", { buffer = buf_id })
