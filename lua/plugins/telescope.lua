@@ -3,7 +3,8 @@ return function()
 	vim.cmd([[packadd popup.nvim]])
 	vim.cmd([[packadd telescope-fzy-native.nvim]])
 	vim.cmd([[packadd telescope-file-browser.nvim]])
-    vim.api.nvim_command([[packadd telescope-undo.nvim]])
+	vim.cmd([[packadd refactoring.nvim]])
+	vim.api.nvim_command([[packadd telescope-undo.nvim]])
 	require("telescope").setup({
 		defaults = {
 			prompt_prefix = "🔭 ",
@@ -30,4 +31,5 @@ override_file_sorter = true,
 	-- require("telescope").load_extension("gosource")
 	require("telescope").load_extension("file_browser")
 	require("telescope").load_extension("undo")
+	require("telescope").load_extension("refactoring")
 end

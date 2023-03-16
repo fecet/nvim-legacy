@@ -15,7 +15,17 @@ config = function() require('plugins.eviline') end
 		"SmiteshP/nvim-gps",
 		opt = true,
 		after = "nvim-treesitter",
+		event = { "BufRead" },
 		config = require("plugins.gps"),
+	})
+	use({
+		"ThePrimeagen/refactoring.nvim",
+		event = { "BufRead" },
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+		config = require("plugins.refactoring"),
 	})
 	use({
 		"arkav/lualine-lsp-progress",
@@ -497,10 +507,10 @@ config = function() require('plugins.eviline') end
 	-- --
 	-- -- use({ "Klafyvel/vim-slime-cells", ft = { "python", "r" } })
 	-- --
-	use({
-		"hanschen/vim-ipython-cell",
-		ft = { "python" },
-	})
+	-- use({
+	-- 	"hanschen/vim-ipython-cell",
+	-- 	ft = { "python" },
+	-- })
 
 	use({
 		"kiyoon/jupynium.nvim",
@@ -555,6 +565,7 @@ config = function() require('plugins.eviline') end
 		-- config = require("plugins.lean"),
 	})
 	use({ "nvim-lua/plenary.nvim" })
+	use({ "sakhnik/nvim-gdb", run = "./install.sh", event = "BufRead" })
 	use({ "yamatsum/nvim-cursorline", config = require("plugins.cursorline"), event = "BufRead" })
 	use({
 		"tamton-aquib/duck.nvim",
