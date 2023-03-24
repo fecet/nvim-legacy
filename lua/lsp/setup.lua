@@ -121,8 +121,18 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 						diagnosticMode = "workspace",
 						useLibraryCodeForTypes = true,
 						typeCheckingMode = "off",
-                        autoImportCompletions=false,
+						autoImportCompletions = false,
 					},
+				},
+			},
+		})
+	elseif server == "yamlls" then
+		nvim_lsp.yamlls.setup({
+			capabilities = capabilities,
+			on_attach = custom_attach,
+			settings = {
+				yaml = {
+					schemas = { kubernetes = "*.yaml" },
 				},
 			},
 		})
