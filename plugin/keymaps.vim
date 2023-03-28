@@ -47,8 +47,10 @@ noremap <silent> <leader>J J
 " K/J keys for 5 times k/j (faster navigation)
 " silent! map <unique> K <Plug>(SmoothieUpwards)
 " silent! map <unique> J <Plug>(SmoothieDownwards)
-map K <C-u>
-map J <C-d>
+" map K <C-u>
+" map J <C-d>
+map K 6k
+map J 6j
 
 " nnoremap <C-h> <left>
 " inoremap <C-h> <left>
@@ -138,6 +140,7 @@ nmap <leader>pv <Plug>MarkdownPreviewToggle
 nmap <leader>sol :SymbolsOutline<CR>
 nmap <leader>sw :ISwapWith<CR>
 
+nnoremap <leader>tt :Telescope<cr>
 nnoremap <leader>ff :Telescope find_files<cr>
 nnoremap <leader>fh :Telescope oldfiles<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
